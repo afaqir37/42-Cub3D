@@ -1,4 +1,4 @@
-#include "../cub3D.h"
+#include "../cub3d.h"
 
 
 int ft_check_sentence_existance(t_file *file, char *str)

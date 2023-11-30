@@ -1,4 +1,4 @@
-#include "../cub3D.h"
+#include "../cub3d.h"
 
 int ft_how_many_commas(char *str)
 {

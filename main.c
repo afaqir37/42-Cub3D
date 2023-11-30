@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-int main() 
+int main(int argc, char **argv) 
 {
 	void *mlx;
 	void *win;
@@ -9,7 +9,7 @@ int main()
 
     if (ft_parse_args(argc, argv, &info, &file))
         return (1);
-	/*mlx = mlx_init();
+	mlx = mlx_init();
 	if (!mlx)
 	{
 		perror("fail");
@@ -22,5 +22,5 @@ int main()
 		perror("fail");
 		return -1;
 	}
-	mlx_loop(mlx);*/
+	mlx_loop(mlx);
 }

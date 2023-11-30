@@ -1,4 +1,4 @@
-#include "../cub3D.h"
+#include "../cub3d.h"
 
 int ft_check_map_lenght(t_file *file, int line_start)
 {

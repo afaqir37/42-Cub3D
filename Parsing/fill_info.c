@@ -1,4 +1,4 @@
-#include "../cub3D.h"
+#include "../cub3d.h"
 
 int ft_check_infos_existance(t_file *file)
 {
@@ -25,8 +25,6 @@ int ft_check_infos_existance(t_file *file)
 
 int ft_check_info(t_file *file)
 {
-	t_file *tmp;
-
 	if (ft_does_have_content(file, "NO") < 0)
 		return (ft_write_error("Missing info : Provide a Path for The North texture!"));
 	if (ft_does_have_content(file, "SO") < 0)

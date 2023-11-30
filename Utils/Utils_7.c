@@ -1,4 +1,4 @@
-#include "../cub3D.h"
+#include "../cub3d.h"
 
 int ft_to_find(char *string, char *lookingfor)
 {

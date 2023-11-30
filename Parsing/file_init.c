@@ -1,4 +1,4 @@
-#include "../cub3D.h"
+#include "../cub3d.h"
 
 void	ft_intialize_file(t_file **file, int fd)
 {

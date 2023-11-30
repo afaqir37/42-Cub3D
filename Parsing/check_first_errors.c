@@ -1,4 +1,4 @@
-#include "../cub3D.h"
+#include "../cub3d.h"
 
 int	ft_arg_num(int ac)
 {
@@ -11,7 +11,6 @@ int ft_string(char *str, char *look)
 {
 	int i;
 	int j;
-	int len;
 
 	i = ft_strlen(str) - ft_strlen(look);
 	j = 0;

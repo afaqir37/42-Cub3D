@@ -1,4 +1,4 @@
-#include "../cub3D.h"
+#include "../cub3d.h"
 
 void ft_print_t_info(t_info *info)
 {

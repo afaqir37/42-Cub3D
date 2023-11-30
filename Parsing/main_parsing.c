@@ -1,4 +1,4 @@
-#include "../cub3D.h"
+#include "../cub3d.h"
 
 int	ft_fill_info(t_info** info, t_file *file)
 {
