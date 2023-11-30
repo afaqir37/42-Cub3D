@@ -4,4 +4,6 @@
 #include <unistd.h>
 #include <stdio.h>
 
+#define TILE_SIZE 32
+
 #endif

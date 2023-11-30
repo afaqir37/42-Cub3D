@@ -14,7 +14,7 @@ make a dynamic view inside a maze, in which you’ll have to find your way.
 - Fast rendering
 - Resulting image is not very realistic
 - a viable option for real-time rendering
-###### **Ray-Tracing**
+##### **Ray-Tracing**
 - Each ray is traced separately, so each point (usually a pixel) is traced by one single ray.
 - In a 320x200 display resolution a ray-tracer needs to trace 64,000 rays.
 - Slow rendering
