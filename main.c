@@ -4,8 +4,12 @@ int main()
 {
 	void *mlx;
 	void *win;
+    t_file *file;
+    t_info *info;
 
-	mlx = mlx_init();
+    if (ft_parse_args(argc, argv, &info, &file))
+        return (1);
+	/*mlx = mlx_init();
 	if (!mlx)
 	{
 		perror("fail");
@@ -18,5 +22,5 @@ int main()
 		perror("fail");
 		return -1;
 	}
-	mlx_loop(mlx);
+	mlx_loop(mlx);*/
 }
