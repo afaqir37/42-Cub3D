@@ -13,6 +13,10 @@ int main(int argc, char **argv)
 	NULL
 };
 
-	_initialize(&data, map);
-	_ray_casting(&data);
+	if (_initialize(&data, map))
+		return (1);
+	_ray_casting(&data, map);
+	mlx_loop(data.mlx);
+
+	return (0);
 }

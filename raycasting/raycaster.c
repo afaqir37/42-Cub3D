@@ -1,6 +1,6 @@
 #include "../cub3d.h"
 
-void	_ray_casting(t_data* data)
+void	_ray_casting(t_data* data, char **map)
 {
 	double	ray_angle;
 	int		ray_count;
@@ -14,8 +14,8 @@ void	_ray_casting(t_data* data)
 		ray.x = data->player.x;
 		ray.y = data->player.y;
 
-		rayCos = cos(ray_angle) / data->precision;
-		raySin = sin(ray_angle) / data->precision;
+		double rayCos = cos(ray_angle);
+		double raySin = sin(ray_angle);
 
 		while (ray.wall == '0')
 		{
@@ -23,7 +23,11 @@ void	_ray_casting(t_data* data)
 			ray.y += raySin;
 			ray.wall = map[(int)round(ray.y)][(int)round(ray.x)];
 		}
-		ray.distance = (int)sqrt(pow(data->player.x - ray.x, 2.0) + pow(data->player.y - ray.y, 2.0));
+		
+		ray.distance = sqrt(pow(data->player.x - ray.x, 2.0) + pow(data->player.y - ray.y, 2.0));
+		printf(" distance: %d\n", ray.distance);
+		int wall_height = (data->screen_height) / ray.distance;
+		_draw_line(data, wall_height, ray_count);
 
 		ray_angle += data->increment_angle;
 		ray_count++;

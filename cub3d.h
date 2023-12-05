@@ -124,20 +124,23 @@ typedef struct s_ray
 
 typedef struct s_data
 {
+    void*           mlx;
+    void*           win;
 	int				screen_width;
 	int				screen_height;
 	double			field_of_view;
 	double			increment_angle;
     double          precision;
 	t_player		player;
-    t_ray           ray;
 }					t_data;
 
 double				_to_radian(double degree);
 double				_to_degree(double radian);
-void				_initialize(t_data *data, char **map);
+int                 _initialize(t_data *data, char **map);
 double				_direction(int c);
 void				_init_player(char **map, t_player *player);
+void                _draw_line(t_data* data, int wall_height, int ray_count);
+void                _ray_casting(t_data* data, char **map);
 
 // -------------------------------------------------------------------------------
 #endif
