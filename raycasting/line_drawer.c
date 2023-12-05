@@ -30,5 +30,4 @@ void	_draw_line(t_data* data, int wall_height, int ray_count)
 		mlx_pixel_put(data->mlx, data->win, ray_count, i, 0x00FF00);
 		i++;
 	}
-	
 }
