@@ -27,3 +27,15 @@ make a dynamic view inside a maze, in which you’ll have to find your way.
 ---
 - Raycasting feels like cheating, and as a lazy programmer, I love it. You get the immersion of a 3D environment without many of the complexities of "real 3D" to slow you down. For example, raycasts run in constant time, so you can load up a massive world and it will just work, without optimization, as quickly as a tiny world. Levels are defined as simple grids rather than as trees of polygon meshes, so you can dive right in without a 3D modeling background or mathematics PhD.
 
+---
+- Precision in the context of ray casting typically refers to how accurately the ray casting algorithm can determine the intersection of a ray with a wall or other object in the game world. Higher precision means the algorithm can detect intersections more accurately, which can result in more detailed and realistic rendering of the game world.<br>
+
+Reducing the step size, as in `rayX += cos(ray_angle) / 2.0;`, can increase the precision of the ray casting algorithm. This is because the ray is moving in smaller steps, so it can detect intersections with walls or other objects more accurately. However, this comes at the cost of increased computational complexity, as the algorithm needs to perform more steps to cast each ray.<br>
+
+- The line `rayX += cos(ray_angle);` is updating the x-coordinate of the ray by adding the cosine of the ray's angle. This is based on the principle of unit circle where the cosine of an angle gives the x-coordinate of a point on the unit circle corresponding to that angle.<br>
+
+In the context of ray casting, this line is moving the ray along the x-axis by an amount proportional to the cosine of the ray's angle. This is equivalent to saying that the ray is moving one unit step along the direction of the ray's angle.<br>
+
+The equation `rayX += hypothenus * cos(rayAngle)` is used when you want to move the ray by a distance other than 1 unit. The `hypothenus` in this equation is the length of the step you want to move the ray by. If `hypothenus` is 1, then the equation simplifies to `rayX += cos(rayAngle)`, which is the line of code in question.<br>
+
+If you want to move the ray by a distance other than 1 unit, you can modify the line to `rayX += step * cos(ray_angle);`, where `step` is the length of the step you want to move the ray by.<br>

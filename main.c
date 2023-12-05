@@ -14,5 +14,5 @@ int main(int argc, char **argv)
 };
 
 	_initialize(&data, map);
-
+	_ray_casting(&data);
 }
