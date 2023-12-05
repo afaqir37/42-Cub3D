@@ -24,3 +24,6 @@ make a dynamic view inside a maze, in which you’ll have to find your way.
 - Walls are always perpendicular (90 angle) with the floor.
 - Floor is always flat.
 - Walls are made of cubes that have the same size (square grid only).
+---
+- Raycasting feels like cheating, and as a lazy programmer, I love it. You get the immersion of a 3D environment without many of the complexities of "real 3D" to slow you down. For example, raycasts run in constant time, so you can load up a massive world and it will just work, without optimization, as quickly as a tiny world. Levels are defined as simple grids rather than as trees of polygon meshes, so you can dive right in without a 3D modeling background or mathematics PhD.
+

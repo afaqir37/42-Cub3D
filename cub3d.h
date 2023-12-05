@@ -7,6 +7,11 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <mlx.h>
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 600
+#define FOV 60
+#define SQUARE_SIZE 59
+
 
 typedef struct s_rgb
 {
@@ -99,4 +104,29 @@ int    ft_parse_args(int, char **, t_info **, t_file **);
 
 // -----------------------------------------------------------------------------
 
+
+// Raycasting -------------------------------------------------------------------
+
+typedef struct s_player {
+    int x;
+    int y;
+    double player_dir;
+}   t_player;
+
+typedef struct s_data {
+    int screen_width;
+    int screen_height;
+    int field_of_view;
+    t_player player;
+    int increment_angle;
+}   t_data;
+
+double  _to_radian(double degree);
+double  _to_degree(double radian);
+void    _initialize(t_data* data, char **map);
+double  _direction(int c);
+void    _init_player(char **map, t_player *player);
+
+
+// -------------------------------------------------------------------------------
 #endif

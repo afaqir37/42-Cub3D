@@ -1,27 +1,18 @@
 #include "cub3d.h"
-#define SQUARE_SIZE 59
+
 
 int main(int argc, char **argv) 
 {
-	void *mlx;
-	void *win;
-    t_file *file;
-    t_info *info;
+	t_data	data;
+	char *map[] = {
+    "11111",
+    "10001",
+    "10N01",
+    "10001",
+    "11111",
+	NULL
+};
 
-    if (ft_parse_args(argc, argv, &info, &file))
-        return (1);
-	mlx = mlx_init();
-	if (!mlx)
-	{
-		perror("fail");
-		return -1;
-	}
-	
-	win = mlx_new_window(mlx, 400, 400, "test");
-	if (!win)
-	{
-		perror("fail");
-		return -1;
-	}
-	mlx_loop(mlx);
+	_initialize(&data, map);
+
 }
