@@ -29,6 +29,7 @@ void	_init_player(char **map, t_player *player)
 				player->x = j;
 				player->y = i;
 				player->player_dir = _to_radian(_direction(map[i][j]));
+				return ;
 			}
 			j++;
 		}

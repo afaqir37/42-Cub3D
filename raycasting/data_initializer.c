@@ -15,6 +15,7 @@ int	_initialize(t_data* data, char **map)
 	data->field_of_view = _to_radian(FOV);
 	data->increment_angle = _to_radian(FOV / SCREEN_WIDTH);
 	data->precision = PRECISION;
+	data->map = map;
 	_init_player(map, &data->player);
 	return (0);
 }

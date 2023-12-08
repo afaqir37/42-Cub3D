@@ -7,8 +7,10 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# define SCREEN_WIDTH 800
+# define SCREEN_WIDTH 600 * 2
 # define SCREEN_HEIGHT 600
+# define MAP_SIZE 8
+# define TILE_SIZE ((SCREEN_WIDTH / 2) / MAP_SIZE)
 # define FOV 60.0
 # define PRECISION 2.0
 # define SQUARE_SIZE 59
@@ -126,6 +128,7 @@ typedef struct s_data
 {
     void*           mlx;
     void*           win;
+	char**			map;
 	int				screen_width;
 	int				screen_height;
 	double			field_of_view;
@@ -141,6 +144,8 @@ double				_direction(int c);
 void				_init_player(char **map, t_player *player);
 void                _draw_line(t_data* data, int wall_height, int ray_count);
 void                _ray_casting(t_data* data, char **map);
+int					_event_listener(int key, t_data* data);
+void				_draw_map(t_data* data);
 
 // -------------------------------------------------------------------------------
 #endif
