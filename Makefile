@@ -7,7 +7,7 @@ SRC = main.c Parsing/check_first_errors.c Parsing/file_init.c \
 	Raycasting/data_initializer.c Raycasting/player_initializer.c \
 	Raycasting/raycaster.c Raycasting/utils.c \
 	Raycasting/line_drawer.c Raycasting/events.c \
-	Raycasting/map_drawer.c
+	Raycasting/map_drawer.c Raycasting/update.c
 OBJ = $(SRC:.c=.o)
 LIBFT = libft.a
 RM = rm -rf

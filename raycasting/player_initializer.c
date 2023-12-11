@@ -26,9 +26,14 @@ void	_init_player(char **map, t_player *player)
 		{
 			if (ft_strchr("NEWS", map[i][j]))
 			{
-				player->x = j;
-				player->y = i;
+				player->x = j * TILE_SIZE + TILE_SIZE/2;
+				player->y = i * TILE_SIZE + TILE_SIZE/2;
 				player->player_dir = _to_radian(_direction(map[i][j]));
+				player->rotation_angle = player->player_dir;
+				player->turn_direction = 0;
+				player->walk_direction = 0;
+				player->move_speed = 2.0;
+				player->rotation_speed = 4 * (M_PI / 180);
 				return ;
 			}
 			j++;

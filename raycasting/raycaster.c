@@ -26,8 +26,11 @@ void	_ray_casting(t_data* data, char **map)
 		
 		ray.distance = sqrt(pow(data->player.x - ray.x, 2.0) + pow(data->player.y - ray.y, 2.0));
 		printf("distance: %d\n", ray.distance);
-		
-		int wall_height = (data->screen_height) / ray.distance;
+		int wall_height;
+		if (ray.distance == 0)
+			wall_height = data->screen_width;
+		else
+			wall_height = (data->screen_height) / ray.distance;
 		_draw_line(data, wall_height, ray_count);
 
 		ray_angle += data->increment_angle;

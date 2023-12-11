@@ -111,9 +111,14 @@ int					ft_parse_args(int, char **, t_info **, t_file **);
 
 typedef struct s_player
 {
-	int				x;
-	int				y;
+	double				x;
+	double				y;
 	double			player_dir;
+	int				turn_direction;
+	int				walk_direction;
+	double			move_speed;
+	double			rotation_speed;
+	double			rotation_angle;
 }					t_player;
 
 typedef struct s_ray
@@ -146,6 +151,11 @@ void                _draw_line(t_data* data, int wall_height, int ray_count);
 void                _ray_casting(t_data* data, char **map);
 int					_event_listener(int key, t_data* data);
 void				_draw_map(t_data* data);
+int					_key_press_listener(int key, t_data* data);
+int					_key_release_listener(int key, t_data* data);
+void				_update(t_data* data);
+void				draw_line(int x0, int y0, int x1, int y1, int color, t_data* data);
+
 
 // -------------------------------------------------------------------------------
 #endif
