@@ -137,6 +137,7 @@ typedef struct s_data
 	int				screen_width;
 	int				screen_height;
 	double			field_of_view;
+	double			half_of_FOV;
 	double			increment_angle;
     double          precision;
 	t_player		player;

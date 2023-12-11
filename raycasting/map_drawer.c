@@ -74,8 +74,5 @@ void	_draw_map(t_data *data)
 	}
 
 	_draw_square(data->player.x, data->player.y, 20, data);
-	int length = 50;
-	int x1 = data->player.x + length * cos(data->player.rotation_angle);
-	int y1 = data->player.y + length * sin(data->player.rotation_angle);
-	draw_line(data->player.x + 10, data->player.y + 10, x1, y1, 0xFF0000, data);
+
 }

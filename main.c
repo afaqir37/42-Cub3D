@@ -6,7 +6,7 @@ int	_render_next_frame(t_data* data)
 	mlx_clear_window(data->mlx, data->win);
 	_update(data);
 	_draw_map(data);
-	//_ray_casting(data, data->map);
+	_ray_casting(data, data->map);
 	return 0;
 }
 

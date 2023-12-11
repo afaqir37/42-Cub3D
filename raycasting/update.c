@@ -31,7 +31,7 @@ void	_update(t_data* data)
 {
 	printf("value: %d\n", data->player.walk_direction);
 	data->player.rotation_angle += data->player.turn_direction * data->player.rotation_speed;
-	data->player.x += (data->player.walk_direction * cos(data->player.rotation_angle));
-	data->player.y += (data->player.walk_direction * sin(data->player.rotation_angle));
+	data->player.x += (data->player.walk_direction * data->player.move_speed * cos(data->player.rotation_angle));
+	data->player.y += (data->player.walk_direction * data->player.move_speed * sin(data->player.rotation_angle));
 	printf("playerx: %f | cosvvvv: %f | sin: %f\n", data->player.x, data->player.walk_direction * cos(data->player.rotation_angle), data->player.rotation_angle);
 }
