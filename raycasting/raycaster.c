@@ -6,17 +6,20 @@ void	_ray_casting(t_data *data, char **map)
 	int ray_count;
 	t_ray ray;
 
-	ray_angle = data->player.rotation_angle - data->half_of_FOV;
-	double x =ray_angle;
+	ray.angle = _normalize_angle(data->player.rotation_angle - data->half_of_FOV);
 	ray_count = 0;
 	ray.wall = '0';
-	while (ray_count < data->screen_width)
+	while (ray_count < 1)
 	{
-		int length = 50;
-		int x1 = data->player.x + 10 + length * cos(ray_angle);
-		int y1 = data->player.y + 10 +length * sin(ray_angle);
-		draw_line(data->player.x + 10, data->player.y + 10, x1, y1, 0x000000,
-			data);
+
+
+		
+		int horizontal_distance = _horizontal_intersect(&ray, data);
+
+		// ray.x = data->player.x + 50 * cos(ray.angle);
+		// ray.y = data->player.y + 50 * sin(ray.angle);
+		// draw_line(data->player.x + 10, data->player.y + 10, ray.x, ray.y, 0x000000, data);
+		// printf("is it facing right? : %d\n", _ray_facing_right(ray.angle));
 		// ray.x = data->player.x;
 		// ray.y = data->player.y;
 		// double rayCos = cos(ray_angle) * 10;

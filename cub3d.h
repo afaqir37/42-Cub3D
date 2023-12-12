@@ -125,6 +125,7 @@ typedef struct s_ray
 {
 	double			x;
 	double			y;
+	double			angle;
     int             distance;
     int             wall;
 }					t_ray;
@@ -156,7 +157,14 @@ int					_key_press_listener(int key, t_data* data);
 int					_key_release_listener(int key, t_data* data);
 void				_update(t_data* data);
 void				draw_line(int x0, int y0, int x1, int y1, int color, t_data* data);
-
+double				_normalize_angle(double radiant_angle);
+int					_ray_facing_up(double radian);
+int					_ray_facing_down(double radian);
+int					_ray_facing_right(double radian);
+int					_ray_facing_left(double radian);
+double				_normalize_angle(double radian_angle);
+int					_has_wall_at(double x, double y, char **map);
+int					_horizontal_intersect(t_ray* ray, t_data* data);
 
 // -------------------------------------------------------------------------------
 #endif
