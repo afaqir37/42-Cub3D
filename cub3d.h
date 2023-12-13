@@ -128,6 +128,10 @@ typedef struct s_ray
 	double			angle;
     int             distance;
     int             wall;
+	double			horz_wall_hit_X;
+	double			horz_wall_hit_Y;
+	double			vert_wall_hit_X;
+	double			vert_wall_hit_Y;
 }					t_ray;
 
 typedef struct s_data
@@ -165,6 +169,7 @@ int					_ray_facing_left(double radian);
 double				_normalize_angle(double radian_angle);
 int					_has_wall_at(double x, double y, char **map);
 int					_horizontal_intersect(t_ray* ray, t_data* data);
+int					_vertical_intersect(t_ray* ray, t_data* data);
 
 // -------------------------------------------------------------------------------
 #endif

@@ -9,16 +9,24 @@ void	_ray_casting(t_data *data, char **map)
 	ray.angle = _normalize_angle(data->player.rotation_angle - data->half_of_FOV);
 	ray_count = 0;
 	ray.wall = '0';
-	while (ray_count < 1)
+	while (ray_count < data->screen_width)
 	{
 
-
+		// ray.x = data->player.x + 500 * cos(ray.angle);
+		// ray.y = data->player.y + 500 * sin(ray.angle);
+		// draw_line(data->player.x + 10, data->player.y + 10, ray.x, ray.y, 0x000000, data);
 		
 		int horizontal_distance = _horizontal_intersect(&ray, data);
+		int vertical_distance = _vertical_intersect(&ray, data);
 
-		// ray.x = data->player.x + 50 * cos(ray.angle);
-		// ray.y = data->player.y + 50 * sin(ray.angle);
-		// draw_line(data->player.x + 10, data->player.y + 10, ray.x, ray.y, 0x000000, data);
+		if (horizontal_distance <vertical_distance)
+			draw_line(data->player.x, data->player.y, ray.horz_wall_hit_X, ray.horz_wall_hit_Y, 0x000000, data);
+
+		else
+			draw_line(data->player.x, data->player.y, ray.vert_wall_hit_X, ray.vert_wall_hit_Y, 0x000000, data);
+		// ray.x = data->player.x + min_distance * cos(ray.angle);
+		// ray.y = data->player.y + min_distance * sin(ray.angle);
+		// 
 		// printf("is it facing right? : %d\n", _ray_facing_right(ray.angle));
 		// ray.x = data->player.x;
 		// ray.y = data->player.y;
@@ -47,7 +55,7 @@ void	_ray_casting(t_data *data, char **map)
 		// 	wall_height = (data->screen_height) / ray.distance;
 		// _draw_line(data, wall_height, ray_count);
 
-		ray_angle += data->increment_angle;
+		ray.angle += data->increment_angle;
 		ray_count++;
 	}
 }
