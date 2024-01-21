@@ -8,7 +8,9 @@ int		_horizontal_intersect(t_ray* ray, t_data* data)
 	float	ystep;
 	float	next_X;
 	float next_Y;
-
+	if (fabs(ray->angle - M_PI / 2) < 0.00001 || fabs(ray->angle - 3 * M_PI / 2) < 0.00001 || fabs(ray->angle) < 0.00001 || fabs(ray->angle - M_PI) < 0.00001 || fabs(ray->angle - 2 * M_PI) < 0.00001) {
+		ray->angle += 0.000001;
+	}
 	yintercept = floor(data->player.y / TILE_SIZE) * TILE_SIZE;
 	if (_ray_facing_down(ray->angle))
 		yintercept += TILE_SIZE;
@@ -46,6 +48,7 @@ int		_horizontal_intersect(t_ray* ray, t_data* data)
 		{
 			next_X += xstep;
 			next_Y += ystep;
+	
 		}
 	}
 
@@ -65,7 +68,9 @@ int	_vertical_intersect(t_ray* ray, t_data* data)
 
 	xstep = TILE_SIZE;
 	ystep = tan(ray->angle) * TILE_SIZE;
-
+	if (fabs(ray->angle - M_PI / 2) < 0.00001 || fabs(ray->angle - 3 * M_PI / 2) < 0.00001 || fabs(ray->angle) < 0.00001 || fabs(ray->angle - M_PI) < 0.00001) {
+		ray->angle += 0.000001;
+	}
 	if (_ray_facing_right(ray->angle))
 	{
 		xintercept = floor(data->player.x / TILE_SIZE) * TILE_SIZE + TILE_SIZE;

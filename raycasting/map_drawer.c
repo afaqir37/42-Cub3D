@@ -1,5 +1,7 @@
 #include "../cub3d.h"
 
+#define DARK_GREEN 0x00FF00
+#define DARK_RED 0xFF0000 
 void	_draw_wall(int x, int y, t_data *data)
 {
 	int	i;
@@ -12,7 +14,7 @@ void	_draw_wall(int x, int y, t_data *data)
 		j = 0;
 		while (j < TILE_SIZE - 2)
 		{
-			mlx_pixel_put(data->mlx, data->win, x + i, y + j, 0xFF0000);
+			mlx_pixel_put(data->mlx, data->win, x + i, y + j, DARK_RED);
 			j++;
 		}
 		i++;
@@ -31,7 +33,7 @@ void	_draw_space(int x, int y, t_data *data)
 		j = 0;
 		while (j < TILE_SIZE - 2)
 		{
-			mlx_pixel_put(data->mlx, data->win, x + i, y + j, 0x00FF00);
+			mlx_pixel_put(data->mlx, data->win, x + i, y + j, DARK_GREEN);
 			j++;
 		}
 		i++;
@@ -46,7 +48,7 @@ void	_draw_square(int x_center, int y_center, int size, t_data *data)
 		for (y = 0; y < size; y++)
 		{
 			mlx_pixel_put(data->mlx, data->win, x_center + x, y_center + y,
-				0xFFFFFF);
+				DARK_RED);
 		}
 	}
 }
