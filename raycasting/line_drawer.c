@@ -17,28 +17,20 @@ void	_draw_line(t_data* data, int wall_height, int ray_count)
 	int	wall_start;
 	int	wall_end;
 
-	screen_half_height = data->screen_height / 2;
-	wall_start = screen_half_height - wall_height / 2;
-	wall_end = screen_half_height + wall_height / 2;
-	
-	
-	int i = 0;
-	while (i < wall_start)
-	{
-		// i want to draw the lines to an img, and then when the img is done, put it on the window
-		my_mlx_pixel_put(data, ray_count, i, 0x0000FF);
-		i++;
-	}
-	i = wall_start;
-	while (i < wall_end)
-	{
-		my_mlx_pixel_put(data, ray_count, i, 0xFF0000);
-		i++;
-	}
-	i = wall_end;
-	while (i < data->screen_height)
-	{
-		my_mlx_pixel_put(data, ray_count, i, 0x00FF00);
-		i++;
-	}
+        int wall_top = (data->screen_height - wall_height) / 2;
+        int wall_bottom = (data->screen_height + wall_height) / 2;
+
+        // Draw the vertical slice
+        for (int y = 0; y < data->screen_height; y++) {
+            if (y < wall_top) {
+                // Draw the ceiling
+                my_mlx_pixel_put(data, ray_count, y, 0x00FF00);
+            } else if (y >= wall_top && y <= wall_bottom) {
+                // Draw the wall
+                my_mlx_pixel_put(data, ray_count, y, 0x0000FF);
+            } else {
+                // Draw the floor
+                my_mlx_pixel_put(data, ray_count, y, 0xFF0000);
+            }
+        }
 }

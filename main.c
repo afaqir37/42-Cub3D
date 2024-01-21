@@ -21,8 +21,15 @@ int	_render_next_frame(t_data *data)
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	char	*map[] = {"11111111", "10000111", "1100N001", "10000101",
-			"11001011", "10001101", "10001101", "11111111", NULL};
+	char	*map[] = {"11111111", 
+						"10000111", 
+						"1100N001", 
+						"10000101",
+						"11001011", 
+						"10001101", 
+						"10001101", 
+						"11111111", 
+						NULL};
 
 	if (_initialize(&data, map))
 		return (1);
