@@ -136,7 +136,45 @@ int ft_check_lines_after(t_file *file, int line_start)
 	return (0);
 }
 
-int ft_check_map_validity(t_file *file)
+int ft_how_many_nodes(t_file *file)
+{
+	t_file *tmp;
+	int i;
+
+	i = 0;
+	tmp = file;
+	while (tmp)
+	{
+		i++;
+		tmp = tmp->next;
+	}
+	return (i);
+}
+
+char **ft_extract_map(t_file *file, int i)
+{
+	char **map;
+	t_file *tmp;
+	int j;
+
+	tmp = ft_return_index_line(file, i);
+	if (tmp == NULL)
+		return (NULL);
+	map = malloc(sizeof(char *) * (ft_how_many_nodes(file) - i + 1));
+	if (map == NULL)
+		return (NULL);
+	j = 0;
+	while (tmp)
+	{
+		map[j] = ft_strdup(tmp->line);
+		j++;
+		tmp = tmp->next;
+	}
+	map[j] = NULL;
+	return (map);
+}
+
+int ft_check_map_validity(t_file *file, t_info **info)
 {
 	int i;
 	int error_code;
@@ -156,5 +194,6 @@ int ft_check_map_validity(t_file *file)
 		if (error_code == -2)
 			return (ft_write_error("\033[31mMap is not valid: Bruh, this aint a mutliplayer game!"));
 	}
+	(*info)->map = ft_extract_map(file, i);
 	return (0);
 }

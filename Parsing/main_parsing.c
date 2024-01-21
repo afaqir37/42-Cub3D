@@ -34,7 +34,7 @@ int	ft_parse_args(int ac, char **av, t_info **inf, t_file **fle )
 	if (ft_check_if_file_has_unwanted_lines(file) < 0)
 		return (ft_write_error("Invalid File: Please Remove Unwanted Lines!") * -1);
 	ft_print_t_info(info);
-	if (ft_check_map_validity(file))
+	if (ft_check_map_validity(file, &info))
 	 	return (1);
 	printf("\033[32mMap is valid!\n");
 	(*inf) = info;

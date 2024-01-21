@@ -2,7 +2,7 @@
 
 
 
-int	_initialize(t_data* data, char **map)
+int	_initialize(t_data* data, t_info *info, char **map)
 {
 	data->mlx = mlx_init();
 	if (!data->mlx)
@@ -17,6 +17,7 @@ int	_initialize(t_data* data, char **map)
 	data->increment_angle = data->field_of_view / data->screen_width;
 	data->precision = PRECISION;
 	data->map = map;
+	data->info = info;
 	_init_player(map, &data->player);
 	return (0);
 }

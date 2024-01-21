@@ -15,6 +15,13 @@
 # define PRECISION 2.0
 # define SQUARE_SIZE 59
 
+
+typedef struct {
+    void *img;
+    int width;
+    int height;
+} Image;
+
 typedef struct s_rgb
 {
 	int				r;
@@ -25,11 +32,16 @@ typedef struct s_rgb
 typedef struct s_info
 {
 	char			*NO;
+	Image			*NO_img;
 	char			*SO;
+	Image			*SO_img;
 	char			*WE;
+	Image			*WE_img;
 	char			*EA;
+	Image			*EA_img;
 	t_rgb			F;
 	t_rgb			C;
+	char			**map;
 }					t_info;
 
 typedef struct s_file
@@ -81,7 +93,7 @@ int					ft_check_last_line(t_file *, int);
 t_file				*ft_return_node_with_index(t_file *, int);
 int					ft_check_map_is_closed(t_file *, int);
 int					ft_check_map_lenght(t_file *, int);
-int					ft_check_map_validity(t_file *);
+int					ft_check_map_validity(t_file *file, t_info **info);
 void				ft_free_t_file_node(t_file **);
 void				ft_print_t_file(t_file *);
 int					ft_check_sentence_existance(t_file *, char *);
@@ -153,12 +165,13 @@ typedef struct s_data
 	int				endian;
 	void 		  *img;
 	char				*img_data;
+	t_info 			*info;
 
 }					t_data;
 
 double				_to_radian(double degree);
 double				_to_degree(double radian);
-int                 _initialize(t_data *data, char **map);
+int					_initialize(t_data* data, t_info *info, char **map);
 double				_direction(int c);
 void				_init_player(char **map, t_player *player);
 void                _draw_line(t_data* data, int wall_height, int ray_count);

@@ -12,7 +12,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color)
 
 void	_draw_line(t_data* data, int wall_height, int ray_count)
 {
-	
+	t_info *tex;
 	int	screen_half_height;
 	int	wall_start;
 	int	wall_end;
@@ -20,10 +20,10 @@ void	_draw_line(t_data* data, int wall_height, int ray_count)
         int wall_top = (data->screen_height - wall_height) / 2;
         int wall_bottom = (data->screen_height + wall_height) / 2;
 
-        // Draw the vertical slice
-        for (int y = 0; y < data->screen_height; y++) {
+        tex = data->info;
+		for (int y = 0; y < data->screen_height; y++) {
             if (y < wall_top) {
-                // Draw the ceiling
+			
                 my_mlx_pixel_put(data, ray_count, y, 0x00FF00);
             } else if (y >= wall_top && y <= wall_bottom) {
                 // Draw the wall
