@@ -13,9 +13,9 @@ int _key_press_listener(int key, t_data* data)
 	else if (key == 1)
 		data->player.walk_direction = -1;
 	else if (key == 0)
-		data->player.side_direction = +1;
-	else if (key == 2)
 		data->player.side_direction = -1;
+	else if (key == 2)
+		data->player.side_direction = 1;
 	return 0;
 }
 

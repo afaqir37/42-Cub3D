@@ -34,10 +34,11 @@ void	_update(t_data* data)
 	double	next_y;
 
 	data->player.rotation_angle = _normalize_angle(data->player.rotation_angle + data->player.turn_direction * data->player.rotation_speed);
-	next_x = data->player.x + (data->player.walk_direction * data->player.move_speed * cos(data->player.rotation_angle) + data->player.side_direction * data->player.move_speed * sin(data->player.rotation_angle));
-	
-	next_y = data->player.y + (data->player.walk_direction * data->player.move_speed * sin(data->player.rotation_angle) + data->player.side_direction * data->player.move_speed * cos(data->player.rotation_angle));
+	double rot_ang = data->player.rotation_angle + M_PI_2;
 
+	next_x = data->player.x + (data->player.walk_direction * data->player.move_speed * cos(data->player.rotation_angle) + data->player.side_direction * data->player.move_speed * cos(rot_ang));
+	next_y = data->player.y + (data->player.walk_direction * data->player.move_speed * sin(data->player.rotation_angle) + data->player.side_direction * data->player.move_speed * sin(rot_ang));
+	
 	if (!_has_wall_at(next_x, next_y, data->map))
 	{
 		data->player.x = next_x;
