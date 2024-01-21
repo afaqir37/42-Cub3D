@@ -117,6 +117,7 @@ typedef struct s_player
 	double			player_dir;
 	int				turn_direction;
 	int				walk_direction;
+	int				side_direction;
 	double			move_speed;
 	double			rotation_speed;
 	double			rotation_angle;
