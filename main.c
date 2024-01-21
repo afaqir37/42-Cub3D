@@ -7,6 +7,7 @@ int	_render_next_frame(t_data* data)
 	_update(data);
 	_draw_map(data);
 	_ray_casting(data, data->map);
+	usleep(10000);
 	return 0;
 }
 

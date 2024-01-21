@@ -126,7 +126,7 @@ typedef struct s_ray
 	double			x;
 	double			y;
 	double			angle;
-    int             distance;
+    double          distance;
     int             wall;
 	double			horz_wall_hit_X;
 	double			horz_wall_hit_Y;

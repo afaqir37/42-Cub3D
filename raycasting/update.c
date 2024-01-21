@@ -29,9 +29,17 @@ void draw_line(int x0, int y0, int x1, int y1, int color, t_data* data)
 
 void	_update(t_data* data)
 {
-	printf("value: %d\n", data->player.walk_direction);
+	double next_x;
+	double	next_y;
+
 	data->player.rotation_angle = _normalize_angle(data->player.rotation_angle + data->player.turn_direction * data->player.rotation_speed);
-	data->player.x += (data->player.walk_direction * data->player.move_speed * cos(data->player.rotation_angle));
-	data->player.y += (data->player.walk_direction * data->player.move_speed * sin(data->player.rotation_angle));
-	printf("playerx: %f | cosvvvv: %f | sin: %f\n", data->player.x, data->player.walk_direction * cos(data->player.rotation_angle), data->player.rotation_angle);
+	next_x = data->player.x + (data->player.walk_direction * data->player.move_speed * cos(data->player.rotation_angle));
+	next_y = data->player.y + (data->player.walk_direction * data->player.move_speed * sin(data->player.rotation_angle));
+
+	if (!_has_wall_at(next_x, next_y, data->map))
+	{
+		data->player.x = next_x;
+		data->player.y = next_y;
+	}
+
 }

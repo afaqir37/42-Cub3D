@@ -12,7 +12,7 @@ double _to_degree(double radian)
 
 double	_normalize_angle(double radian_angle)
 {
-	radian_angle = fmod(radian_angle, 2 * M_PI);
+	radian_angle = remainder(radian_angle, 2 * M_PI);
 	if (radian_angle < 0)
 		radian_angle += 2 * M_PI;
 	return radian_angle;

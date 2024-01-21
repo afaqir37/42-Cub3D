@@ -29,14 +29,13 @@ int		_horizontal_intersect(t_ray* ray, t_data* data)
 	next_X = xintercept;
 	next_Y = yintercept;
 
-	if (_ray_facing_up(ray->angle))
-		next_Y -= 1;
-
 	
 	while (next_X >= 0 && next_X <= data->screen_width && next_Y >= 0 && next_Y <= data->screen_height)
 	{
+		float x_check = next_X;
+		float y_check = next_Y + (_ray_facing_up(ray->angle) ? -1 : 0);
 
-		if (_has_wall_at(next_X, next_Y, data->map))
+		if (_has_wall_at(x_check, y_check, data->map))
 		{
 			//draw_line(data->player.x, data->player.y, next_X, next_Y, 0x000000, data);
 			ray->horz_wall_hit_X = next_X;
@@ -50,7 +49,7 @@ int		_horizontal_intersect(t_ray* ray, t_data* data)
 		}
 	}
 
-	ray->distance = sqrt(pow(data->player.x - next_X, 2.0) + pow(data->player.y - next_Y, 2.0));
+	ray->distance = sqrt((data->player.x - next_X) * (data->player.x - next_X) + (data->player.y - next_Y) * (data->player.y - next_Y));
 	
 	return ray->distance;
 }
@@ -98,13 +97,13 @@ int	_vertical_intersect(t_ray* ray, t_data* data)
 	next_X = xintercept;
 	next_Y = yintercept;
 
-	if (_ray_facing_left(ray->angle))
-		next_X -= 1;
-	printf("staring px: %f  || starting py: %f\n", data->player.x, data->player.y);
-	printf("starting x: %f  || starting y: %f\n", next_X, next_Y);
+	
 	while (next_X >= 0 && next_X <= data->screen_width && next_Y >= 0 && next_Y <= data->screen_height)
 	{
-		if (_has_wall_at(next_X, next_Y, data->map))
+		float x_check = next_X +  (_ray_facing_left(ray->angle) ? -1 : 0);
+		float y_check = next_Y;
+
+		if (_has_wall_at(x_check, y_check, data->map))
 		{
 			//draw_line(data->player.x, data->player.y, next_X, next_Y, 0x000000, data);
 			ray->vert_wall_hit_X = next_X;
@@ -118,7 +117,7 @@ int	_vertical_intersect(t_ray* ray, t_data* data)
 		}
 	}        
 
-	ray->distance = sqrt(pow(data->player.x - next_X, 2.0) + pow(data->player.y - next_Y, 2.0));
+	ray->distance = sqrt((data->player.x - next_X) * (data->player.x - next_X) + (data->player.y - next_Y) * (data->player.y - next_Y));
 	
 	return (ray->distance);
 
