@@ -105,6 +105,7 @@ int					ft_is_the_whole_line_full_of_spaces(char *);
 int					ft_check_if_file_has_lines_filled_with_blank_characters(t_file *);
 int					ft_parse_args(int, char **, t_info **, t_file **);
 
+
 // -----------------------------------------------------------------------------
 
 // Raycasting -------------------------------------------------------------------
@@ -146,6 +147,12 @@ typedef struct s_data
 	double			increment_angle;
     double          precision;
 	t_player		player;
+	int				bits_per_pixel;
+	int				size_line;
+	int				endian;
+	void 		  *img;
+	char				*img_data;
+
 }					t_data;
 
 double				_to_radian(double degree);
@@ -170,6 +177,7 @@ double				_normalize_angle(double radian_angle);
 int					_has_wall_at(double x, double y, char **map);
 int					_horizontal_intersect(t_ray* ray, t_data* data);
 int					_vertical_intersect(t_ray* ray, t_data* data);
+void				my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color);
 
 // -------------------------------------------------------------------------------
 #endif

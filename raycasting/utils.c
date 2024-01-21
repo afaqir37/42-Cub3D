@@ -25,7 +25,7 @@ int	_has_wall_at(double x, double y, char **map)
 
 	Xmap = (int)floor(x / TILE_SIZE);
 	Ymap =  (int)floor(y / TILE_SIZE);
-	printf("check :)\n");
+	//printf("check :)\n");
 	if (Xmap >= 0 && Xmap < 9 && Ymap >=0 && Ymap < 9 && map[Ymap][Xmap] == '1')
 		return (1);
 	else

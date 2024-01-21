@@ -1,7 +1,6 @@
 #include "../cub3d.h"
 
 #define DARK_GREEN 0x00FF00
-#define DARK_RED 0xFF0000 
 void	_draw_wall(int x, int y, t_data *data)
 {
 	int	i;
@@ -14,7 +13,8 @@ void	_draw_wall(int x, int y, t_data *data)
 		j = 0;
 		while (j < TILE_SIZE - 2)
 		{
-			mlx_pixel_put(data->mlx, data->win, x + i, y + j, DARK_RED);
+			//mlx_pixel_put(data->mlx, data->win, x + i, y + j, DARK_RED);
+			my_mlx_pixel_put(data, x + i, y + j, 0xFF0000);
 			j++;
 		}
 		i++;
@@ -33,7 +33,7 @@ void	_draw_space(int x, int y, t_data *data)
 		j = 0;
 		while (j < TILE_SIZE - 2)
 		{
-			mlx_pixel_put(data->mlx, data->win, x + i, y + j, DARK_GREEN);
+			my_mlx_pixel_put(data, x + i, y + j, DARK_GREEN);
 			j++;
 		}
 		i++;
@@ -47,8 +47,7 @@ void	_draw_square(int x_center, int y_center, int size, t_data *data)
 	{
 		for (y = 0; y < size; y++)
 		{
-			mlx_pixel_put(data->mlx, data->win, x_center + x, y_center + y,
-				DARK_RED);
+			my_mlx_pixel_put(data, x_center + x, y_center + y, 0x0000FF);
 		}
 	}
 }
@@ -75,6 +74,6 @@ void	_draw_map(t_data *data)
 		i++;
 	}
 
-	_draw_square(data->player.x, data->player.y, 20, data);
+	//_draw_square(data->player.x, data->player.y, 20, data);
 
 }
