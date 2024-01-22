@@ -76,20 +76,33 @@ int ft_free_file(t_file **file)
 
 Image *load_xpm_file(void *mlx_ptr, const char *file_name)
 {
+	int bits_per_pixel;
+	int size_line;
+	int endian;
     Image *image = malloc(sizeof(Image));
     if (image == NULL)
     {
         printf("Failed to allocate memory for image\n");
         return NULL;
     }
-	image->width = TILE_SIZE;
-	image->height = TILE_SIZE;
-	image->img = NULL;
+    image->width = TILE_SIZE;
+    image->height = TILE_SIZE;
+    image->img = NULL;
+    image->addr = NULL;
 
     image->img = mlx_xpm_file_to_image(mlx_ptr, (char *)file_name, &image->width, &image->height);
     if (image->img == NULL)
     {
         printf("Failed to load XPM file\n");
+        free(image);
+        return NULL;
+    }
+
+    image->addr = mlx_get_data_addr(image->img, &image->bits_per_pixel, &image->size_line, &image->endian);
+    if (image->addr == NULL)
+    {
+        printf("Failed to get image data address\n");
+        mlx_destroy_image(mlx_ptr, image->img);
         free(image);
         return NULL;
     }

@@ -8,7 +8,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # define SCREEN_WIDTH 600 * 2
-# define SCREEN_HEIGHT 600
+# define SCREEN_HEIGHT 800
 # define MAP_SIZE 8
 # define TILE_SIZE ((SCREEN_WIDTH / 2) / MAP_SIZE)
 # define FOV 60.0
@@ -18,8 +18,12 @@
 
 typedef struct {
     void *img;
+	char *addr;
     int width;
     int height;
+	int bits_per_pixel;
+	int size_line;
+	int endian;
 } Image;
 
 typedef struct s_rgb
@@ -174,7 +178,7 @@ double				_to_degree(double radian);
 int					_initialize(t_data* data, t_info *info, char **map);
 double				_direction(int c);
 void				_init_player(char **map, t_player *player);
-void                _draw_line(t_data* data, int wall_height, int ray_count);
+void	_draw_line(t_data* data, int wall_height, int ray_count, int ray_x);
 void                _ray_casting(t_data* data, char **map);
 int					_event_listener(int key, t_data* data);
 void				_draw_map(t_data* data);
