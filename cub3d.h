@@ -7,10 +7,10 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# define SCREEN_WIDTH 600 * 2
+# include "libft/libft.h"
+# define SCREEN_WIDTH 600 * 3
 # define SCREEN_HEIGHT 800
-# define MAP_SIZE 8
-# define TILE_SIZE ((SCREEN_WIDTH / 2) / MAP_SIZE)
+# define TILE_SIZE 64
 # define FOV 60.0
 # define PRECISION 2.0
 # define SQUARE_SIZE 59
@@ -56,11 +56,18 @@ typedef struct s_file
 	struct s_file	*next;
 }					t_file;
 
+typedef struct skyler {
+	size_t				i;
+	int					sign;
+	unsigned long long	result;
+}	t_need;
+
+
 // Utils -----------------------------------------------------------------------
 
 char				*ft_strchr(char *str, char c);
 char				*ft_strdup(char *str);
-char				*ft_strjoin(char *s1, char *s2);
+char				*ft_strjoin(char *s1, char *s2, int j);
 char				*ft_read(char *str, int fd);
 char				*ft_line(char *str);
 char				*ft_clean(char *save);
@@ -74,11 +81,10 @@ size_t				ft_strlen(char *);
 int					ft_string(char *str, char *look);
 int					ft_isemptychar(char);
 int					ft_return_len(char *, int);
-int					ft_to_find(char *, char *);
+int					ft_to_find(char *, char *, int, int);
 int					ft_compare_no_null(char *, char *);
-int					ft_to_find_no_space(char *, char *);
-int					ft_to_find_index(char *, char *);
-int					ft_write_error(char *);
+int					ft_to_find_index(char *, char *, int, int);
+int					ft_wr(char *);
 int					ft_check_existance(char *);
 char				*ft_substr(char *, int, int);
 int					ft_error_args(int, char **);
@@ -89,10 +95,8 @@ int					ft_is_the_whole_line_space(char *);
 int					ft_return_index_of_first_line(t_file *);
 t_file				*ft_return_index_line(t_file *, int);
 int					ft_is_theretwoplus(char *);
-int					ft_check_lines_after(t_file *, int);
+int					ft_check_lines_after(t_file *, int, int);
 int					ft_check_one_player(t_file *, int);
-int					ft_is_there_anything_other_than_space_and_one(t_file *,
-						int);
 int					ft_check_last_line(t_file *, int);
 t_file				*ft_return_node_with_index(t_file *, int);
 int					ft_check_map_is_closed(t_file *, int);
@@ -110,7 +114,7 @@ int					ft_check_if_exists(t_file *, char *);
 int					ft_check_if_xpm_file_existance(t_file *);
 int					ft_how_many_commas(char *);
 int					ft_return_end(char *, char *);
-int					ft_number_seperated_bycomma(char *);
+int					ft_number_seperated_bycomma(char *, int);
 int					ft_rgb_codes(t_file *, char *);
 int					ft_check_rgb(t_file *);
 int					ft_fill_tmp(t_info **, t_file *);

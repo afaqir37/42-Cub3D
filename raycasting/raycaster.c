@@ -21,13 +21,13 @@ void	_ray_casting(t_data *data, char **map)
 
 		if (horizontal_distance < vertical_distance) {
 			_draw_line(data, (TILE_SIZE / horizontal_distance) * dist_to_proj, ray_count, ray.horz_wall_hit_X);
-			//draw_line(data->player.x, data->player.y, (int)ray.horz_wall_hit_X, (int)ray.horz_wall_hit_Y, 0x000000, data);
+			// draw_line(data->player.x, data->player.y, (int)ray.horz_wall_hit_X, (int)ray.horz_wall_hit_Y, 0x000000, data);
 		}
 
 		else
 		{
-			//draw_line(data->player.x, data->player.y, (int)ray.horz_wall_hit_X, (int)ray.horz_wall_hit_Y, 0x000000, data);
-		_draw_line(data, (TILE_SIZE / vertical_distance) * dist_to_proj, ray_count, ray.vert_wall_hit_Y);
+			// draw_line(data->player.x, data->player.y, (int)ray.vert_wall_hit_X, (int)ray.vert_wall_hit_Y, 0x000000, data);
+			_draw_line(data, (TILE_SIZE / vertical_distance) * dist_to_proj, ray_count, ray.vert_wall_hit_Y);
 		}	
 		// ray.y = data->player.y + min_distance * sin(ray.angle);
 		// 

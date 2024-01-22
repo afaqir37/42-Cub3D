@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_first_errors.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/22 16:27:49 by agoujdam          #+#    #+#             */
+/*   Updated: 2024/01/22 16:27:58 by agoujdam         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 int	ft_arg_num(int ac)
@@ -7,10 +19,10 @@ int	ft_arg_num(int ac)
 	return (0);
 }
 
-int ft_string(char *str, char *look)
+int	ft_string(char *str, char *look)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = ft_strlen(str) - ft_strlen(look);
 	j = 0;
@@ -28,9 +40,9 @@ int ft_string(char *str, char *look)
 	return (-1);
 }
 
-int ft_check_existance(char *str)
+int	ft_check_existance(char *str)
 {
-	int fd;
+	int	fd;
 
 	fd = open(str, O_RDONLY);
 	if (fd < 0)
@@ -39,9 +51,9 @@ int ft_check_existance(char *str)
 	return (0);
 }
 
-int ft_check_if_file_has_lines_filled_with_blank_characters(t_file *file)
+int	ft_check_if_file_has_lines_filled_with_blank_characters(t_file *file)
 {
-	t_file *tmp;
+	t_file	*tmp;
 
 	tmp = file;
 	while (tmp)
@@ -53,37 +65,13 @@ int ft_check_if_file_has_lines_filled_with_blank_characters(t_file *file)
 	return (0);
 }
 
-int ft_error_args(int ac, char **av)
+int	ft_error_args(int ac, char **av)
 {
 	if (ft_arg_num(ac) < 0)
-		return (ft_write_error("Please provide 1 argument only."));
+		return (ft_wr("Please provide 1 argument only."));
 	if (ft_string(av[1], ".cub") < 0)
-		return (ft_write_error("Please provide a \".cub\" file."));
+		return (ft_wr("Please provide a \".cub\" file."));
 	if (ft_check_existance(av[1]) < 0)
-		return (ft_write_error("File does not exist."));
-	return (0);
-}
-
-int ft_check_if_file_has_unwanted_lines(t_file *file)
-{
-	t_file *tmp;
-	int		i;
-
-	i = ft_return_index_of_first_line(file);
-	tmp = file;
-	while (tmp)
-	{
-		if (tmp->index >= i)
-			return (0);
-		if ((ft_compare_no_null(tmp->line, "R") < 0) && ft_compare_no_null(tmp->line, "NO") < 0
-			&& ft_compare_no_null(tmp->line, "SO") < 0 && ft_compare_no_null(tmp->line, "WE") < 0
-			&& ft_compare_no_null(tmp->line, "EA") < 0 && ft_compare_no_null(tmp->line, "S") < 0
-			&& ft_compare_no_null(tmp->line, "F") < 0 && ft_compare_no_null(tmp->line, "C") < 0 
-			&& !ft_is_the_whole_line_space(tmp->line))
-		{	
-			return (-1);
-		}
-		tmp = tmp->next;
-	}
+		return (ft_wr("File does not exist."));
 	return (0);
 }

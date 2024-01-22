@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Utils_1.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/22 15:10:57 by agoujdam          #+#    #+#             */
+/*   Updated: 2024/01/22 15:13:31 by agoujdam         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
-size_t ft_strlen(char *str)
+size_t	ft_strlen(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -10,16 +22,17 @@ size_t ft_strlen(char *str)
 	return (i);
 }
 
-int ft_isemptychar(char c)
+int	ft_isemptychar(char c)
 {
-	if (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\n')
+	if (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f'
+		|| c == '\n')
 		return (1);
 	return (0);
 }
 
-int ft_return_len(char *str, int start)
+int	ft_return_len(char *str, int start)
 {
-	int i;
+	int	i;
 
 	i = ft_strlen(str) - 1;
 	while (str[i])
@@ -32,9 +45,9 @@ int ft_return_len(char *str, int start)
 	return (i - start + 1);
 }
 
-int ft_compare_no_null(char *s1, char *s2)
+int	ft_compare_no_null(char *s1, char *s2)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s1[i] && s2[i])
@@ -46,13 +59,12 @@ int ft_compare_no_null(char *s1, char *s2)
 	if (s2[i] != '\0')
 		return (-1);
 	return (1);
-
 }
 
-char *ft_substr(char *str, int start, int len)
+char	*ft_substr(char *str, int start, int len)
 {
-	char *ret;
-	int i;
+	char	*ret;
+	int		i;
 
 	i = 0;
 	ret = malloc(sizeof(char) * (len + 1));

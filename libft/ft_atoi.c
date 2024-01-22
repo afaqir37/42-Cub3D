@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*    ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 21:20:30 by afaqir            #+#    #+#             */
-/*   Updated: 2022/11/17 16:28:32 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/01/22 16:10:44 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ typedef struct skyler {
 	unsigned long long	result;
 }	t_need;
 
-int	ft_atoi(const char *str)
+int	 ft_atoi(const char *str)
 {
 	t_need	x;
 

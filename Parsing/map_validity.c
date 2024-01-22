@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_validity.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/22 16:51:33 by agoujdam          #+#    #+#             */
+/*   Updated: 2024/01/22 16:51:34 by agoujdam         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
-int ft_check_map_lenght(t_file *file, int line_start)
+int	ft_check_map_lenght(t_file *file, int line_start)
 {
-	t_file 	*tmp;
-	int 	last;
-	
+	t_file	*tmp;
+	int		last;
+
 	last = 0;
 	tmp = ft_return_index_line(file, line_start);
 	if (tmp == NULL)
@@ -17,11 +29,11 @@ int ft_check_map_lenght(t_file *file, int line_start)
 	return (0);
 }
 
-int ft_return_index_of_first_line(t_file *file)
+int	ft_return_index_of_first_line(t_file *file)
 {
-	t_file *tmp;
-	int i;
-	int wall;
+	t_file	*tmp;
+	int		i;
+	int		wall;
 
 	wall = 0;
 	tmp = file;
@@ -30,7 +42,7 @@ int ft_return_index_of_first_line(t_file *file)
 		i = 0;
 		while (tmp->line[i])
 		{
-			if (ft_is_it_a_map_character(tmp->line[i]))	
+			if (ft_is_it_a_map_character(tmp->line[i]))
 				i++;
 			else
 				break ;
@@ -42,11 +54,11 @@ int ft_return_index_of_first_line(t_file *file)
 	return (-1);
 }
 
-int ft_check_one_player(t_file *file, int line_start)
+int	ft_check_one_player(t_file *file, int line_start)
 {
-	t_file *tmp;
-	int i;
-	int counter;
+	t_file	*tmp;
+	int		i;
+	int		counter;
 
 	tmp = ft_return_index_line(file, line_start);
 	if (tmp == NULL)
@@ -57,7 +69,8 @@ int ft_check_one_player(t_file *file, int line_start)
 		i = 0;
 		while (tmp->line[i])
 		{
-			if (tmp->line[i] == 'N' || tmp->line[i] == 'S' || tmp->line[i] == 'E' || tmp->line[i] == 'W')
+			if (tmp->line[i] == 'N' || tmp->line[i] == 'S'
+				|| tmp->line[i] == 'E' || tmp->line[i] == 'W')
 				counter++;
 			i++;
 		}
@@ -70,10 +83,27 @@ int ft_check_one_player(t_file *file, int line_start)
 	return (0);
 }
 
-int ft_check_map_is_closed(t_file *file, int line_start)
+int	ft_check_map_norm(t_file *tmp, int i)
 {
-	t_file *tmp;
-	int i;
+	if (i > 0 && (ft_isemptychar(tmp->line[i - 1])))
+		return (-1);
+	if (i < ft_strlen(tmp->line) - 1 && (ft_isemptychar(tmp->line[i + 1])))
+		return (-1);
+	if (tmp->prev && (((ft_strlen(tmp->prev->line) > i
+					&& ((ft_isemptychar(tmp->prev->line[i]))))
+				|| ft_strlen(tmp->prev->line) <= i)))
+		return (-1);
+	if (tmp->next && (((ft_strlen(tmp->next->line) > i
+					&& ((ft_isemptychar(tmp->next->line[i]))))
+				|| ft_strlen(tmp->next->line) <= i)))
+		return (-1);
+	return (0);
+}
+
+int	ft_check_map_is_closed(t_file *file, int line_start)
+{
+	t_file	*tmp;
+	int		i;
 
 	i = 0;
 	tmp = ft_return_node_with_index(file, line_start);
@@ -84,116 +114,16 @@ int ft_check_map_is_closed(t_file *file, int line_start)
 		i = 0;
 		while (tmp->line[i])
 		{
-			if (tmp->line[i] == '0' || tmp->line[i] == 'N' || tmp->line[i] == 'S' || tmp->line[i] == 'E' || tmp->line[i] == 'W')
+			if (tmp->line[i] == '0' || tmp->line[i] == 'N'
+				|| tmp->line[i] == 'S' || tmp->line[i] == 'E'
+				|| tmp->line[i] == 'W')
 			{
-				if (i > 0 && (ft_isemptychar(tmp->line[i - 1])))
-					return (ft_write_error("one"));
-				if (i < ft_strlen(tmp->line) - 1 && (ft_isemptychar(tmp->line[i + 1])))
-					return (ft_write_error("two"));
-				if (tmp->prev && (((ft_strlen(tmp->prev->line) > i && ((ft_isemptychar(tmp->prev->line[i])))) || ft_strlen(tmp->prev->line) <= i)))
-					return (ft_write_error("three"));
-				if (tmp->next && (((ft_strlen(tmp->next->line) > i && ((ft_isemptychar(tmp->next->line[i])))) || ft_strlen(tmp->next->line) <= i)))
-					return (ft_write_error("four"));
+				if (ft_check_map_norm(tmp, i) == -1)
+					return (-1);
 			}
 			i++;
 		}
 		tmp = tmp->next;
 	}
-	return (0);
-}
-
-int ft_check_lines_after(t_file *file, int line_start)
-{
-	t_file *tmp;
-	int i;
-
-	tmp = ft_return_index_line(file, line_start);
-	if (tmp == NULL)
-		return (-1);
-	while (tmp)
-	{
-		i = 0;
-		if ((tmp->line[0] == '\n' && tmp->line[1] == '\0') 
-			|| !ft_is_theretwoplus(tmp->line) || ft_is_the_whole_line_space(tmp->line))
-		{
-			return (-1);
-		}
-		while (tmp->line[i])
-		{
-			if (ft_isemptychar(tmp->line[i]))
-				i++;
-			else if (tmp->line[i] == '1')
-				i++;
-			else if (tmp->line[i] == '0')
-				i++;
-			else if (tmp->line[i] == 'N' || tmp->line[i] == 'S' || tmp->line[i] == 'E' || tmp->line[i] == 'W')
-				i++;
-			else
-				return (-1);
-		}
-		tmp = tmp->next;
-	}
-	return (0);
-}
-
-int ft_how_many_nodes(t_file *file)
-{
-	t_file *tmp;
-	int i;
-
-	i = 0;
-	tmp = file;
-	while (tmp)
-	{
-		i++;
-		tmp = tmp->next;
-	}
-	return (i);
-}
-
-char **ft_extract_map(t_file *file, int i)
-{
-	char **map;
-	t_file *tmp;
-	int j;
-
-	tmp = ft_return_index_line(file, i);
-	if (tmp == NULL)
-		return (NULL);
-	map = malloc(sizeof(char *) * (ft_how_many_nodes(file) - i + 1));
-	if (map == NULL)
-		return (NULL);
-	j = 0;
-	while (tmp)
-	{
-		map[j] = ft_strdup(tmp->line);
-		j++;
-		tmp = tmp->next;
-	}
-	map[j] = NULL;
-	return (map);
-}
-
-int ft_check_map_validity(t_file *file, t_info **info)
-{
-	int i;
-	int error_code;
-
-	if ((i = ft_return_index_of_first_line(file)) < 0)
-		return (ft_write_error("\033[31mMap is not valid: Where is the map bro?"));
-	if (ft_check_map_lenght(file, i) < 0)
-		return (ft_write_error("\033[31mMap is not valid: Chhad l3b tlbnaya?"));
-	if (ft_check_lines_after(file, i) < 0)
-		return (ft_write_error("\033[31mMap is not valid: Weird Map, Redo it!"));
-	if (ft_check_map_is_closed(file, i) < 0)
-		return (ft_write_error("\033[31mMap is not valid: Map 3ndek mt9ouba!"));
-	if ((error_code = ft_check_one_player(file, i)) < 0)
-	{	
-		if (error_code == -1)
-			return (ft_write_error("\033[31mMap is not valid: Where is the player bro?"));
-		if (error_code == -2)
-			return (ft_write_error("\033[31mMap is not valid: Bruh, this aint a mutliplayer game!"));
-	}
-	(*info)->map = ft_extract_map(file, i);
 	return (0);
 }
