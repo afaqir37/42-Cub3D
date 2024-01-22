@@ -4,6 +4,7 @@ void	_ray_casting(t_data *data, char **map)
 {
 	double ray_angle;
 	int ray_count;
+	int ray_direction;
 	t_ray ray;
 
 	ray.angle = _normalize_angle(data->player.rotation_angle - data->half_of_FOV);
@@ -19,15 +20,30 @@ void	_ray_casting(t_data *data, char **map)
 		double vertical_distance = _vertical_intersect(&ray, data);
 		double dist_to_proj = (data->screen_width / 2) / tan(data->half_of_FOV);
 
+		if (ray.angle > 0 && ray.angle < M_PI) //south
+		{
+			if (ray.angle < M_PI_2) // southeast
+				ray_direction = 2;
+			else // southwest
+				ray_direction = 3;
+		}
+		else // north
+		{
+			if (ray.angle < M_PI || ray.angle > 2 * M_PI) // northeast
+				ray_direction = 2;
+			else // northwest
+				ray_direction = 3;
+		}
 		if (horizontal_distance < vertical_distance) {
-			_draw_line(data, (TILE_SIZE / horizontal_distance) * dist_to_proj, ray_count, ray.horz_wall_hit_X);
+			_draw_line(data, (TILE_SIZE / horizontal_distance) * dist_to_proj, ray_direction, ray_count, ray.horz_wall_hit_X);
+
 			// draw_line(data->player.x, data->player.y, (int)ray.horz_wall_hit_X, (int)ray.horz_wall_hit_Y, 0x000000, data);
 		}
 
 		else
 		{
 			// draw_line(data->player.x, data->player.y, (int)ray.vert_wall_hit_X, (int)ray.vert_wall_hit_Y, 0x000000, data);
-			_draw_line(data, (TILE_SIZE / vertical_distance) * dist_to_proj, ray_count, ray.vert_wall_hit_Y);
+			_draw_line(data, (TILE_SIZE / vertical_distance) * dist_to_proj, ray_direction ,ray_count, ray.vert_wall_hit_Y);
 		}	
 		// ray.y = data->player.y + min_distance * sin(ray.angle);
 		// 

@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:39:09 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/01/22 16:39:10 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/01/22 18:09:09 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,54 @@ int	ft_fill_info(t_info **info, t_file *file)
 	if (ft_check_rgb(file) < 0)
 		return (-1);
 	if (ft_fill_tmp(info, file) < 0)
+		return (-1);
+	return (0);
+}
+
+// Additions ------------------------------------------------
+
+int	ft_check_one_player(t_file *file, int line_start)
+{
+	t_file	*tmp;
+	int		i;
+	int		counter;
+
+	tmp = ft_return_index_line(file, line_start);
+	if (tmp == NULL)
+		return (-1);
+	counter = 0;
+	while (tmp)
+	{
+		i = 0;
+		while (tmp->line[i])
+		{
+			if (tmp->line[i] == 'N' || tmp->line[i] == 'S'
+				|| tmp->line[i] == 'E' || tmp->line[i] == 'W')
+				counter++;
+			i++;
+		}
+		tmp = tmp->next;
+	}
+	if (counter == 0)
+		return (-1);
+	if (counter > 1)
+		return (-2);
+	return (0);
+}
+
+int	ft_nor_m_ap(t_file *tmp, int i)
+{
+	if (i > 0 && (ft_isemptychar(tmp->line[i - 1])))
+		return (-1);
+	if (i < ft_strlen(tmp->line) - 1 && (ft_isemptychar(tmp->line[i + 1])))
+		return (-1);
+	if (tmp->prev && (((ft_strlen(tmp->prev->line) > i
+					&& ((ft_isemptychar(tmp->prev->line[i]))))
+				|| ft_strlen(tmp->prev->line) <= i)))
+		return (-1);
+	if (tmp->next && (((ft_strlen(tmp->next->line) > i
+					&& ((ft_isemptychar(tmp->next->line[i]))))
+				|| ft_strlen(tmp->next->line) <= i)))
 		return (-1);
 	return (0);
 }

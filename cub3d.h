@@ -8,9 +8,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft/libft.h"
-# define SCREEN_WIDTH 600 * 3
-# define SCREEN_HEIGHT 800
 # define TILE_SIZE 64
+# define SCREEN_WIDTH TILE_SIZE * 16
+# define SCREEN_HEIGHT TILE_SIZE * 9
 # define FOV 60.0
 # define PRECISION 2.0
 # define SQUARE_SIZE 59
@@ -124,6 +124,8 @@ int					ft_check_if_file_has_unwanted_lines(t_file *);
 int					ft_is_the_whole_line_full_of_spaces(char *);
 int					ft_check_if_file_has_lines_filled_with_blank_characters(t_file *);
 int					ft_parse_args(int, char **, t_info **, t_file **);
+int					ft_check_one_player(t_file *, int);
+int					ft_nor_m_ap(t_file *, int);
 
 
 // -----------------------------------------------------------------------------
@@ -182,7 +184,7 @@ double				_to_degree(double radian);
 int					_initialize(t_data* data, t_info *info, char **map);
 double				_direction(int c);
 void				_init_player(char **map, t_player *player);
-void	_draw_line(t_data* data, int wall_height, int ray_count, int ray_x);
+void				_draw_line(t_data* data, int wall_height,int ray_direction ,int ray_count, int ray_x);
 void                _ray_casting(t_data* data, char **map);
 int					_event_listener(int key, t_data* data);
 void				_draw_map(t_data* data);

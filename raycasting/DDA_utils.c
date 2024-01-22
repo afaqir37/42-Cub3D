@@ -1,5 +1,36 @@
 #include "../cub3d.h"
 
+int ft_ret_ptr_nbr(char **str)
+{
+	int i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+		i++;
+	return (i);
+}
+
+
+int ft_max_strlen(char **str)
+{
+	int i;
+	int max;
+
+	i = 0;
+	max = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+	{
+		if (ft_strlen(str[i]) > max)
+			max = ft_strlen(str[i]);
+		i++;
+	}
+	return (max);
+}
+
 int		_horizontal_intersect(t_ray* ray, t_data* data)
 {
 	float	xintercept;
@@ -8,6 +39,8 @@ int		_horizontal_intersect(t_ray* ray, t_data* data)
 	float	ystep;
 	float	next_X;
 	float next_Y;
+	int screen_width = ft_max_strlen(data->map) * TILE_SIZE;
+	int screen_height = ft_ret_ptr_nbr(data->map) * TILE_SIZE;
 	if (fabs(ray->angle - M_PI / 2) < 0.00001 || fabs(ray->angle - 3 * M_PI / 2) < 0.00001 || fabs(ray->angle) < 0.00001 || fabs(ray->angle - M_PI) < 0.00001 || fabs(ray->angle - 2 * M_PI) < 0.00001) {
 		ray->angle += 0.000001;
 	}
@@ -32,7 +65,7 @@ int		_horizontal_intersect(t_ray* ray, t_data* data)
 	next_Y = yintercept;
 
 	
-	while (next_X >= 0 && next_X <= data->screen_width && next_Y >= 0 && next_Y <= data->screen_height)
+	while (next_X >= 0 && next_X <= screen_width && next_Y >= 0 && next_Y <= screen_height)
 	{
 		float x_check = next_X;
 		float y_check = next_Y + (_ray_facing_up(ray->angle) ? -1 : 0);
@@ -65,6 +98,8 @@ int	_vertical_intersect(t_ray* ray, t_data* data)
 	float	ystep;
 	float	next_X;
 	float	next_Y;
+	int screen_width = ft_max_strlen(data->map) * TILE_SIZE;
+	int screen_height = ft_ret_ptr_nbr(data->map) * TILE_SIZE;
 
 	xstep = TILE_SIZE;
 	ystep = tan(ray->angle) * TILE_SIZE;
@@ -103,7 +138,7 @@ int	_vertical_intersect(t_ray* ray, t_data* data)
 	next_Y = yintercept;
 
 	
-	while (next_X >= 0 && next_X <= data->screen_width && next_Y >= 0 && next_Y <= data->screen_height)
+	while (next_X >= 0 && next_X <= screen_width && next_Y >= 0 && next_Y <= screen_height)
 	{
 		float x_check = next_X +  (_ray_facing_left(ray->angle) ? -1 : 0);
 		float y_check = next_Y;

@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:51:33 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/01/22 16:51:34 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/01/22 18:07:13 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,49 +54,49 @@ int	ft_return_index_of_first_line(t_file *file)
 	return (-1);
 }
 
-int	ft_check_one_player(t_file *file, int line_start)
+int	ft_check_first_last(t_file *tmp, int j)
 {
-	t_file	*tmp;
-	int		i;
-	int		counter;
+	int	i;
 
-	tmp = ft_return_index_line(file, line_start);
-	if (tmp == NULL)
-		return (-1);
-	counter = 0;
-	while (tmp)
+	i = 0;
+	if (j == 0 || tmp->next == NULL)
 	{
-		i = 0;
 		while (tmp->line[i])
 		{
-			if (tmp->line[i] == 'N' || tmp->line[i] == 'S'
-				|| tmp->line[i] == 'E' || tmp->line[i] == 'W')
-				counter++;
+			if (tmp->line[i] != '1' && tmp->line[i] != ' ')
+			{
+				if (j == 0 && i == ft_strlen(tmp->line) - 1
+					&& tmp->line[i] == '\n')
+				{
+					i++;
+					continue ;
+				}
+				else
+					return (-1);
+			}
 			i++;
 		}
-		tmp = tmp->next;
 	}
-	if (counter == 0)
-		return (-1);
-	if (counter > 1)
-		return (-2);
 	return (0);
 }
 
-int	ft_check_map_norm(t_file *tmp, int i)
+int	ft_check_first_char(t_file *tmp)
 {
-	if (i > 0 && (ft_isemptychar(tmp->line[i - 1])))
-		return (-1);
-	if (i < ft_strlen(tmp->line) - 1 && (ft_isemptychar(tmp->line[i + 1])))
-		return (-1);
-	if (tmp->prev && (((ft_strlen(tmp->prev->line) > i
-					&& ((ft_isemptychar(tmp->prev->line[i]))))
-				|| ft_strlen(tmp->prev->line) <= i)))
-		return (-1);
-	if (tmp->next && (((ft_strlen(tmp->next->line) > i
-					&& ((ft_isemptychar(tmp->next->line[i]))))
-				|| ft_strlen(tmp->next->line) <= i)))
-		return (-1);
+	int	i;
+
+	i = 0;
+	while (tmp->line[i])
+	{
+		if (tmp->line[i] == ' ')
+			i++;
+		else
+		{
+			if (tmp->line[i] != '1')
+				return (-1);
+			else
+				break ;
+		}
+	}
 	return (0);
 }
 
@@ -104,26 +104,27 @@ int	ft_check_map_is_closed(t_file *file, int line_start)
 {
 	t_file	*tmp;
 	int		i;
+	int		j;
 
-	i = 0;
+	j = 0;
 	tmp = ft_return_node_with_index(file, line_start);
 	if (tmp == NULL)
 		return (-1);
 	while (tmp)
 	{
 		i = 0;
+		if (ft_check_first_last(tmp, j) == -1 || ft_check_first_char(tmp) == -1)
+			return (-1);
 		while (tmp->line[i])
 		{
-			if (tmp->line[i] == '0' || tmp->line[i] == 'N'
-				|| tmp->line[i] == 'S' || tmp->line[i] == 'E'
-				|| tmp->line[i] == 'W')
-			{
-				if (ft_check_map_norm(tmp, i) == -1)
-					return (-1);
-			}
+			if ((tmp->line[i] == '0' || tmp->line[i] == 'N'
+					|| tmp->line[i] == 'S' || tmp->line[i] == 'E'
+					|| tmp->line[i] == 'W') && (ft_nor_m_ap(tmp, i) == -1))
+				return (-1);
 			i++;
 		}
 		tmp = tmp->next;
+		j++;
 	}
 	return (0);
 }

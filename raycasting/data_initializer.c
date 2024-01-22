@@ -1,7 +1,6 @@
 #include "../cub3d.h"
 
 
-
 int	_initialize(t_data* data, t_info *info, char **map)
 {
 	data->mlx = mlx_init();
