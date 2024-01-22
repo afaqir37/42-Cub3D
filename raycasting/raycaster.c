@@ -20,17 +20,15 @@ void	_ray_casting(t_data *data, char **map)
 		double dist_to_proj = (data->screen_width / 2) / tan(data->half_of_FOV);
 
 		if (horizontal_distance < vertical_distance) {
-			printf("horizontal distance: %f\n", ray.horz_wall_hit_X);
 			_draw_line(data, (TILE_SIZE / horizontal_distance) * dist_to_proj, ray_count, ray.horz_wall_hit_X);
 			//draw_line(data->player.x, data->player.y, (int)ray.horz_wall_hit_X, (int)ray.horz_wall_hit_Y, 0x000000, data);
 		}
-			//draw_line(data->player.x, data->player.y, (int)ray.horz_wall_hit_X, (int)ray.horz_wall_hit_Y, 0x000000, data);
 
 		else
 		{
-			printf("vertical distance: %f\n", ray.vert_wall_hit_X);
-			_draw_line(data, (TILE_SIZE / vertical_distance) * dist_to_proj, ray_count, ray.vert_wall_hit_X);
-		}	//draw_line(data->player.x, data->player.y, (int)ray.vert_wall_hit_X, (int)ray.vert_wall_hit_Y, 0xFF00FF, data);// ray.x = data->player.x + min_distance * cos(ray.angle);
+			//draw_line(data->player.x, data->player.y, (int)ray.horz_wall_hit_X, (int)ray.horz_wall_hit_Y, 0x000000, data);
+		_draw_line(data, (TILE_SIZE / vertical_distance) * dist_to_proj, ray_count, ray.vert_wall_hit_Y);
+		}	
 		// ray.y = data->player.y + min_distance * sin(ray.angle);
 		// 
 		// printf("is it facing right? : %d\n", _ray_facing_right(ray.angle));

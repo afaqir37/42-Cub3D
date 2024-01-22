@@ -124,6 +124,15 @@ int ft_open_images(t_info **info, t_data *data)
 	return (0);
 }
 
+void ft_print_2d(char **str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+		printf("%s\n", str[i++]);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
@@ -136,6 +145,7 @@ int	main(int argc, char **argv)
 		return (1);
 	if (ft_open_images(&info, &data))
 		return(ft_free_info(&info), ft_free_file(&file));
+	ft_print_2d(info->map);
 	//_draw_map(&data);
 	// while (1) {
 	// 	mlx_clear_window(data.mlx, data.win);
