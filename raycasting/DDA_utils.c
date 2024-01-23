@@ -42,7 +42,7 @@ int		_horizontal_intersect(t_ray* ray, t_data* data)
 	int screen_width = ft_max_strlen(data->map) * TILE_SIZE;
 	int screen_height = ft_ret_ptr_nbr(data->map) * TILE_SIZE;
 	if (fabs(ray->angle - M_PI / 2) < 0.00001 || fabs(ray->angle - 3 * M_PI / 2) < 0.00001 || fabs(ray->angle) < 0.00001 || fabs(ray->angle - M_PI) < 0.00001 || fabs(ray->angle - 2 * M_PI) < 0.00001) {
-		ray->angle += 0.000001;
+		ray->angle += 0.0000001;
 	}
 	yintercept = floor(data->player.y / TILE_SIZE) * TILE_SIZE;
 	if (_ray_facing_down(ray->angle))
@@ -56,11 +56,9 @@ int		_horizontal_intersect(t_ray* ray, t_data* data)
 
 	if (_ray_facing_left(ray->angle) && xstep > 0)
 		xstep *= -1;
-
 	ystep = TILE_SIZE;
 	if (_ray_facing_up(ray->angle))
 		ystep *= -1;
-
 	next_X = xintercept;
 	next_Y = yintercept;
 
@@ -72,6 +70,7 @@ int		_horizontal_intersect(t_ray* ray, t_data* data)
 
 		if (_has_wall_at(x_check, y_check, data->map))
 		{
+			printf("x--> %f\ty--> %f\n", x_check, y_check);
 			//draw_line(data->player.x, data->player.y, next_X, next_Y, 0x000000, data);
 			ray->horz_wall_hit_X = next_X;
 			ray->horz_wall_hit_Y = next_Y;

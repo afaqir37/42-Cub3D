@@ -20,30 +20,28 @@ void	_ray_casting(t_data *data, char **map)
 		double vertical_distance = _vertical_intersect(&ray, data);
 		double dist_to_proj = (data->screen_width / 2) / tan(data->half_of_FOV);
 
-		if (ray.angle > 0 && ray.angle < M_PI) //south
-		{
-			if (ray.angle < M_PI_2) // southeast
-				ray_direction = 2;
-			else // southwest
-				ray_direction = 3;
-		}
-		else // north
-		{
-			if (ray.angle < M_PI || ray.angle > 2 * M_PI) // northeast
-				ray_direction = 2;
-			else // northwest
-				ray_direction = 3;
-		}
-		if (horizontal_distance < vertical_distance) {
-			_draw_line(data, (TILE_SIZE / horizontal_distance) * dist_to_proj, ray_direction, ray_count, ray.horz_wall_hit_X);
+		// North
 
-			// draw_line(data->player.x, data->player.y, (int)ray.horz_wall_hit_X, (int)ray.horz_wall_hit_Y, 0x000000, data);
+		if (horizontal_distance < vertical_distance) {
+			if (_ray_facing_up(ray.angle))
+				ray_direction = 1;
+			else if (_ray_facing_down(ray.angle))
+				ray_direction = 0;
+			// _draw_line(data, (TILE_SIZE / horizontal_distance) * dist_to_proj, ray_direction, ray_count, ray.horz_wall_hit_X);
+
+			// printf("x: %f, y: %f, x1: %f, y1: %f\n", data->player.x, data->player.y, ray.horz_wall_hit_X, ray.horz_wall_hit_Y);	
+			draw_line(data->player.x, data->player.y, (int)ray.horz_wall_hit_X, (int)ray.horz_wall_hit_Y, 0xFF0000, data);
 		}
 
 		else
 		{
-			// draw_line(data->player.x, data->player.y, (int)ray.vert_wall_hit_X, (int)ray.vert_wall_hit_Y, 0x000000, data);
-			_draw_line(data, (TILE_SIZE / vertical_distance) * dist_to_proj, ray_direction ,ray_count, ray.vert_wall_hit_Y);
+			if (_ray_facing_right(ray.angle))
+				ray_direction = 2;
+			else if (_ray_facing_left(ray.angle))
+				ray_direction = 3;
+			// printf("x: %f, y: %f, x1: %f, y1: %f\n", data->player.x, data->player.y, ray.vert_wall_hit_X, ray.vert_wall_hit_Y);
+			draw_line(data->player.x, data->player.y, (int)ray.vert_wall_hit_X, (int)ray.vert_wall_hit_Y, 0xFF0000, data);
+			 //_draw_line(data, (TILE_SIZE / vertical_distance) * dist_to_proj, ray_direction ,ray_count, ray.vert_wall_hit_Y);
 		}	
 		// ray.y = data->player.y + min_distance * sin(ray.angle);
 		// 

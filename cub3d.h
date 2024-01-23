@@ -8,7 +8,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft/libft.h"
-# define TILE_SIZE 64
+# define TILE_SIZE 70
 # define SCREEN_WIDTH TILE_SIZE * 16
 # define SCREEN_HEIGHT TILE_SIZE * 9
 # define FOV 60.0
@@ -202,6 +202,7 @@ int					_has_wall_at(double x, double y, char **map);
 int					_horizontal_intersect(t_ray* ray, t_data* data);
 int					_vertical_intersect(t_ray* ray, t_data* data);
 void				my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color);
-
+int 				ft_max_strlen(char **str);
+int 				ft_ret_ptr_nbr(char **str);
 // -------------------------------------------------------------------------------
 #endif
