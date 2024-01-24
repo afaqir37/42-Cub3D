@@ -8,10 +8,10 @@ void	_draw_wall(int x, int y, t_data *data)
 
 	i = 0;
 	j = 0;
-	while (i < TILE_SIZE -2)
+	while (i < TILE_SIZE - 1)
 	{
 		j = 0;
-		while (j <= TILE_SIZE - 2)
+		while (j < TILE_SIZE - 1)
 		{
 			//mlx_pixel_put(data->mlx, data->win, x + i, y + j, DARK_RED);
 			my_mlx_pixel_put(data, x + i, y + j, 0xFFFFFF);

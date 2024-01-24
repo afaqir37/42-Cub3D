@@ -8,7 +8,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft/libft.h"
-# define TILE_SIZE 70
+# define TILE_SIZE 100
 # define SCREEN_WIDTH TILE_SIZE * 16
 # define SCREEN_HEIGHT TILE_SIZE * 9
 # define FOV 60.0

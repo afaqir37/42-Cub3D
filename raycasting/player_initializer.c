@@ -32,7 +32,7 @@ void	_init_player(char **map, t_player *player)
 				player->rotation_angle = player->player_dir;
 				player->turn_direction = 0;
 				player->walk_direction = 0;
-				player->move_speed = 4.0;
+				player->move_speed = 7.0;
 				player->rotation_speed = 4 * (M_PI / 180);
 				return ;
 			}

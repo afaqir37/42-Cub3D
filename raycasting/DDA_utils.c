@@ -70,7 +70,7 @@ int		_horizontal_intersect(t_ray* ray, t_data* data)
 
 		if (_has_wall_at(x_check, y_check, data->map))
 		{
-			printf("x--> %f\ty--> %f\n", x_check, y_check);
+			//printf("x--> %f\ty--> %f\n", x_check, y_check);
 			//draw_line(data->player.x, data->player.y, next_X, next_Y, 0x000000, data);
 			ray->horz_wall_hit_X = next_X;
 			ray->horz_wall_hit_Y = next_Y;
@@ -103,7 +103,7 @@ int	_vertical_intersect(t_ray* ray, t_data* data)
 	xstep = TILE_SIZE;
 	ystep = tan(ray->angle) * TILE_SIZE;
 	if (fabs(ray->angle - M_PI / 2) < 0.00001 || fabs(ray->angle - 3 * M_PI / 2) < 0.00001 || fabs(ray->angle) < 0.00001 || fabs(ray->angle - M_PI) < 0.00001 || fabs(ray->angle - 2 * M_PI) < 0.00001) {
-		ray->angle += 0.000001;
+		ray->angle += 0.0000001;
 	}
 	if (_ray_facing_right(ray->angle))
 	{
@@ -143,8 +143,10 @@ int	_vertical_intersect(t_ray* ray, t_data* data)
 		float y_check = next_Y;
 
 		if (_has_wall_at(x_check, y_check, data->map))
-		{
-			//draw_line(data->player.x, data->player.y, next_X, next_Y, 0x000000, data);
+		{	// the player starting direction is S, but the walls the player is facing looks like there is a gap betweewn the walls, 
+		// when i added +2 to the next_X and next_Y, the gap was gone. but some issues still exists, i  hope you can fix it.
+
+
 			ray->vert_wall_hit_X = next_X;
 			ray->vert_wall_hit_Y = next_Y;
 			break;
