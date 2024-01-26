@@ -10,7 +10,7 @@ void	_ray_casting(t_data *data, char **map)
 {
 	double ray_angle;
 	int ray_count;
-	int ray_direction;
+	int ray_direction = 0;
 	t_ray ray;
 	double correct_distance;
 	double prev_ray_angle;
@@ -42,7 +42,7 @@ void	_ray_casting(t_data *data, char **map)
             (prev_ray_angle > 3 * M_PI / 2 && prev_ray_angle < 2 * M_PI && ray.angle > 3 * M_PI / 2 && ray.angle < 2 * M_PI)) {
             // The previous ray's angle and the current ray's angle are in the same interval
             // Use the texture of the previous ray
-           // _draw_line(data, (TILE_SIZE / correct_distance) * dist_to_proj, prev_ray_direction, ray_count, prev_horz);
+           _draw_line(data, (TILE_SIZE / correct_distance) * dist_to_proj, prev_ray_direction, ray_count, prev_horz);
 		  // 	draw_line(data->player.x, data->player.y, (int)ray.horz_wall_hit_X, (int)ray.horz_wall_hit_Y, 0xFF0000, data);
 			}
 		else {
@@ -72,11 +72,11 @@ void	_ray_casting(t_data *data, char **map)
 			else
 				ray_direction = 0;
 
-		 //_draw_line(data, (TILE_SIZE / correct_distance) * dist_to_proj, ray_direction, ray_count, ray.horz_wall_hit_X);
+		 _draw_line(data, (TILE_SIZE / correct_distance) * dist_to_proj, ray_direction, ray_count, ray.horz_wall_hit_X);
 		 prev_horz = ray.horz_wall_hit_X;
 
 			 //printf("x: %f, y: %f, x1: %f, y1: %f\n", data->player.x, data->player.y, ray.horz_wall_hit_X, ray.horz_wall_hit_Y);	
-			draw_line(data->player.x, data->player.y, (int)ray.horz_wall_hit_X, (int)ray.horz_wall_hit_Y, 0xFF0000, data);
+			// draw_line(data->player.x, data->player.y, (int)ray.horz_wall_hit_X, (int)ray.horz_wall_hit_Y, 0xFF0000, data);
 		}
 
 		else if (horizontal_distance > vertical_distance)
@@ -87,8 +87,8 @@ void	_ray_casting(t_data *data, char **map)
 			else if (_ray_facing_left(ray.angle))
 				ray_direction = 3;
 			// printf("x: %f, y: %f, x1: %f, y1: %f\n", data->player.x, data->player.y, ray.vert_wall_hit_X, ray.vert_wall_hit_Y);
-			draw_line(data->player.x, data->player.y, (int)ray.vert_wall_hit_X, (int)ray.vert_wall_hit_Y, 0xFF0000, data);
-			//_draw_line(data, (TILE_SIZE / correct_distance) * dist_to_proj, ray_direction ,ray_count, ray.vert_wall_hit_Y);
+			// draw_line(data->player.x, data->player.y, (int)ray.vert_wall_hit_X, (int)ray.vert_wall_hit_Y, 0xFF0000, data);
+			_draw_line(data, (TILE_SIZE / correct_distance) * dist_to_proj, ray_direction ,ray_count, ray.vert_wall_hit_Y);
 			prev_vert = ray.vert_wall_hit_X;
 		}
 
