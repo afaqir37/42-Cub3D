@@ -27,6 +27,34 @@ void draw_line(int x0, int y0, int x1, int y1, int color, t_data* data)
 	}
 }
 
+int	_check_colision(float x, float y, t_data *data)
+{
+	float	a;
+	float	b;
+	float	dx;
+	float	dy;
+
+	a = x - (TILE_SIZE / 3);
+	while (a <= x + 10)
+	{
+		b = y - (TILE_SIZE / 3);
+		while (b <= y + (TILE_SIZE / 3))
+		{
+			dx = a - x;
+			dy = b - y;
+			if (dx * dx + dy * dy <= (TILE_SIZE / 3) * (TILE_SIZE / 3))
+			{
+				if (_has_wall_at(a, b, data->map))
+					return (1);
+			}
+			b++;
+		}
+		a++;
+	}
+	return (0);
+}
+
+
 void	_update(t_data* data)
 {
 	double next_x;
@@ -50,9 +78,10 @@ void	_update(t_data* data)
 		data->player.x += data->player.side_direction * data->player.move_speed * cos(rot_ang);
 		data->player.y += data->player.side_direction * data->player.move_speed * sin(rot_ang);
 	}
-	if (_has_wall_at(data->player.x, next_y, data->map))
+	if (_check_colision(data->player.x, next_y, data))
+	//if (_has_wall_at(data->player.x, next_y, data->map))
 		data->player.x = next_x;
-	else if (_has_wall_at(next_x, data->player.y, data->map))
+	//else if (_has_wall_at(next_x, data->player.y, data->map))
+	else if (_check_colision(next_x, data->player.y, data))
 		data->player.y = next_y;
-
 }

@@ -1,4 +1,4 @@
-CFLAGS = -fsanitize=address -g3 #-Wall -Wextra -Werror 
+CFLAGS =  #-fsanitize=address -g #-Wall -Wextra -Werror 
 SRC = main.c Parsing/check_first_errors.c Parsing/file_init.c \
 	Parsing/fill_info.c Parsing/main_parsing.c Parsing/map_validity.c Parsing/map_validity_norm.c\
 	Utils/Utils_1.c Utils/Utils_2.c Utils/Utils_3.c \

@@ -49,7 +49,7 @@ void	_draw_line(t_data* data, int wall_height, int ray_direction , int ray_count
             my_mlx_pixel_put(data, ray_count, y, rgb_to_hex(data->info->C.r, data->info->C.g, data->info->C.b));
         } else if (y >= wall_top && y <= wall_bottom) {
             tex_y = ((y - wall_top) / (double)(wall_bottom - wall_top) * tex->NO_img->height);
-            tex_y = fmax(0, fmin(tex_y, tex->NO_img->height - 1));
+            tex_y = fmax(0, fmin(tex_y, tex->NO_img->height));
 			if (tex_y < 0)
 				tex_y = 0;
 			if (tex_y > tex->NO_img->height)
