@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:51:19 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/01/22 22:03:14 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/01/27 05:11:19 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	ft_check_map_validity(t_file *file, t_info **info)
 	if (ft_check_lines_after(file, i, 0) < 0)
 		return (ft_wr("\033[31mMap is not valid: Weird Map, Redo it!"));
 	if (ft_check_map_is_closed(file, i) < 0)
-		return (ft_wr("\033[31mMap is not valid: Map 3ndek mt9ouba!"));
+		return (ft_wr("\033[31mMap is not valid"));
 	error_code = ft_check_one_player(file, i);
 	if (error_code < 0)
 	{

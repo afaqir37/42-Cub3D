@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:27:27 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/01/22 16:38:05 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/01/27 05:33:17 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,21 @@ int	ft_check_rgb(t_file *file)
 	return (0);
 }
 
+int	ft_skip_ec(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (ft_isemptychar(str[i]))
+			i++;
+		else
+			break ;
+	}
+	return (i);
+}
+
 int	ft_check_if_file_has_unwanted_lines(t_file *file)
 {
 	t_file	*tmp;
@@ -77,14 +92,14 @@ int	ft_check_if_file_has_unwanted_lines(t_file *file)
 	{
 		if (tmp->index >= i)
 			return (0);
-		if ((ft_compare_no_null(tmp->line, "R") < 0)
-			&& ft_compare_no_null(tmp->line, "NO") < 0
-			&& ft_compare_no_null(tmp->line, "SO") < 0
-			&& ft_compare_no_null(tmp->line, "WE") < 0
-			&& ft_compare_no_null(tmp->line, "EA") < 0
-			&& ft_compare_no_null(tmp->line, "S") < 0
-			&& ft_compare_no_null(tmp->line, "F") < 0
-			&& ft_compare_no_null(tmp->line, "C") < 0
+		if ((ft_compare_no_null(tmp->line, "R", ft_skip_ec(tmp->line)) < 0)
+			&& ft_compare_no_null(tmp->line, "NO", ft_skip_ec(tmp->line)) < 0
+			&& ft_compare_no_null(tmp->line, "SO", ft_skip_ec(tmp->line)) < 0
+			&& ft_compare_no_null(tmp->line, "WE", ft_skip_ec(tmp->line)) < 0
+			&& ft_compare_no_null(tmp->line, "EA", ft_skip_ec(tmp->line)) < 0
+			&& ft_compare_no_null(tmp->line, "S", ft_skip_ec(tmp->line)) < 0
+			&& ft_compare_no_null(tmp->line, "F", ft_skip_ec(tmp->line)) < 0
+			&& ft_compare_no_null(tmp->line, "C", ft_skip_ec(tmp->line)) < 0
 			&& !ft_is_the_whole_line_space(tmp->line))
 		{
 			return (-1);

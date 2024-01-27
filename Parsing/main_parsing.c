@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:39:09 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/01/22 18:09:09 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/01/27 05:32:40 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	ft_parse_args(int ac, char **av, t_info **inf, t_file **fle)
 		return (ft_wr("Invalid File: Please Remove Unwanted Lines!") * -1);
 	if (ft_check_map_validity(file, &info))
 		return (1);
-	printf("\033[32mMap is valid!\n");
 	(*inf) = info;
 	(*fle) = file;
 	return (0);
