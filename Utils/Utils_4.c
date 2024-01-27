@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:11:12 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/01/27 05:34:46 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/01/27 05:43:36 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int	ft_check_sentence_existance(t_file *file, char *str)
 	tmp = file;
 	while (tmp)
 	{
-		if (ft_compare_no_null(tmp->line, str, ft_skip_ec(tmp->line)) == 1)
+		if (ft_cmp_nnull(tmp->line, str, ft_skip_ec(tmp->line)) == 1)
 		{
 			tmp = tmp->next;
 			while (tmp)
 			{
-				if (ft_compare_no_null(tmp->line, str, ft_skip_ec(tmp->line)))
+				if (ft_cmp_nnull(tmp->line, str, ft_skip_ec(tmp->line)) == 1)
 					return (-2);
 				tmp = tmp->next;
 			}

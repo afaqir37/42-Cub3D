@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:10:57 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/01/27 05:33:54 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/01/27 05:43:36 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_return_len(char *str, int start)
 	return (i - start + 1);
 }
 
-int	ft_compare_no_null(char *s1, char *s2, int i)
+int	ft_cmp_nnull(char *s1, char *s2, int i)
 {
 	int	j;
 
