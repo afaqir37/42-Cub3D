@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:11:14 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/01/22 16:03:03 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/01/27 05:38:46 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,16 @@ int	ft_is_the_whole_line_full_of_spaces(char *str)
 			return (0);
 	}
 	return (1);
+}
+
+int	ft_check_full_line(char *str, int i)
+{
+	while (str[i])
+	{
+		if (ft_isemptychar(str[i]))
+			i++;
+		else
+			return (1);
+	}
+	return (0);
 }

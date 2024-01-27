@@ -34,8 +34,8 @@ void	_draw_line(t_data* data, int wall_height, int ray_direction , int ray_count
     char *textures[] = {data->info->NO_img->addr, data->info->SO_img->addr, data->info->EA_img->addr, data->info->WE_img->addr};
     int widths[] = {data->info->NO_img->width, data->info->SO_img->width, data->info->EA_img->width, data->info->WE_img->width};
 
-	ft_putnbr_fd(ray_direction, 1);
-	ft_putchar_fd('\n', 1);
+	// ft_putnbr_fd(ray_direction, 1);
+	// ft_putchar_fd('\n', 1);
     texture = textures[ray_direction];
 	//printf("direction---> %d\n", ray_direction);
     tex_x = ((ray_x % (TILE_SIZE)) / (double)(TILE_SIZE)) * widths[ray_direction];

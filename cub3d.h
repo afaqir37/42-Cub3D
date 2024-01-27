@@ -82,7 +82,7 @@ int					ft_string(char *str, char *look);
 int					ft_isemptychar(char);
 int					ft_return_len(char *, int);
 int					ft_to_find(char *, char *, int, int);
-int					ft_compare_no_null(char *, char *);
+int					ft_compare_no_null(char *, char *, int i);
 int					ft_to_find_index(char *, char *, int, int);
 int					ft_wr(char *);
 int					ft_check_existance(char *);
@@ -126,6 +126,8 @@ int					ft_check_if_file_has_lines_filled_with_blank_characters(t_file *);
 int					ft_parse_args(int, char **, t_info **, t_file **);
 int					ft_check_one_player(t_file *, int);
 int					ft_nor_m_ap(t_file *, int);
+int					ft_skip_ec(char *str);
+int					ft_check_full_line(char *str, int i);
 
 
 // -----------------------------------------------------------------------------

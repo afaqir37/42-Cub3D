@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:10:57 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/01/22 15:13:31 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/01/27 05:33:54 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,19 @@ int	ft_return_len(char *str, int start)
 	return (i - start + 1);
 }
 
-int	ft_compare_no_null(char *s1, char *s2)
+int	ft_compare_no_null(char *s1, char *s2, int i)
 {
-	int	i;
+	int	j;
 
-	i = 0;
-	while (s1[i] && s2[i])
+	j = 0;
+	while (s1[i] && s2[j])
 	{
-		if (s1[i] != s2[i])
+		if (s1[i] != s2[j])
 			return (-1);
 		i++;
+		j++;
 	}
-	if (s2[i] != '\0')
+	if (s2[j] != '\0')
 		return (-1);
 	return (1);
 }
