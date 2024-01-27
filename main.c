@@ -85,8 +85,6 @@ Image *load_xpm_file(void *mlx_ptr, const char *file_name)
         printf("Failed to allocate memory for image\n");
         return NULL;
     }
-    image->width = TILE_SIZE;
-    image->height = TILE_SIZE;
     image->img = NULL;
     image->addr = NULL;
 

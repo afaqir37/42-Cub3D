@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:27:27 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/01/27 05:43:36 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/01/27 18:32:33 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	ft_intialize_file(t_file **file, int fd)
 
 	i = 0;
 	read = get_next_line(fd);
+	if (read == NULL)
+		return ;
 	tmp = NULL;
 	while (read)
 	{
