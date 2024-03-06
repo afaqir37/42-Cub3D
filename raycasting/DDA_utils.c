@@ -31,136 +31,113 @@ int ft_max_strlen(char **str)
 	return (max);
 }
 
-int		_horizontal_intersect(t_ray* ray, t_data* data)
+void	_horizontal_intersect(t_intersection* inter, t_data* data, float ray_angle)
 {
-	float	xintercept;
-	float	yintercept;
-	float	xstep;
-	float	ystep;
-	float	next_X;
-	float next_Y;
+
 	int screen_width = ft_max_strlen(data->map) * TILE_SIZE;
 	int screen_height = ft_ret_ptr_nbr(data->map) * TILE_SIZE;
-	if (fabs(ray->angle - M_PI / 2) < 0.00001 || fabs(ray->angle - 3 * M_PI / 2) < 0.00001 || fabs(ray->angle) < 0.00001 || fabs(ray->angle - M_PI) < 0.00001 || fabs(ray->angle - 2 * M_PI) < 0.00001) {
-		ray->angle += 0.0000001;
-	}
-	yintercept = floor(data->player.y / TILE_SIZE) * TILE_SIZE;
+
+	inter->yintercept = floor(data->player.y / TILE_SIZE) * TILE_SIZE;
 	if (_ray_facing_down(ray->angle))
-		yintercept += TILE_SIZE;
+		inter->yintercept += TILE_SIZE;
 	
-	xintercept = data->player.x + (yintercept - data->player.y) / tan(ray->angle);
+	inter->xintercept = data->player.x + (inter->yintercept - data->player.y) / tan(ray->angle);
 	
-	xstep = TILE_SIZE / tan(ray->angle);
-	if (_ray_facing_right(ray->angle) && xstep < 0)
-		xstep *= -1;
+	inter->xstep = TILE_SIZE / tan(ray->angle);
+	if (_ray_facing_right(ray->angle) && inter->xstep < 0)
+		inter->xstep *= -1;
 
-	if (_ray_facing_left(ray->angle) && xstep > 0)
-		xstep *= -1;
-	ystep = TILE_SIZE;
+	if (_ray_facing_left(ray->angle) && inter->xstep > 0)
+		inter->xstep *= -1;
+	inter->ystep = TILE_SIZE;
 	if (_ray_facing_up(ray->angle))
-		ystep *= -1;
-	next_X = xintercept;
-	next_Y = yintercept;
+		inter->ystep *= -1;
+	inter->next_X = inter->xintercept;
+	inter->next_Y = inter->yintercept;
 
-	
-	while (next_X >= 0 && next_X <= screen_width && next_Y >= 0 && next_Y <= screen_height)
+}
+
+void	_horizontal_dda(t_data *data, t_horz *horz, t_intersection *inter, float ray_angle)
+{
+	float y_check = inter->next_Y
+
+	while (1)
 	{
-		float x_check = next_X;
-		float y_check = next_Y + (_ray_facing_up(ray->angle) ? -1 : 0);
+		
 
-		if (_has_wall_at(x_check, y_check, data->map))
+		if (_ray_facing_up(ray->angle))
+			y_check -= 1;
+
+		if (_has_wall_at(inter->next_X, y_check, data->map))
 		{
-			//printf("x--> %f\ty--> %f\n", x_check, y_check);
-			//draw_line(data->player.x, data->player.y, next_X, next_Y, 0x000000, data);
-			ray->horz_wall_hit_X = next_X;
-			ray->horz_wall_hit_Y = next_Y;
+			horz->wall = 1;
+			horz->wall_hit_X = inter->next_X;
+			horz->wall_hit_Y = inter->next_Y;
 			break;
 		}
 		else
 		{
-			next_X += xstep;
-			next_Y += ystep;
+			inter->next_X += inter->xstep;
+			inter->next_Y += inter->ystep;
 	
 		}
 	}
-
-	ray->distance = sqrt((data->player.x - next_X) * (data->player.x - next_X) + (data->player.y - next_Y) * (data->player.y - next_Y));
-	
-	return ray->distance;
 }
 
-int	_vertical_intersect(t_ray* ray, t_data* data)
+void	_vertical_intersect(t_intersection* inter, t_data* data, float ray_angle)
 {
-	float	xintercept;
-	float	yintercept;
-	float	xstep;
-	float	ystep;
-	float	next_X;
-	float	next_Y;
+
 	int screen_width = ft_max_strlen(data->map) * TILE_SIZE;
 	int screen_height = ft_ret_ptr_nbr(data->map) * TILE_SIZE;
 
-	xstep = TILE_SIZE;
-	ystep = tan(ray->angle) * TILE_SIZE;
-	if (fabs(ray->angle - M_PI / 2) < 0.00001 || fabs(ray->angle - 3 * M_PI / 2) < 0.00001 || fabs(ray->angle) < 0.00001 || fabs(ray->angle - M_PI) < 0.00001 || fabs(ray->angle - 2 * M_PI) < 0.00001) {
-		ray->angle += 0.0000001;
-	}
+	inter->xstep = TILE_SIZE;
+	inter->ystep = tan(ray->angle) * TILE_SIZE;
+	inter->xintercept = floor(data->player.x / TILE_SIZE) * TILE_SIZE;
+	inter->yintercept = data->player.y + tan(ray->angle) * (inter->xintercept - data->player.x);
+	
 	if (_ray_facing_right(ray->angle))
-	{
-		xintercept = floor(data->player.x / TILE_SIZE) * TILE_SIZE + TILE_SIZE;
-	}
+		inter->xintercept += TILE_SIZE;
 		
 
 	if (_ray_facing_left(ray->angle))
-	{
-		xintercept = floor(data->player.x / TILE_SIZE) * TILE_SIZE;
-		xstep *= -1;
-	}
-
-	yintercept = data->player.y + tan(ray->angle) * (xintercept - data->player.x);
-
-	if (_ray_facing_up(ray->angle))
-	{
-		
-		if (ystep > 0)
-			ystep *= -1;
-	}
-		
-
-	if (_ray_facing_down(ray->angle))
-	{
-		if (ystep < 0)
-			ystep *= -1;
-	}
-
-	next_X = xintercept;
-	next_Y = yintercept;
+		inter->xstep *= -1;
 
 	
-	while (next_X >= 0 && next_X <= screen_width && next_Y >= 0 && next_Y <= screen_height)
+
+	if (_ray_facing_up(ray->angle) && inter->ystep > 0)
+		inter->ystep *= -1;
+		
+
+	if (_ray_facing_down(ray->angle) && inter->ystep < 0)
+		inter->ystep *= -1;
+
+	inter->next_X = inter->xintercept;
+	inter->next_Y = inter->yintercept;
+
+	
+    
+}
+
+void	_vertical_dda(t_data *data, t_vert *vert, t_intersection *inter, float ray_angle)
+{
+	float x_check;
+
+	while (1)
 	{
-		float x_check = next_X +  (_ray_facing_left(ray->angle) ? -1 : 0);
-		float y_check = next_Y;
-
-		if (_has_wall_at(x_check, y_check, data->map))
-		{	// the player starting direction is S, but the walls the player is facing looks like there is a gap betweewn the walls, 
-		// when i added +2 to the next_X and next_Y, the gap was gone. but some issues still exists, i  hope you can fix it.
-
-
-			ray->vert_wall_hit_X = next_X;
-			ray->vert_wall_hit_Y = next_Y;
+		x_check = inter->next_X;
+		if (_ray_facing_left(ray->angle))
+			x_check -= 1;
+		if (_has_wall_at(x_check, inter->next_Y, data->map))
+		{
+			vert->wall = 1;
+			vert->wall_hit_X = inter->next_X;
+			vert->wall_hit_Y = inter->next_Y;
 			break;
 		}
 		else
 		{
-			next_X += xstep;
-			next_Y += ystep;
+			inter->next_X += inter->xstep;
+			inter->next_Y += inter->ystep;
 		}
-	}        
-
-	ray->distance = sqrt((data->player.x - next_X) * (data->player.x - next_X) + (data->player.y - next_Y) * (data->player.y - next_Y));
-	
-	return (ray->distance);
-
-
+	}   
 }

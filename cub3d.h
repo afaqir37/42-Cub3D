@@ -8,9 +8,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft/libft.h"
-# define TILE_SIZE 70
-# define SCREEN_WIDTH TILE_SIZE * 16
-# define SCREEN_HEIGHT TILE_SIZE * 9
+# define TILE_SIZE 64
+# define SCREEN_WIDTH 1920
+# define SCREEN_HEIGHT 1080
 # define FOV 60.0
 # define PRECISION 2.0
 # define SQUARE_SIZE 59
@@ -153,12 +153,36 @@ typedef struct s_ray
 	double			y;
 	double			angle;
     double          distance;
-    int             wall;
-	double			horz_wall_hit_X;
-	double			horz_wall_hit_Y;
-	double			vert_wall_hit_X;
-	double			vert_wall_hit_Y;
+    int				is_horizontal;
+	int				up;
+	int				down;
+	int				left;
+	int				right;
 }					t_ray;
+
+typedef struct s_horz
+{
+	float		wall_hit_x;
+	float		wall_hit_y;
+	float		distance;
+}					t_horz;
+
+typedef struct s_vert
+{
+	float		wall_hit_x;
+	float		wall_hit_y;
+	float		distance;
+}					t_vert;
+
+typedef struct s_intersection
+{
+	float	xintercept;
+	float	yintercept;
+	float	xstep;
+	float	ystep;
+	float	next_X;
+	float	next_Y;
+}
 
 typedef struct s_data
 {
@@ -175,9 +199,10 @@ typedef struct s_data
 	int				bits_per_pixel;
 	int				size_line;
 	int				endian;
-	void 		  *img;
-	char				*img_data;
+	void 		  	*img;
+	char			*img_data;
 	t_info 			*info;
+	t_ray			*rays;
 
 }					t_data;
 
@@ -201,8 +226,10 @@ int					_ray_facing_right(double radian);
 int					_ray_facing_left(double radian);
 double				_normalize_angle(double radian_angle);
 int					_has_wall_at(double x, double y, char **map);
-int					_horizontal_intersect(t_ray* ray, t_data* data);
-int					_vertical_intersect(t_ray* ray, t_data* data);
+void				_horizontal_intersect(t_intersection* inter, t_data* data, float ray_angle);
+void				_horizontal_dda(t_data *data, t_horz *horz, t_intersection *inter, float ray_angle);
+void				_vertical_intersect(t_intersection* inter, t_data* data, float ray_angle);
+void				_vertical_dda(t_data *data, t_vert *vert, t_intersection *inter, float ray_angle);
 void				my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color);
 int 				ft_max_strlen(char **str);
 int 				ft_ret_ptr_nbr(char **str);

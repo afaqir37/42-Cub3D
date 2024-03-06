@@ -131,6 +131,22 @@ void ft_print_2d(char **str)
 		printf("%s\n", str[i++]);
 }
 
+void	_paint(t_data *data)
+{
+	void	*img;
+
+	img = mlx_new_image(data->mlx, data->screen_width, data->screen_height);
+	if (data->img)
+		mlx_destroy_image(data->mlx, data->img);
+	data->img = img;
+	data->img_data = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->size_line, &data->endian);
+	_ray_casting(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+}
+
+
+
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
@@ -144,15 +160,14 @@ int	main(int argc, char **argv)
 	if (ft_open_images(&info, &data))
 		return(ft_free_info(&info), ft_free_file(&file));
 	ft_print_2d(info->map);
-	//_draw_map(&data);
-	// while (1) {
-	// 	mlx_clear_window(data.mlx, data.win);
-	// 	_ray_casting(&data, map);
-	// }
+
+	_paint(data);
 	mlx_hook(data.win, 2, 1L << 0, _key_press_listener, &data);
 	mlx_hook(data.win, 3, 1L << 1, _key_release_listener, &data);
 	mlx_loop_hook(data.mlx, _render_next_frame, &data);
 	mlx_loop(data.mlx);
+
+
 	ft_free_info(&info);
 	ft_free_file(&file);
 	return (0);
