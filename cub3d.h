@@ -160,6 +160,15 @@ typedef struct s_ray
 	int				right;
 }					t_ray;
 
+typedef struct s_pack
+{
+	double			wall_top;
+	double			wall_bottom;
+	double			wall_height;
+	int				i;
+}					t_pack;
+
+
 typedef struct s_horz
 {
 	float		wall_hit_x;
@@ -182,7 +191,7 @@ typedef struct s_intersection
 	float	ystep;
 	float	next_X;
 	float	next_Y;
-}
+}		t_intersection;
 
 typedef struct s_data
 {
@@ -203,7 +212,7 @@ typedef struct s_data
 	char			*img_data;
 	t_info 			*info;
 	t_ray			*rays;
-
+	Image			*texture;
 }					t_data;
 
 double				_to_radian(double degree);

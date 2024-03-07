@@ -51,14 +51,59 @@ void	_horz_vert_choice(t_data *data, t_horz *horz, t_vert *vert, float ray_angle
 	}
 }
 
+int		_set_texture(t_data *data, float ray_angle, int i)
+{
+	int texture_offset_x;
+
+	if (data->rays[i].is_horizontal)
+	{
+		if (_ray_facing_up(ray_angle))
+			data->texture = data->info->NO_img;
+		else
+			data->texture = data->info->SO_img;
+		texture_offset_x = (int)(data->rays[i].wall_hit_x * data->texture->width / TILE_SIZE) % data->texture->width;
+	}
+	else
+	{
+		if (_ray_facing_right(ray_angle))
+			data->texture = data->info->EA_img;
+		else
+			data->texture = data->info->WE_img;
+		texture_offset_x = (int)(data->rays[i].wall_hit_y * data->texture->width / TILE_SIZE) % data->texture->width;
+	}
+
+	return (texture_offset_x);
+}
+
+void	_render_the_world(t_data *data, t_pack *pack, int texture_offset_x)
+{
+	
+}
+
+
 void	_draw_line(t_data *data, float ray_angle, int i)
 {
 	double dist_to_proj;
 	double correct_distance;
+	double wall_height;
+	double wall_top;
+	double wall_bottom;
+	int texture_offset_x;
+
 	
 	correct_distance = data->rays[i].distance * cos(ray.angle - data->player.rotation_angle);
 	dist_to_proj = (data->screen_width / 2) / tan(data->half_of_FOV);
 	wall_height = (TILE_SIZE / correct_distance) * dist_to_proj;
+
+	wall_top = (data->screen_height / 2) - (wall_height / 2);
+	if (wall_top < 0)
+		wall_top = 0;
+	wall_bottom = (data->screen_height / 2) + (wall_height / 2);
+	if (wall_bottom > data->screen_height)
+		wall_bottom = data->screen_height;
+	texture_offset_x = _set_texture(data, ray_angle, i);
+	_render_the_world(data, &(t_pack){wall_top, wall_bottom, wall_height, i}, texture_offset_x);
+
 }
 
 
