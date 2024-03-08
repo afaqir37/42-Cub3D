@@ -79,3 +79,40 @@ void	_update(t_data* data)
 	if (_check_collision(next_x, data->player.y, data))
 		data->player.y = next_y;
 }
+
+void	_move_vertical(t_data* data)
+{
+	float move_step;
+	float new_x;
+	float new_y;
+
+	move_step = data->player.walk_direction * data->player.move_speed;
+	new_x = data->player.x + cos(data->player.rotation_angle) * move_step;
+	new_y = data->player.y + sin(data->player.rotation_angle) * move_step;
+	if (!_has_wall_at(new_x, new_y, data))
+	{
+		data->player.x = new_x;
+		data->player.y = new_y;
+	}
+}
+
+void	_move_horizontal(t_data* data)
+{
+	float move_step;
+	float new_x;
+	float new_y;
+
+	move_step = data->player.side_direction * data->player.move_speed;
+	new_x = data->player.x + cos(data->player.rotation_angle + M_PI_2) * move_step;
+	new_y = data->player.y + sin(data->player.rotation_angle + M_PI_2) * move_step;
+	if (!_has_wall_at(new_x, new_y, data))
+	{
+		data->player.x = new_x;
+		data->player.y = new_y;
+	}
+}
+
+void	_rotate(t_data* data)
+{
+	data->player.rotation_angle = _normalize_angle(data->player.rotation_angle + data->player.turn_direction * data->player.rotation_speed);
+}

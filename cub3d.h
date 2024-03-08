@@ -242,5 +242,8 @@ void				_vertical_dda(t_data *data, t_vert *vert, t_intersection *inter, float r
 void				my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color);
 int 				ft_max_strlen(char **str);
 int 				ft_ret_ptr_nbr(char **str);
+void	_move_vertical(t_data* data);
+void	_move_horizontal(t_data* data);
+void	_rotate(t_data* data);
 // -------------------------------------------------------------------------------
 #endif

@@ -4,11 +4,8 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color)
 {
 	char	*dst;
 
-	if (x >= 0 && x < data->screen_width && y >= 0 && y < data->screen_height)
-	{
-		dst = data->img_data + (y * data->size_line + x * (data->bits_per_pixel / 8));
-		*(unsigned int*)dst = color;
-	}
+	dst = data->img_data + (y * data->size_line + x * (data->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
 
 }
 

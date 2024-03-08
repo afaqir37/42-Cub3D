@@ -2,19 +2,16 @@
 
 int	_render_next_frame(t_data *data)
 {
-	void	*img;
-	char	*img_data;
-
-	mlx_clear_window(data->mlx, data->win);
-	_update(data);
-	img = mlx_new_image(data->mlx, data->screen_width, data->screen_height);
-	img_data = mlx_get_data_addr(img, &data->bits_per_pixel, &data->size_line,
-			&data->endian);
-	data->img = img;
-	data->img_data = img_data;
-	_draw_map(data);
-	_ray_casting(data, data->map);
-	usleep(10000);
+	if (data->player.walk_direction || data->player.side_direction || data->player.turn_direction)
+	{
+		if (data->player.walk_direction)
+			_move_vertical(data);
+		if (data->player.side_direction)
+			_move_horizontal(data);
+		if (data->player.turn_direction)
+			_rotate(data);
+		_paint(data);
+	}
 	return (0);
 }
 

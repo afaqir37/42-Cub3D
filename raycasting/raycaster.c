@@ -77,7 +77,24 @@ int		_set_texture(t_data *data, float ray_angle, int i)
 
 void	_render_the_world(t_data *data, t_pack *pack, int texture_offset_x)
 {
-	
+	int	i;
+	int wall_y;
+	int texture_y;
+	char	*dst;
+
+	i = 0;
+	while (i < pack->wall_top)
+		my_mlx_pixel_put(data->img, pack->i, i++, data->info->C);
+	while (i < pack->wall_bottom)
+	{
+		wall_y = i + (pack->wall_height / 2) - (data->screen_height / 2);
+		texture_y = (int)(wall_y * (float)data->texture->height / pack->wall_height) % data->texture->height;
+		dst = data->texture->addr + texture_y * data->texture->size_line + texture_offset_x * (data->texture->bits_per_pixel / 8);
+		my_mlx_pixel_put(data->img, pack->i, i, *(unsigned int *)dst);
+		i++;
+	}
+	while (i < data->screen_height)
+		my_mlx_pixel_put(data->img, pack->i, i++, data->info->F);
 }
 
 

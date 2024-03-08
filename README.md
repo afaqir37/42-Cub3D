@@ -39,3 +39,25 @@ In the context of ray casting, this line is moving the ray along the x-axis by a
 The equation `rayX += hypothenus * cos(rayAngle)` is used when you want to move the ray by a distance other than 1 unit. The `hypothenus` in this equation is the length of the step you want to move the ray by. If `hypothenus` is 1, then the equation simplifies to `rayX += cos(rayAngle)`, which is the line of code in question.<br>
 
 If you want to move the ray by a distance other than 1 unit, you can modify the line to `rayX += step * cos(ray_angle);`, where `step` is the length of the step you want to move the ray by.<br>
+
+Yes, there is a relationship between the y-coordinate in the texture (`d->tex->height`) and the y-coordinate in the wall (`draw->h_wall`). 
+
+The line of code:
+
+```c
+correspanding_y_coordinate = (int)(distance_center_wall * (float)d->tex->height / draw->h_wall) % d->tex->height;
+```
+
+is mapping the y-coordinate from the wall to the y-coordinate in the texture. This is done by taking the `distance_center_wall` (which is the y-coordinate in the wall), scaling it by the ratio of the texture height to the wall height (`(float)d->tex->height / draw->h_wall`), and then taking the result modulo the texture height (`% d->tex->height`) to ensure the texture coordinate doesn't exceed the height of the texture.
+
+This allows the texture to be correctly mapped onto the wall, regardless of the relative sizes of the wall and the texture. If the wall is taller than the texture, the texture will repeat. If the wall is shorter than the texture, only a portion of the texture will be used.
+
+I apologize for the confusion. Let's clarify this with a more detailed example:
+
+Let's say the height of the wall (`draw->h_wall`) is 200 pixels, and the height of the texture (`d->tex->height`) is 100 pixels. The ratio of the texture height to the wall height is 0.5 (`100 / 200 = 0.5`).
+
+Now, let's consider the y-coordinate halfway down the wall, which is 100 (`draw->h_wall / 2 = 200 / 2 = 100`). If we apply the ratio to this y-coordinate to get the corresponding y-coordinate on the texture, we get 50 (`100 * 0.5 = 50`). So far, so good.
+
+But what about the y-coordinate at the bottom of the wall, which is 200? If we apply the ratio to this y-coordinate, we get 100 (`200 * 0.5 = 100`). But the texture only has 100 pixels, numbered from 0 to 99. So a y-coordinate of 100 on the texture is out of bounds.
+
+That's why we use the modulus operator `%`. When we take `100 % 100`, we get 0. So instead of trying to access an out-of-bounds pixel on the texture, we wrap around to the start of the texture. This allows the texture to repeat, covering the entire height of the wall, even though the wall is taller than the texture.

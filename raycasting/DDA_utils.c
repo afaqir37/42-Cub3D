@@ -68,7 +68,7 @@ void	_horizontal_dda(t_data *data, t_horz *horz, t_intersection *inter, float ra
 		if (_ray_facing_up(ray->angle))
 			y_check -= 1;
 
-		if (_has_wall_at(inter->next_X, y_check, data->map))
+		if (_has_wall_at(inter->next_X, y_check, data))
 		{
 			horz->wall = 1;
 			horz->wall_hit_X = inter->next_X;
@@ -127,7 +127,7 @@ void	_vertical_dda(t_data *data, t_vert *vert, t_intersection *inter, float ray_
 		x_check = inter->next_X;
 		if (_ray_facing_left(ray->angle))
 			x_check -= 1;
-		if (_has_wall_at(x_check, inter->next_Y, data->map))
+		if (_has_wall_at(x_check, inter->next_Y, data))
 		{
 			vert->wall = 1;
 			vert->wall_hit_X = inter->next_X;
