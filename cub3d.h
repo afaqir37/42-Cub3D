@@ -7,6 +7,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 # include "libft/libft.h"
 # define TILE_SIZE 64
 # define SCREEN_WIDTH 1920
@@ -173,6 +174,7 @@ typedef struct s_horz
 {
 	float		wall_hit_x;
 	float		wall_hit_y;
+	float		wall;
 	float		distance;
 }					t_horz;
 
@@ -180,6 +182,7 @@ typedef struct s_vert
 {
 	float		wall_hit_x;
 	float		wall_hit_y;
+	float		wall;
 	float		distance;
 }					t_vert;
 
@@ -220,8 +223,8 @@ double				_to_degree(double radian);
 int					_initialize(t_data* data, t_info *info, char **map);
 double				_direction(int c);
 void				_init_player(char **map, t_player *player);
-void				_draw_line(t_data* data, int wall_height,int ray_direction ,int ray_count, int ray_x);
-void                _ray_casting(t_data* data, char **map);
+void	_draw_line(t_data *data, float ray_angle, int i);
+void                _ray_casting(t_data* data);
 int					_event_listener(int key, t_data* data);
 void				_draw_map(t_data* data);
 int					_key_press_listener(int key, t_data* data);
@@ -234,7 +237,7 @@ int					_ray_facing_down(double radian);
 int					_ray_facing_right(double radian);
 int					_ray_facing_left(double radian);
 double				_normalize_angle(double radian_angle);
-int					_has_wall_at(double x, double y, char **map);
+int					_has_wall_at(double x, double y, t_data *data);
 void				_horizontal_intersect(t_intersection* inter, t_data* data, float ray_angle);
 void				_horizontal_dda(t_data *data, t_horz *horz, t_intersection *inter, float ray_angle);
 void				_vertical_intersect(t_intersection* inter, t_data* data, float ray_angle);
@@ -245,5 +248,15 @@ int 				ft_ret_ptr_nbr(char **str);
 void	_move_vertical(t_data* data);
 void	_move_horizontal(t_data* data);
 void	_rotate(t_data* data);
+void	_paint(t_data *data);
+void	_horizontal_intersect(t_intersection* inter, t_data* data, float ray_angle);
+void	_horizontal_dda(t_data *data, t_horz *horz, t_intersection *inter, float ray_angle);
+void	_vertical_intersect(t_intersection* inter, t_data* data, float ray_angle);
+void	_vertical_dda(t_data *data, t_vert *vert, t_intersection *inter, float ray_angle);
+int		_set_texture(t_data *data, float ray_angle, int i);
+void	_render_the_world(t_data *data, t_pack *pack, int texture_offset_x);
+void	_horz_vert_choice(t_data *data, t_horz *horz, t_vert *vert, int i);
+unsigned int rgb_to_hex(int r, int g, int b);
+
 // -------------------------------------------------------------------------------
 #endif

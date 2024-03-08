@@ -158,7 +158,7 @@ int	main(int argc, char **argv)
 		return(ft_free_info(&info), ft_free_file(&file));
 	ft_print_2d(info->map);
 
-	_paint(data);
+	_paint(&data);
 	mlx_hook(data.win, 2, 1L << 0, _key_press_listener, &data);
 	mlx_hook(data.win, 3, 1L << 1, _key_release_listener, &data);
 	mlx_loop_hook(data.mlx, _render_next_frame, &data);

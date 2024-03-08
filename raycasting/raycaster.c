@@ -17,36 +17,36 @@ void	_cast_ray(t_data *data, float ray_angle, int i)
 	t_vert			vert;
 	t_intersection	inter;
 
-	horz = {0};
-	vert = {0};
+	horz = (t_horz){0};
+	vert = (t_vert){0};
 	_horizontal_intersect(&inter, data, ray_angle);
 	_horizontal_dda(data, &horz, &inter, ray_angle);
 	_vertical_intersect(&inter, data, ray_angle);
 	_vertical_dda(data, &vert, &inter, ray_angle);
-	horz.distane = INT_MAX;
+	horz.distance = INT_MAX;
 	vert.distance = INT_MAX;
 	if (horz.wall)
 		horz.distance = _distance_between_points(data->player.x, data->player.y, horz.wall_hit_x, horz.wall_hit_y);
 	if (vert.wall)
 		vert.distance = _distance_between_points(data->player.x, data->player.y, vert.wall_hit_x, vert.wall_hit_y);
-	_horz_vert_choice(data, &horz, &vert, ray_angle);
+	_horz_vert_choice(data, &horz, &vert, i);
 
 }
 
-void	_horz_vert_choice(t_data *data, t_horz *horz, t_vert *vert, float ray_angle)
+void	_horz_vert_choice(t_data *data, t_horz *horz, t_vert *vert, int i)
 {
 	if (horz->distance < vert->distance)
 	{
 		data->rays[i].distance = horz->distance;
-		data->rays[i].wall_hit_x = horz->wall_hit_x;
-		data->rays[i].wall_hit_y = horz->wall_hit_y;
+		data->rays[i].x = horz->wall_hit_x;
+		data->rays[i].y = horz->wall_hit_y;
 		data->rays[i].is_horizontal = 1;
 	}
 	else
 	{
 		data->rays[i].distance = vert->distance;
-		data->rays[i].wall_hit_x = vert->wall_hit_x;
-		data->rays[i].wall_hit_y = vert->wall_hit_y;
+		data->rays[i].x = vert->wall_hit_x;
+		data->rays[i].y = vert->wall_hit_y;
 		data->rays[i].is_horizontal = 0;
 	}
 }
@@ -61,7 +61,7 @@ int		_set_texture(t_data *data, float ray_angle, int i)
 			data->texture = data->info->NO_img;
 		else
 			data->texture = data->info->SO_img;
-		texture_offset_x = (int)(data->rays[i].wall_hit_x * data->texture->width / TILE_SIZE) % data->texture->width;
+		texture_offset_x = (int)(data->rays[i].x * data->texture->width / TILE_SIZE) % data->texture->width;
 	}
 	else
 	{
@@ -69,7 +69,7 @@ int		_set_texture(t_data *data, float ray_angle, int i)
 			data->texture = data->info->EA_img;
 		else
 			data->texture = data->info->WE_img;
-		texture_offset_x = (int)(data->rays[i].wall_hit_y * data->texture->width / TILE_SIZE) % data->texture->width;
+		texture_offset_x = (int)(data->rays[i].y * data->texture->width / TILE_SIZE) % data->texture->width;
 	}
 
 	return (texture_offset_x);
@@ -84,17 +84,19 @@ void	_render_the_world(t_data *data, t_pack *pack, int texture_offset_x)
 
 	i = 0;
 	while (i < pack->wall_top)
-		my_mlx_pixel_put(data->img, pack->i, i++, data->info->C);
+		my_mlx_pixel_put(data->img, pack->i, i++, rgb_to_hex(data->info->C.r, data->info->C.g, data->info->C.b));
 	while (i < pack->wall_bottom)
 	{
+		printf("saxa\n");
 		wall_y = i + (pack->wall_height / 2) - (data->screen_height / 2);
 		texture_y = (int)(wall_y * (float)data->texture->height / pack->wall_height) % data->texture->height;
 		dst = data->texture->addr + texture_y * data->texture->size_line + texture_offset_x * (data->texture->bits_per_pixel / 8);
+		printf("%u\n", *(unsigned int *)dst);
 		my_mlx_pixel_put(data->img, pack->i, i, *(unsigned int *)dst);
 		i++;
 	}
 	while (i < data->screen_height)
-		my_mlx_pixel_put(data->img, pack->i, i++, data->info->F);
+		my_mlx_pixel_put(data->img, pack->i, i++, rgb_to_hex(data->info->F.r, data->info->F.g, data->info->F.b));
 }
 
 
@@ -108,7 +110,7 @@ void	_draw_line(t_data *data, float ray_angle, int i)
 	int texture_offset_x;
 
 	
-	correct_distance = data->rays[i].distance * cos(ray.angle - data->player.rotation_angle);
+	correct_distance = data->rays[i].distance * cos(ray_angle - data->player.rotation_angle);
 	dist_to_proj = (data->screen_width / 2) / tan(data->half_of_FOV);
 	wall_height = (TILE_SIZE / correct_distance) * dist_to_proj;
 
@@ -124,7 +126,7 @@ void	_draw_line(t_data *data, float ray_angle, int i)
 }
 
 
-void	_ray_casting(t_data *data, char **map)
+void	_ray_casting(t_data *data)
 {
 	int		i;
 	float	ray_angle;
@@ -135,7 +137,7 @@ void	_ray_casting(t_data *data, char **map)
 	while (i < data->screen_width)
 	{
 		_cast_ray(data, ray_angle, i);
-		_draw_line(...);
+		_draw_line(data, ray_angle, i);
 		ray_angle += data->increment_angle;
 		i++;
 	}

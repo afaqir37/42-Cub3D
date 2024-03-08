@@ -27,58 +27,58 @@ void draw_line(int x0, int y0, int x1, int y1, int color, t_data* data)
 	}
 }
 
-int _check_collision(float x, float y, t_data *data) {
-    float tile;
-    float check_x;
-	float check_y;
-	int dx = -1;
-	int dy;
+// int _check_collision(float x, float y, t_data *data) {
+//     float tile;
+//     float check_x;
+// 	float check_y;
+// 	int dx = -1;
+// 	int dy;
 
-	tile = TILE_SIZE / 6;
-	while (dx <= 1) 
-	{
-		dy = -1;
-		while (dy <= 1) 
-		{
-			check_x = x + (dx * tile);
-			check_y = y + (dy * tile);
-			if (_has_wall_at(check_x, check_y, data->map))
-				return 1;
-			dy += 1;
-		}
-		dx += 1;
-	}
-    return 0;
-}
+// 	tile = TILE_SIZE / 6;
+// 	while (dx <= 1) 
+// 	{
+// 		dy = -1;
+// 		while (dy <= 1) 
+// 		{
+// 			check_x = x + (dx * tile);
+// 			check_y = y + (dy * tile);
+// 			if (_has_wall_at(check_x, check_y, data->map))
+// 				return 1;
+// 			dy += 1;
+// 		}
+// 		dx += 1;
+// 	}
+//     return 0;
+// }
 
-void	_update(t_data* data)
-{
-	double next_x;
-	double	next_y;
+// void	_update(t_data* data)
+// {
+// 	double next_x;
+// 	double	next_y;
 
-	next_x = data->player.x;
-	next_y = data->player.y;
-	data->player.rotation_angle = _normalize_angle(data->player.rotation_angle + data->player.turn_direction * data->player.rotation_speed);
-	double rot_ang = _normalize_angle(data->player.rotation_angle + M_PI_2);
+// 	next_x = data->player.x;
+// 	next_y = data->player.y;
+// 	data->player.rotation_angle = _normalize_angle(data->player.rotation_angle + data->player.turn_direction * data->player.rotation_speed);
+// 	double rot_ang = _normalize_angle(data->player.rotation_angle + M_PI_2);
 
-	data->player.x = data->player.x + (data->player.walk_direction * data->player.move_speed * cos(data->player.rotation_angle));
-	data->player.y = data->player.y + (data->player.walk_direction * data->player.move_speed * sin(data->player.rotation_angle));
+// 	data->player.x = data->player.x + (data->player.walk_direction * data->player.move_speed * cos(data->player.rotation_angle));
+// 	data->player.y = data->player.y + (data->player.walk_direction * data->player.move_speed * sin(data->player.rotation_angle));
 
-	if (data->player.side_direction == 1)
-	{
-		data->player.x += data->player.side_direction * data->player.move_speed * cos(rot_ang);
-		data->player.y += data->player.side_direction * data->player.move_speed * sin(rot_ang);
-	}
-	else if (data->player.side_direction  == -1)
-	{
-		data->player.x += data->player.side_direction * data->player.move_speed * cos(rot_ang);
-		data->player.y += data->player.side_direction * data->player.move_speed * sin(rot_ang);
-	}
-	if (_check_collision(data->player.x, next_y, data))
-		data->player.x = next_x;
-	if (_check_collision(next_x, data->player.y, data))
-		data->player.y = next_y;
-}
+// 	if (data->player.side_direction == 1)
+// 	{
+// 		data->player.x += data->player.side_direction * data->player.move_speed * cos(rot_ang);
+// 		data->player.y += data->player.side_direction * data->player.move_speed * sin(rot_ang);
+// 	}
+// 	else if (data->player.side_direction  == -1)
+// 	{
+// 		data->player.x += data->player.side_direction * data->player.move_speed * cos(rot_ang);
+// 		data->player.y += data->player.side_direction * data->player.move_speed * sin(rot_ang);
+// 	}
+// 	if (_check_collision(data->player.x, next_y, data))
+// 		data->player.x = next_x;
+// 	if (_check_collision(next_x, data->player.y, data))
+// 		data->player.y = next_y;
+// }
 
 void	_move_vertical(t_data* data)
 {
