@@ -14,7 +14,7 @@ void	_draw_wall(int x, int y, t_data *data)
 		while (j < TILE_SIZE - 1)
 		{
 			//mlx_pixel_put(data->mlx, data->win, x + i, y + j, DARK_RED);
-			my_mlx_pixel_put(data, x + i, y + j, 0xFFFFFF);
+			my_mlx_pixel_put(data->img, x + i, y + j, 0xFFFFFF);
 			j++;
 		}
 		i++;
@@ -33,7 +33,7 @@ void	_draw_space(int x, int y, t_data *data)
 		j = 0;
 		while (j < TILE_SIZE - 2)
 		{
-			my_mlx_pixel_put(data, x + i, y + j, DARK_GREEN);
+			my_mlx_pixel_put(data->img, x + i, y + j, DARK_GREEN);
 			j++;
 		}
 		i++;
@@ -47,7 +47,7 @@ void	_draw_square(int x_center, int y_center, int size, t_data *data)
 	{
 		for (y = 0; y < size; y++)
 		{
-			my_mlx_pixel_put(data, x_center + x, y_center + y, 0x0000FF);
+			my_mlx_pixel_put(data->img, x_center + x, y_center + y, 0x0000FF);
 		}
 	}
 }

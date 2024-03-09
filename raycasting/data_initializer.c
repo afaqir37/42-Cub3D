@@ -17,7 +17,7 @@ int	_initialize(t_data* data, t_info *info, char **map)
 	data->precision = PRECISION;
 	data->map = map;
 	data->info = info;
-	data->img = NULL;
+	data->img.img = NULL;
 	_init_player(map, &data->player);
 	return (0);
 }

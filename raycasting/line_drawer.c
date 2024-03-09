@@ -1,13 +1,13 @@
 #include "../cub3d.h"
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color)
+void	my_mlx_pixel_put(t_img img, int x, int y, unsigned int color)
 {
 	char	*dst;
-    printf("checking\n");
-	dst = data->img_data + (y * data->size_line + x * (data->bits_per_pixel / 8));
-    exit(0);
-	*(unsigned int *)dst = color;
-    printf("checked\n");
+
+    if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT)
+    {
+	dst = img.addr + (y * img.size_line + x * (img.bits_per_pixel / 8));
+	*(unsigned int *)dst = color; }
 
 }
 

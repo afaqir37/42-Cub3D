@@ -54,21 +54,13 @@ int	_has_wall_at(double x, double y, t_data *data)
 	int MAP_MAX_X = _len_of_longest_str(data->map);
 
 
-	if (x <= 0 || x >= MAP_MAX_X * TILE_SIZE || y <= 0 || y >= MAP_MAX_Y * TILE_SIZE)
+	if (x < 0 || x >= MAP_MAX_X * TILE_SIZE || y < 0 || y >= MAP_MAX_Y * TILE_SIZE)
 		return (1);
 	Xmap = floor(x / TILE_SIZE);
 	Ymap = floor(y / TILE_SIZE);
-	Xplayer = floor(data->player.x / TILE_SIZE);
-	Yplayer = floor(data->player.y / TILE_SIZE);
-	if (data->map[Ymap][Xmap] == '1' || data->map[Xplayer][Yplayer] == '1'
-		|| data->map[Ymap][Xplayer] == '1' || data->map[Yplayer][Xmap] == '1')
-		return (1);
-
-	if (data->map[Ymap][Xmap] == ' ' || data->map[Xplayer][Yplayer] == ' '
-		|| data->map[Ymap][Xplayer] == ' ' || data->map[Yplayer][Xmap] == ' ')
+	if (data->map[Ymap][Xmap] == '1' || data->map[Ymap][Xmap] == ' ')
 		return (1);
 
 	return (0);
-	
 
 }

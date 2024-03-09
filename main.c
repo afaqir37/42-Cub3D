@@ -130,15 +130,16 @@ void ft_print_2d(char **str)
 
 void	_paint(t_data *data)
 {
-	void	*img;
+	char	*img;
 
 	img = mlx_new_image(data->mlx, data->screen_width, data->screen_height);
-	if (data->img)
-		mlx_destroy_image(data->mlx, data->img);
-	data->img = img;
-	data->img_data = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->size_line, &data->endian);
+	if (data->img.img)
+		mlx_destroy_image(data->mlx, data->img.img);
+	data->img.img = img;
+	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel, &data->img.size_line, &data->img.endian);
+	_draw_map(data);
 	_ray_casting(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 }
 
 

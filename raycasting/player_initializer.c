@@ -5,11 +5,11 @@ double	_direction(int c)
 	if (c == 'E')
 		return (0.0);
 	else if (c == 'N')
-		return (90.0);
+		return (270.0);
 	else if (c == 'W')
 		return (180.0);
 	else
-		return (270.0);
+		return (90.0);
 }
 
 void	_init_player(char **map, t_player *player)

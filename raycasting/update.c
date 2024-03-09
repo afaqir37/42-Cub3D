@@ -10,7 +10,7 @@ void draw_line(int x0, int y0, int x1, int y1, int color, t_data* data)
 
 	while (1)
 	{
-		my_mlx_pixel_put(data, x0, y0, color);
+		my_mlx_pixel_put(data->img, x0, y0, color);
 		if (x0 == x1 && y0 == y1)
 			break;
 		int e2 = 2 * err;
@@ -114,5 +114,5 @@ void	_move_horizontal(t_data* data)
 
 void	_rotate(t_data* data)
 {
-	data->player.rotation_angle = _normalize_angle(data->player.rotation_angle + data->player.turn_direction * data->player.rotation_speed);
+	data->player.rotation_angle = data->player.rotation_angle + data->player.turn_direction * data->player.rotation_speed;
 }

@@ -163,9 +163,9 @@ typedef struct s_ray
 
 typedef struct s_pack
 {
-	double			wall_top;
-	double			wall_bottom;
-	double			wall_height;
+	float			wall_top;
+	float			wall_bottom;
+	float			wall_height;
 	int				i;
 }					t_pack;
 
@@ -186,6 +186,14 @@ typedef struct s_vert
 	float		distance;
 }					t_vert;
 
+typedef struct s_direction
+{
+	int		up;
+	int		down;
+	int		left;
+	int		right;
+}		t_direction;
+
 typedef struct s_intersection
 {
 	float	xintercept;
@@ -195,6 +203,15 @@ typedef struct s_intersection
 	float	next_X;
 	float	next_Y;
 }		t_intersection;
+
+typedef struct s_img 
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
+}		t_img;
 
 typedef struct s_data
 {
@@ -208,11 +225,7 @@ typedef struct s_data
 	double			increment_angle;
     double          precision;
 	t_player		player;
-	int				bits_per_pixel;
-	int				size_line;
-	int				endian;
-	void 		  	*img;
-	char			*img_data;
+	t_img			img;
 	t_info 			*info;
 	t_ray			*rays;
 	Image			*texture;
@@ -238,21 +251,18 @@ int					_ray_facing_right(double radian);
 int					_ray_facing_left(double radian);
 double				_normalize_angle(double radian_angle);
 int					_has_wall_at(double x, double y, t_data *data);
-void				_horizontal_intersect(t_intersection* inter, t_data* data, float ray_angle);
-void				_horizontal_dda(t_data *data, t_horz *horz, t_intersection *inter, float ray_angle);
-void				_vertical_intersect(t_intersection* inter, t_data* data, float ray_angle);
-void				_vertical_dda(t_data *data, t_vert *vert, t_intersection *inter, float ray_angle);
-void				my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color);
+void				_horizontal_intersect(t_intersection* inter, t_data* data, float ray_angle, t_direction dir);
+void				_horizontal_dda(t_data *data, t_horz *horz, t_intersection *inter, float ray_angle, int up);
+void				_vertical_intersect(t_intersection* inter, t_data* data, float ray_angle, t_direction dir);
+void				_vertical_dda(t_data *data, t_vert *vert, t_intersection *inter, float ray_angle, int left);
+void				my_mlx_pixel_put(t_img img, int x, int y, unsigned int color);
 int 				ft_max_strlen(char **str);
 int 				ft_ret_ptr_nbr(char **str);
 void	_move_vertical(t_data* data);
 void	_move_horizontal(t_data* data);
 void	_rotate(t_data* data);
 void	_paint(t_data *data);
-void	_horizontal_intersect(t_intersection* inter, t_data* data, float ray_angle);
-void	_horizontal_dda(t_data *data, t_horz *horz, t_intersection *inter, float ray_angle);
-void	_vertical_intersect(t_intersection* inter, t_data* data, float ray_angle);
-void	_vertical_dda(t_data *data, t_vert *vert, t_intersection *inter, float ray_angle);
+
 int		_set_texture(t_data *data, float ray_angle, int i);
 void	_render_the_world(t_data *data, t_pack *pack, int texture_offset_x);
 void	_horz_vert_choice(t_data *data, t_horz *horz, t_vert *vert, int i);
