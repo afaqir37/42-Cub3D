@@ -129,6 +129,7 @@ int					ft_check_one_player(t_file *, int);
 int					ft_nor_m_ap(t_file *, int);
 int					ft_skip_ec(char *str);
 int					ft_check_full_line(char *str, int i);
+int					ft_atf(const char *str);
 
 
 // -----------------------------------------------------------------------------

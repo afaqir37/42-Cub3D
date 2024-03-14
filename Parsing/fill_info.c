@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:29:01 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/01/22 16:40:37 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/14 21:17:13 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,25 +77,25 @@ void	fill_colors(t_info **tm, t_file *file)
 	t_info	*tmp;
 
 	tmp = (*tm);
-	tmp->F.r = ft_atoi(ft_substr(ft_rnwi(file, "F")->line, ft_rs(ft_rnwi(file,
+	tmp->F.r = ft_atf(ft_substr(ft_rnwi(file, "F")->line, ft_rs(ft_rnwi(file,
 						"F")->line, "F"), ft_return_end(ft_rnwi(file,
 						"F")->line, "F") - ft_rs(ft_rnwi(file, "F")->line,
 					"F")));
-	tmp->F.g = ft_atoi(ft_substr(ft_strchr(ft_rnwi(file, "F")->line, ',') + 1,
+	tmp->F.g = ft_atf(ft_substr(ft_strchr(ft_rnwi(file, "F")->line, ',') + 1,
 				0, ft_return_end(ft_strchr(ft_rnwi(file, "F")->line, ',') + 1,
 					",") - 0));
-	tmp->F.b = ft_atoi(ft_substr(ft_strchr(ft_strchr(ft_rnwi(file, "F")->line,
+	tmp->F.b = ft_atf(ft_substr(ft_strchr(ft_strchr(ft_rnwi(file, "F")->line,
 						',') + 1, ',') + 1, 0,
 				ft_return_end(ft_strchr(ft_strchr(ft_rnwi(file, "F")->line, ',')
 						+ 1, ',') + 1, ",") - 0));
-	tmp->C.r = ft_atoi(ft_substr(ft_rnwi(file, "C")->line, ft_rs(ft_rnwi(file,
+	tmp->C.r = ft_atf(ft_substr(ft_rnwi(file, "C")->line, ft_rs(ft_rnwi(file,
 						"C")->line, "C"), ft_return_end(ft_rnwi(file,
 						"C")->line, "C") - ft_rs(ft_rnwi(file, "C")->line,
 					"C")));
-	tmp->C.g = ft_atoi(ft_substr(ft_strchr(ft_rnwi(file, "C")->line, ',') + 1,
+	tmp->C.g = ft_atf(ft_substr(ft_strchr(ft_rnwi(file, "C")->line, ',') + 1,
 				0, ft_return_end(ft_strchr(ft_rnwi(file, "C")->line, ',') + 1,
 					",") - 0));
-	tmp->C.b = ft_atoi(ft_substr(ft_strchr(ft_strchr(ft_rnwi(file, "C")->line,
+	tmp->C.b = ft_atf(ft_substr(ft_strchr(ft_strchr(ft_rnwi(file, "C")->line,
 						',') + 1, ',') + 1, 0,
 				ft_return_end(ft_strchr(ft_strchr(ft_rnwi(file, "C")->line, ',')
 						+ 1, ',') + 1, ",") - 0));
