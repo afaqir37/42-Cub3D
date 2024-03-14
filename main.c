@@ -157,7 +157,6 @@ int	main(int argc, char **argv)
 		return (1);
 	if (ft_open_images(&info, &data))
 		return(ft_free_info(&info), ft_free_file(&file));
-	ft_print_2d(info->map);
 
 	_paint(&data);
 	mlx_hook(data.win, 2, 1L << 0, _key_press_listener, &data);

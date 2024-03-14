@@ -159,7 +159,6 @@ void	_ray_casting(t_data *data)
 	float	ray_angle;
 	
 	i = 0;
-	printf("Pray_angle: %f\n", data->player.rotation_angle);
 	ray_angle = data->player.rotation_angle - data->half_of_FOV;
 	data->rays = (t_ray *)malloc(sizeof(t_ray) * data->screen_width);
 	while (i < data->screen_width)

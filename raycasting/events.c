@@ -2,8 +2,10 @@
 
 int _key_press_listener(int key, t_data* data)
 {
-	if (key == 53)
+	if (key == 53) {
+		system("leaks cub3d");
 		exit(0);
+	}
 	else if (key == 123)
 		data->player.turn_direction = -1;
 	else if (key == 124)
