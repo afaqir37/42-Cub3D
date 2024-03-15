@@ -3,6 +3,8 @@
 int _key_press_listener(int key, t_data* data)
 {
 	if (key == 53) {
+		ft_free_info(&data->info);
+		ft_free_file(&data->file);
 		system("leaks cub3d");
 		exit(0);
 	}

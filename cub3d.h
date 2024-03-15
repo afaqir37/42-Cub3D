@@ -230,6 +230,7 @@ typedef struct s_data
 	t_info 			*info;
 	t_ray			*rays;
 	Image			*texture;
+	t_file			*file;
 }					t_data;
 
 double				_to_radian(double degree);

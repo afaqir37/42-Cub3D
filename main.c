@@ -148,15 +148,14 @@ void	_paint(t_data *data)
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	t_info	*info;
-	t_file	*file;
 
-	if (ft_parse_args(argc, argv, &info, &file))
-		return (ft_free_info(&info), ft_free_file(&file));
-	if (_initialize(&data, info, info->map))
+
+	if (ft_parse_args(argc, argv, &data.info, &data.file))
+		return (ft_free_info(&data.info), ft_free_file(&data.file));
+	if (_initialize(&data, data.info, data.info->map))
 		return (1);
-	if (ft_open_images(&info, &data))
-		return(ft_free_info(&info), ft_free_file(&file));
+	if (ft_open_images(&data.info, &data))
+		return(ft_free_info(&data.info), ft_free_file(&data.file));
 
 	_paint(&data);
 	mlx_hook(data.win, 2, 1L << 0, _key_press_listener, &data);
@@ -164,8 +163,7 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(data.mlx, _render_next_frame, &data);
 	mlx_loop(data.mlx);
 
-
-	ft_free_info(&info);
-	ft_free_file(&file);
+	ft_free_info(&data.info);
+	ft_free_file(&data.file);
 	return (0);
 }
