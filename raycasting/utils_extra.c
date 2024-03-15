@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   DDA.c                                              :+:      :+:    :+:   */
+/*   utils_extra.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 05:35:07 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/15 05:35:08 by afaqir           ###   ########.fr       */
+/*   Created: 2024/03/15 05:35:29 by afaqir            #+#    #+#             */
+/*   Updated: 2024/03/15 05:55:21 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	_ray_facing_up(double radian)
+double	min(double a, double b)
 {
-	return (!_ray_facing_down(radian));
+	if (a < b)
+		return (a);
+	return (b);
 }
 
-int	_ray_facing_down(double radian)
+double	_to_radian(double degree)
 {
-	if (radian > 0 && radian < M_PI)
-		return (1);
-	return (0);
+	return (degree * M_PI / 180);
 }
 
-int	_ray_facing_right(double radian)
+double	_to_degree(double radian)
 {
-	if (radian < M_PI * 0.5 || radian > M_PI * 1.5)
-		return (1);
-	return (0);
+	return (radian * 180 / M_PI);
 }
 
-int	_ray_facing_left(double radian)
+double	_normalize_angle(double radian_angle)
 {
-	return (!_ray_facing_right(radian));
+	radian_angle = remainder(radian_angle, 2 * M_PI);
+	if (radian_angle < 0)
+		radian_angle += 2 * M_PI;
+	return (radian_angle);
 }

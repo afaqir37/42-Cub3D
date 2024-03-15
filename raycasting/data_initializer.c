@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   data_initializer.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/15 05:34:59 by afaqir            #+#    #+#             */
+/*   Updated: 2024/03/15 05:35:00 by afaqir           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
-
-int	_initialize(t_data* data, t_info *info, char **map)
+int	_initialize(t_data *data, t_info *info, char **map)
 {
 	data->mlx = mlx_init();
 	if (!data->mlx)
@@ -12,7 +23,7 @@ int	_initialize(t_data* data, t_info *info, char **map)
 	data->screen_height = SCREEN_HEIGHT;
 	data->screen_width = SCREEN_WIDTH;
 	data->field_of_view = _to_radian(FOV);
-	data->half_of_FOV = _to_radian(FOV)/ 2;
+	data->half_of_FOV = _to_radian(FOV) / 2;
 	data->increment_angle = data->field_of_view / data->screen_width;
 	data->precision = PRECISION;
 	data->map = map;

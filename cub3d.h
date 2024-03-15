@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/15 05:35:41 by afaqir            #+#    #+#             */
+/*   Updated: 2024/03/15 05:50:47 by afaqir           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef _CUB3D_H_
 # define _CUB3D_H_
 
@@ -238,7 +250,7 @@ double				_to_degree(double radian);
 int					_initialize(t_data* data, t_info *info, char **map);
 double				_direction(int c);
 void				_init_player(char **map, t_player *player);
-void	_draw_line(t_data *data, float ray_angle, int i);
+void	_draw_line(t_data *data, float ray_angle, int i, float dist_to_proj);
 void                _ray_casting(t_data* data);
 int					_event_listener(int key, t_data* data);
 void				_draw_map(t_data* data);
@@ -254,12 +266,10 @@ int					_ray_facing_left(double radian);
 double				_normalize_angle(double radian_angle);
 int					_has_wall_at(double x, double y, t_data *data);
 void				_horizontal_intersect(t_intersection* inter, t_data* data, float ray_angle, t_direction dir);
-void				_horizontal_dda(t_data *data, t_horz *horz, t_intersection *inter, float ray_angle, int up);
+void				_horizontal_dda(t_data *data, t_horz *horz, t_intersection *inter, int up);
 void				_vertical_intersect(t_intersection* inter, t_data* data, float ray_angle, t_direction dir);
-void				_vertical_dda(t_data *data, t_vert *vert, t_intersection *inter, float ray_angle, int left);
+void				_vertical_dda(t_data *data, t_vert *vert, t_intersection *inter, int left);
 void				my_mlx_pixel_put(t_img img, int x, int y, unsigned int color);
-int 				ft_max_strlen(char **str);
-int 				ft_ret_ptr_nbr(char **str);
 void	_move_vertical(t_data* data);
 void	_move_horizontal(t_data* data);
 void	_rotate(t_data* data);
@@ -269,6 +279,7 @@ int		_set_texture(t_data *data, float ray_angle, int i);
 void	_render_the_world(t_data *data, t_pack *pack, int texture_offset_x);
 void	_horz_vert_choice(t_data *data, t_horz *horz, t_vert *vert, int i);
 unsigned int rgb_to_hex(int r, int g, int b);
+void	_set_player(char **map, t_player *player, int i, int j);
 
 // -------------------------------------------------------------------------------
 #endif
