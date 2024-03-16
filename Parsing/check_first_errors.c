@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_first_errors.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:27:49 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/03/16 02:32:46 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/16 04:32:22 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_check_existance(char *str)
 	return (0);
 }
 
-int	ft_check_if_file_has_lines_filled_with_blank_characters(t_file *file)
+int	ft_check_if_file_has_lines_filled_with_blank_characters(t_file *file, t_info *info)
 {
 	t_file	*tmp;
 
@@ -59,7 +59,7 @@ int	ft_check_if_file_has_lines_filled_with_blank_characters(t_file *file)
 	while (tmp)
 	{
 		if (ft_is_the_whole_line_full_of_spaces(tmp->line))
-			return (-1);
+			return (ft_free_file(&file), -1);
 		tmp = tmp->next;
 	}
 	return (0);

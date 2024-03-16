@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:41 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/16 02:42:54 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/16 04:27:57 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ int						ft_check_map_lenght(t_file *, int);
 int						ft_check_map_validity(t_file *file, t_info **info);
 void					ft_free_t_file_node(t_file **);
 void					ft_print_t_file(t_file *);
+int						ft_free_info(t_info **info);
 int						ft_check_sentence_existance(t_file *, char *);
 int						ft_check_infos_existance(t_file *);
 t_file					*ft_rnwi(t_file *, char *);
@@ -131,11 +132,12 @@ int						ft_number_seperated_bycomma(char *, int);
 int						ft_rgb_codes(t_file *, char *);
 int						ft_check_rgb(t_file *);
 int						ft_fill_tmp(t_info **, t_file *);
-int						ft_fill_info(t_info **, t_file *);
+int						ft_fill_info(t_info **, t_file **);
+int						ft_free_file(t_file **file);
 void					ft_print_t_info(t_info *);
-int						ft_check_if_file_has_unwanted_lines(t_file *);
+int						ft_check_if_file_has_unwanted_lines(t_file *, t_info *);
 int						ft_is_the_whole_line_full_of_spaces(char *);
-int						ft_check_if_file_has_lines_filled_with_blank_characters(t_file *);
+int						ft_check_if_file_has_lines_filled_with_blank_characters(t_file *, t_info *);
 int						ft_parse_args(int, char **, t_info **, t_file **);
 int						ft_check_one_player(t_file *, int);
 int						ft_nor_m_ap(t_file *, int);

@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:27:27 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/01/27 18:32:33 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 04:33:29 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	ft_skip_ec(char *str)
 	return (i);
 }
 
-int	ft_check_if_file_has_unwanted_lines(t_file *file)
+int	ft_check_if_file_has_unwanted_lines(t_file *file, t_info *info)
 {
 	t_file	*tmp;
 	int		i;
@@ -104,7 +104,7 @@ int	ft_check_if_file_has_unwanted_lines(t_file *file)
 			&& ft_cmp_nnull(tmp->line, "C", ft_skip_ec(tmp->line)) < 0
 			&& !ft_is_the_whole_line_space(tmp->line))
 		{
-			return (-1);
+			return (ft_free_file(&file), ft_free_info(&info), -1);
 		}
 		tmp = tmp->next;
 	}

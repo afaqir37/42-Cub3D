@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_info.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:29:01 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/03/16 02:32:21 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/16 04:15:21 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ int	ft_fill_tmp(t_info **info, t_file *file)
 	tmp = malloc(sizeof(t_info));
 	if (!tmp)
 		return (ft_wr("Data Creation Failed: Abort!"));
+	(*tmp) = (t_info){0};
 	fill_directions(&tmp, file);
 	fill_colors(&tmp, file);
 	(*info) = tmp;

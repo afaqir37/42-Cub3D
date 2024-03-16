@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:51:19 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/01/27 05:11:19 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 04:00:37 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,15 @@ char	**ft_extract_map(t_file *file, int i)
 	return (map);
 }
 
+int ft_frt(t_file **file, t_info **info, char *str)
+{
+	if (file && *file)
+		ft_free_file(file);
+	if (info && *info)
+		ft_free_info(info);
+	return(ft_wr(str));
+}
+
 int	ft_check_map_validity(t_file *file, t_info **info)
 {
 	int	i;
@@ -86,20 +95,20 @@ int	ft_check_map_validity(t_file *file, t_info **info)
 
 	i = ft_return_index_of_first_line(file);
 	if (i < 0)
-		return (ft_wr("\033[31mMap is not valid: Where is the map bro?"));
+		return (ft_frt(&file, info, "\033[31mInvalid Map!"));
 	if (ft_check_map_lenght(file, i) < 0)
-		return (ft_wr("\033[31mMap is not valid: Chhad l3b tlbnaya?"));
+		return (ft_frt(&file, info, "\033[31mInvalid Map!"));
 	if (ft_check_lines_after(file, i, 0) < 0)
-		return (ft_wr("\033[31mMap is not valid: Weird Map, Redo it!"));
+		return (ft_frt(&file, info, "\033[31mInvalid Map!"));
 	if (ft_check_map_is_closed(file, i) < 0)
-		return (ft_wr("\033[31mMap is not valid"));
+		return (ft_frt(&file, info, "\033[31mInvalid Map!"));
 	error_code = ft_check_one_player(file, i);
 	if (error_code < 0)
 	{
 		if (error_code == -1)
-			return (ft_wr("\033[31mInvalid Mao: Player Not Found!"));
+			return (ft_frt(&file, info, "\033[31mInvalid Map: No Player Found!"));
 		if (error_code == -2)
-			return (ft_wr("\033[31mInvalid Map: Too Many Players!"));
+			return (ft_frt(&file, info, "\033[31mInvalid Map: faulty Number of Players!"));
 	}
 	(*info)->map = ft_extract_map(file, i);
 	return (0);

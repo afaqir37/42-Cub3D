@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:36 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/16 02:28:03 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/16 04:48:28 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void ft_free_2d(char **str)
 
 int ft_free_info(t_info **info)
 {
+	printf("address: %p\n", (*info)->SO_img);
 	if (!info || !*info)
 		return (1);
 	if ((*info)->NO)
@@ -57,10 +58,6 @@ int ft_free_info(t_info **info)
 		free((*info)->WE_img);
 	if ((*info)->EA_img)
 		free((*info)->EA_img);
-	// if ((*info)->F)
-	// 	free((*info)->F);
-	// if ((*info)->C) 
-	// 	free((*info)->C);
 	if ((*info)->map)
 		ft_free_2d((*info)->map);
 	return (free(*info), 1);
@@ -160,9 +157,10 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-
 	if (ft_parse_args(argc, argv, &data.info, &data.file))
-		return (ft_free_info(&data.info), ft_free_file(&data.file));
+		return (printf("rani skrana\n"));
+	
+
 	if (_initialize(&data, data.info, data.info->map))
 		return (1);
 	if (ft_open_images(&data.info, &data))
@@ -173,8 +171,5 @@ int	main(int argc, char **argv)
 	mlx_hook(data.win, 3, 1L << 1, _key_release_listener, &data);
 	mlx_loop_hook(data.mlx, _render_next_frame, &data);
 	mlx_loop(data.mlx);
-
-	ft_free_info(&data.info);
-	ft_free_file(&data.file);
 	return (0);
 }
