@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:11:12 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/03/16 20:51:49 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 21:26:38 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int	ft_check_if_exists(t_file *file, char *name)
 		return (ft_wr("Malloc Failed!"));
 	if (ft_check_existance(str) < 0)
 		return (free(str),
-			ft_wr("Invalid File: File does not exist!"));
+			ft_wr("Invalid File, Make sure all paths and parameters exist!"));
 	free(str);
 	return (0);
 }

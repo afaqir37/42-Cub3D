@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:36 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/16 20:35:07 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 21:29:08 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (ft_parse_args(argc, argv, &data.info, &data.file))
-		return (1);
+		return (system("leaks cub3D"), 1);
 	if (_initialize(&data, data.info, data.info->map))
 		return (1);
 	if (ft_open_images(&data.info, &data))

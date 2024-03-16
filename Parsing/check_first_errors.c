@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:27:49 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/03/16 21:20:21 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 21:25:10 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,6 @@ int	ft_error_args(int ac, char **av)
 	if (ft_string(av[1], ".cub") < 0)
 		return (ft_wr("\".cub\" file required with valid name."));
 	if (ft_check_existance(av[1]) < 0)
-		return (ft_wr("File does not exist."));
+		return (ft_wr("Invalid File!"));
 	return (0);
 }

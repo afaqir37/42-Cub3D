@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:10 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/15 05:41:27 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/16 21:22:27 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	_key_press_listener(int key, t_data *data)
 	{
 		ft_free_info(&data->info);
 		ft_free_file(&data->file);
-		system("leaks cub3d");
+		system("leaks cub3D");
 		exit(0);
 	}
 	else if (key == 123)

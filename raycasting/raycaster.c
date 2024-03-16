@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:22 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/16 20:18:42 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 21:50:29 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	_ray_casting(t_data *data)
 	{
 		_cast_ray(data, ray_angle, i);
 		_draw_line(data, ray_angle, i, 0.0);
-		ray_angle = ray_angle + data->increment_angle;
+		ray_angle = _normalize_angle(ray_angle + data->increment_angle);
 		i++;
 	}
 	free(data->rays);
