@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:36 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/16 04:48:28 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 05:11:56 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (ft_parse_args(argc, argv, &data.info, &data.file))
-		return (printf("rani skrana\n"));
+		return (1);
 	
 
 	if (_initialize(&data, data.info, data.info->map))
