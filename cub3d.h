@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:41 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/16 20:36:26 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 20:51:15 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,6 @@ typedef struct s_file
 	struct s_file		*next;
 }						t_file;
 
-typedef struct skyler
-{
-	size_t				i;
-	int					sign;
-	unsigned long long	result;
-}						t_need;
-
 // Utils -----------------------------------------------------------------------
 
 char	*ft_strchr(char *str, char c);
@@ -95,7 +88,7 @@ char	*get_next_line(int fd);
 int		ft_arg_num(int ac);
 int		ft_string(char *str, char *look);
 int		ft_check_existance(char *str);
-int		ft_check_line_blank(t_file *file, t_info *info);
+int		ft_check_line_blank(t_file *file);
 int		ft_error_args(int ac, char **av);
 void	ft_intialize_file(t_file **file, int fd);
 int		ft_check_if_xpm_file_existance(t_file *file);
@@ -134,7 +127,6 @@ int		ft_is_it_a_map_character(char c);
 int		ft_is_the_whole_line_space(char *str);
 t_file	*ft_return_index_line(t_file *file, int line_start);
 int		ft_is_theretwoplus(char *str);
-int		ft_check_last_line(t_file *file, int line_start);
 t_file	*ft_return_node_with_index(t_file *file, int index);
 void	ft_free_t_file_node(t_file **file);
 void	ft_print_t_file(t_file *file);

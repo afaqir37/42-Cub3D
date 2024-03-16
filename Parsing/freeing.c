@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 20:35:35 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/03/16 20:35:36 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 20:48:46 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,6 @@ int	ft_free_file(t_file **file)
 
 t_image	*load_xpm_file(void *mlx_ptr, const char *file_name)
 {
-	int		bits_per_pixel;
-	int		size_line;
-	int		endian;
 	t_image	*image;
 
 	image = malloc(sizeof(t_image));

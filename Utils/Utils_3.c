@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:11:11 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/01/22 15:42:30 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 20:51:20 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,32 +31,6 @@ int	ft_is_theretwoplus(char *str)
 	}
 	if (counter > 0)
 		return (1);
-	return (0);
-}
-
-int	ft_check_last_line(t_file *file, int line_start)
-{
-	t_file	*tmp;
-	int		i;
-
-	tmp = file;
-	while (tmp)
-	{
-		if (tmp->next == NULL)
-			break ;
-		else
-			tmp = tmp->next;
-	}
-	i = 0;
-	while (tmp->line[i])
-	{
-		if (ft_isemptychar(tmp->line[i]))
-			i++;
-		else if (tmp->line[i] == '1')
-			i++;
-		else
-			return (1);
-	}
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:11:12 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/03/16 03:02:04 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 20:51:49 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	ft_does_have_content(t_file *file, char *str)
 {
 	t_file	*tmp;
 	int		index;
-	int		i;
 
 	tmp = ft_rnwi(file, str);
 	if (tmp == NULL)
@@ -92,7 +91,6 @@ int	ft_check_if_exists(t_file *file, char *name)
 {
 	t_file	*tmp;
 	char	*str;
-	int		fd;
 
 	tmp = ft_rnwi(file, name);
 	if (tmp == NULL)

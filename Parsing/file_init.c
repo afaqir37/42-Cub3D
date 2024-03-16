@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:27:27 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/03/16 04:33:29 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 20:59:25 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	ft_intialize_file(t_file **file, int fd)
 	int		i;
 
 	i = 0;
+	tmp = NULL;
 	read = get_next_line(fd);
 	if (read == NULL)
 		return ;
-	tmp = NULL;
 	while (read)
 	{
 		new_node = malloc(sizeof(t_file));
@@ -43,8 +43,6 @@ void	ft_intialize_file(t_file **file, int fd)
 
 int	ft_check_if_xpm_file_existance(t_file *file)
 {
-	t_file	*tmp;
-
 	if (ft_check_if_exists(file, "NO") < 0)
 		return (-1);
 	if (ft_check_if_exists(file, "SO") < 0)

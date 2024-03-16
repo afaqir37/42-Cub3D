@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:39:09 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/03/16 19:41:17 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 21:03:22 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	ft_parse_args(int ac, char **av, t_info **inf, t_file **fle)
 	ft_intialize_file(&file, open(av[1], O_RDONLY));
 	if (file == NULL)
 		return (ft_wr("file is invalid"));
-	if (ft_check_line_blank(file, info) < 0)
-		return (ft_wr("Invalid File: Please Remove Unwanted Lines!") * -1);
+	if (ft_check_line_blank(file) < 0)
+		return (ft_wr("Invalid File: Please Remove Unwanted Lines1!") * -1);
 	if (ft_fill_info(&info, &file) < 0)
 		return (1);
 	if (ft_check_if_file_has_unwanted_lines(file, info) < 0)
@@ -37,8 +37,6 @@ int	ft_parse_args(int ac, char **av, t_info **inf, t_file **fle)
 
 int	ft_fill_info(t_info **info, t_file **file)
 {
-	t_info	*tmp;
-
 	if (ft_check_infos_existance(*file) < 0)
 		return (ft_free_file(file), -1);
 	if (ft_check_info(*file) < 0)
@@ -83,8 +81,11 @@ int	ft_check_one_player(t_file *file, int line_start)
 	return (0);
 }
 
-int	ft_nor_m_ap(t_file *tmp, int i)
+int	ft_nor_m_ap(t_file *tmp, int j)
 {
+	size_t	i;
+
+	i = (size_t)j;
 	if (i > 0 && (ft_isemptychar(tmp->line[i - 1])))
 		return (-1);
 	if (i < ft_lenstr(tmp->line) - 1 && (ft_isemptychar(tmp->line[i + 1])))
