@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DDA_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:03 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/15 05:41:04 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/16 20:18:21 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	_horizontal_intersect(t_intersection *inter, t_data *data,
 		inter->xstep *= -1;
 	if (dir.left && inter->xstep > 0)
 		inter->xstep *= -1;
-	inter->next_X = inter->xintercept;
-	inter->next_Y = inter->yintercept;
+	inter->next_x = inter->xintercept;
+	inter->next_y = inter->yintercept;
 }
 
 void	_horizontal_dda(t_data *data, t_horz *horz, t_intersection *inter,
@@ -39,20 +39,20 @@ void	_horizontal_dda(t_data *data, t_horz *horz, t_intersection *inter,
 
 	while (1)
 	{
-		y_check = inter->next_Y;
+		y_check = inter->next_y;
 		if (up)
 			y_check -= 1;
-		if (_has_wall_at(inter->next_X, y_check, data))
+		if (_has_wall_at(inter->next_x, y_check, data))
 		{
 			horz->wall = 1;
-			horz->wall_hit_x = inter->next_X;
-			horz->wall_hit_y = inter->next_Y;
+			horz->wall_hit_x = inter->next_x;
+			horz->wall_hit_y = inter->next_y;
 			break ;
 		}
 		else
 		{
-			inter->next_X += inter->xstep;
-			inter->next_Y += inter->ystep;
+			inter->next_x += inter->xstep;
+			inter->next_y += inter->ystep;
 		}
 	}
 }
@@ -73,8 +73,8 @@ void	_vertical_intersect(t_intersection *inter, t_data *data,
 		inter->ystep *= -1;
 	if (dir.down && inter->ystep < 0)
 		inter->ystep *= -1;
-	inter->next_X = inter->xintercept;
-	inter->next_Y = inter->yintercept;
+	inter->next_x = inter->xintercept;
+	inter->next_y = inter->yintercept;
 }
 
 void	_vertical_dda(t_data *data, t_vert *vert, t_intersection *inter,
@@ -84,20 +84,20 @@ void	_vertical_dda(t_data *data, t_vert *vert, t_intersection *inter,
 
 	while (1)
 	{
-		x_check = inter->next_X;
+		x_check = inter->next_x;
 		if (left)
 			x_check -= 1;
-		if (_has_wall_at(x_check, inter->next_Y, data))
+		if (_has_wall_at(x_check, inter->next_y, data))
 		{
 			vert->wall = 1;
-			vert->wall_hit_x = inter->next_X;
-			vert->wall_hit_y = inter->next_Y;
+			vert->wall_hit_x = inter->next_x;
+			vert->wall_hit_y = inter->next_y;
 			break ;
 		}
 		else
 		{
-			inter->next_X += inter->xstep;
-			inter->next_Y += inter->ystep;
+			inter->next_x += inter->xstep;
+			inter->next_y += inter->ystep;
 		}
 	}
 }

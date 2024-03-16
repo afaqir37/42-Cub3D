@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*    ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 21:20:30 by afaqir            #+#    #+#             */
-/*   Updated: 2024/01/22 16:10:44 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 20:42:32 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-typedef struct skyler {
-	size_t				i;
-	int					sign;
-	unsigned long long	result;
-}	t_need;
-
-int	 ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	t_need	x;
 
@@ -46,7 +40,7 @@ int	 ft_atoi(const char *str)
 	return (x.result * x.sign);
 }
 
-int	 ft_atf(char *str)
+int	ft_atf(char *str)
 {
 	t_need	x;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 01:13:45 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/16 02:20:37 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/16 20:43:13 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-int     ft_atoi(const char *str);
+typedef struct skyler
+{
+	size_t				i;
+	int					sign;
+	unsigned long long	result;
+}	t_need;
+
+int	ft_atoi(const char *str);
+int	ft_atf(char *str);
 
 #endif

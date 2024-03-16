@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:39:09 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/03/16 04:32:09 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 19:41:17 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_parse_args(int ac, char **av, t_info **inf, t_file **fle)
 	ft_intialize_file(&file, open(av[1], O_RDONLY));
 	if (file == NULL)
 		return (ft_wr("file is invalid"));
-	if (ft_check_if_file_has_lines_filled_with_blank_characters(file, info) < 0)
+	if (ft_check_line_blank(file, info) < 0)
 		return (ft_wr("Invalid File: Please Remove Unwanted Lines!") * -1);
 	if (ft_fill_info(&info, &file) < 0)
 		return (1);
@@ -40,13 +40,13 @@ int	ft_fill_info(t_info **info, t_file **file)
 	t_info	*tmp;
 
 	if (ft_check_infos_existance(*file) < 0)
-		return (ft_free_file(file),-1);
+		return (ft_free_file(file), -1);
 	if (ft_check_info(*file) < 0)
 		return (ft_free_file(file), -1);
 	if (ft_check_if_xpm_file_existance(*file) < 0)
-		return (ft_free_file(file),-1);
+		return (ft_free_file(file), -1);
 	if (ft_check_rgb(*file) < 0)
-		return (ft_free_file(file),-1);
+		return (ft_free_file(file), -1);
 	if (ft_fill_tmp(info, *file) < 0)
 		return (ft_free_file(file), -1);
 	return (0);

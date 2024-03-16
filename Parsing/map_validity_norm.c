@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:51:19 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/03/16 04:00:37 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 19:42:47 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,13 @@ char	**ft_extract_map(t_file *file, int i)
 	return (map);
 }
 
-int ft_frt(t_file **file, t_info **info, char *str)
+int	ft_frt(t_file **file, t_info **info, char *str)
 {
 	if (file && *file)
 		ft_free_file(file);
 	if (info && *info)
 		ft_free_info(info);
-	return(ft_wr(str));
+	return (ft_wr(str));
 }
 
 int	ft_check_map_validity(t_file *file, t_info **info)
@@ -106,9 +106,9 @@ int	ft_check_map_validity(t_file *file, t_info **info)
 	if (error_code < 0)
 	{
 		if (error_code == -1)
-			return (ft_frt(&file, info, "\033[31mInvalid Map: No Player Found!"));
+			return (ft_frt(&file, info, "\033[31mNo Players!"));
 		if (error_code == -2)
-			return (ft_frt(&file, info, "\033[31mInvalid Map: faulty Number of Players!"));
+			return (ft_frt(&file, info, "\033[31mCheck Player number!"));
 	}
 	(*info)->map = ft_extract_map(file, i);
 	return (0);

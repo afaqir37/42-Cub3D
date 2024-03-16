@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:22 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/15 05:53:03 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/16 20:18:42 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	_ray_casting(t_data *data)
 	float	ray_angle;
 
 	i = 0;
-	ray_angle = data->player.rotation_angle - data->half_of_FOV;
+	ray_angle = data->player.rotation_angle - data->half_of_fov;
 	data->rays = (t_ray *)malloc(sizeof(t_ray) * data->screen_width);
 	while (i < data->screen_width)
 	{

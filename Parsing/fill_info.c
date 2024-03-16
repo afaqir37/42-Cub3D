@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:29:01 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/03/16 04:15:21 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 20:10:04 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,16 @@ void	fill_directions(t_info **tm, t_file *file)
 	t_info	*tmp;
 
 	tmp = (*tm);
-	tmp->NO = ft_sbstr(ft_rnwi(file, "NO")->line, ft_rs(ft_rnwi(file,
+	tmp->no = ft_sbstr(ft_rnwi(file, "NO")->line, ft_rs(ft_rnwi(file,
 					"NO")->line, "NO"), ft_return_end(ft_rnwi(file, "NO")->line,
 				"NO") - ft_rs(ft_rnwi(file, "NO")->line, "NO"));
-	tmp->SO = ft_sbstr(ft_rnwi(file, "SO")->line, ft_rs(ft_rnwi(file,
+	tmp->so = ft_sbstr(ft_rnwi(file, "SO")->line, ft_rs(ft_rnwi(file,
 					"SO")->line, "SO"), ft_return_end(ft_rnwi(file, "SO")->line,
 				"SO") - ft_rs(ft_rnwi(file, "SO")->line, "SO"));
-	tmp->WE = ft_sbstr(ft_rnwi(file, "WE")->line, ft_rs(ft_rnwi(file,
+	tmp->we = ft_sbstr(ft_rnwi(file, "WE")->line, ft_rs(ft_rnwi(file,
 					"WE")->line, "WE"), ft_return_end(ft_rnwi(file, "WE")->line,
 				"WE") - ft_rs(ft_rnwi(file, "WE")->line, "WE"));
-	tmp->EA = ft_sbstr(ft_rnwi(file, "EA")->line, ft_rs(ft_rnwi(file,
+	tmp->ea = ft_sbstr(ft_rnwi(file, "EA")->line, ft_rs(ft_rnwi(file,
 					"EA")->line, "EA"), ft_return_end(ft_rnwi(file, "EA")->line,
 				"EA") - ft_rs(ft_rnwi(file, "EA")->line, "EA"));
 }
@@ -77,25 +77,25 @@ void	fill_colors(t_info **tm, t_file *file)
 	t_info	*tmp;
 
 	tmp = (*tm);
-	tmp->F.r = ft_atf(ft_sbstr(ft_rnwi(file, "F")->line, ft_rs(ft_rnwi(file,
+	tmp->f.r = ft_atf(ft_sbstr(ft_rnwi(file, "F")->line, ft_rs(ft_rnwi(file,
 						"F")->line, "F"), ft_return_end(ft_rnwi(file,
 						"F")->line, "F") - ft_rs(ft_rnwi(file, "F")->line,
 					"F")));
-	tmp->F.g = ft_atf(ft_sbstr(ft_strchr(ft_rnwi(file, "F")->line, ',') + 1,
+	tmp->f.g = ft_atf(ft_sbstr(ft_strchr(ft_rnwi(file, "F")->line, ',') + 1,
 				0, ft_return_end(ft_strchr(ft_rnwi(file, "F")->line, ',') + 1,
 					",") - 0));
-	tmp->F.b = ft_atf(ft_sbstr(ft_strchr(ft_strchr(ft_rnwi(file, "F")->line,
+	tmp->f.b = ft_atf(ft_sbstr(ft_strchr(ft_strchr(ft_rnwi(file, "F")->line,
 						',') + 1, ',') + 1, 0,
 				ft_return_end(ft_strchr(ft_strchr(ft_rnwi(file, "F")->line, ',')
 						+ 1, ',') + 1, ",") - 0));
-	tmp->C.r = ft_atf(ft_sbstr(ft_rnwi(file, "C")->line, ft_rs(ft_rnwi(file,
+	tmp->c.r = ft_atf(ft_sbstr(ft_rnwi(file, "C")->line, ft_rs(ft_rnwi(file,
 						"C")->line, "C"), ft_return_end(ft_rnwi(file,
 						"C")->line, "C") - ft_rs(ft_rnwi(file, "C")->line,
 					"C")));
-	tmp->C.g = ft_atf(ft_sbstr(ft_strchr(ft_rnwi(file, "C")->line, ',') + 1,
+	tmp->c.g = ft_atf(ft_sbstr(ft_strchr(ft_rnwi(file, "C")->line, ',') + 1,
 				0, ft_return_end(ft_strchr(ft_rnwi(file, "C")->line, ',') + 1,
 					",") - 0));
-	tmp->C.b = ft_atf(ft_sbstr(ft_strchr(ft_strchr(ft_rnwi(file, "C")->line,
+	tmp->c.b = ft_atf(ft_sbstr(ft_strchr(ft_strchr(ft_rnwi(file, "C")->line,
 						',') + 1, ',') + 1, 0,
 				ft_return_end(ft_strchr(ft_strchr(ft_rnwi(file, "C")->line, ',')
 						+ 1, ',') + 1, ",") - 0));
@@ -147,15 +147,15 @@ int	ft_fill_tmp(t_info **info, t_file *file)
 // 					+ 1, ',') + 1, 0,
 // 				ft_return_end(ft_strchr(ft_strchr(ft_rnwi(file, "F")->line, ',')
 // 						+ 1, ',') + 1, ",") - 0));
-// 	tmp->C.r = ft_atoi(ft_sbstr(ft_rnwi(file, "C")->line, ft_rs(ft_rnwi(file,
+// 	tmp->c.r = ft_atoi(ft_sbstr(ft_rnwi(file, "C")->line, ft_rs(ft_rnwi(file,
 // 						"C")->line, "C"), ft_return_end(ft_rnwi(file,
 // 						"C")->line, "C") - ft_rs(ft_rnwi(file, "C")->line,
 // 					"C")));
-// 	tmp->C.g = ft_atoi(ft_sbstr(ft_strchr(ft_rnwi(file, "C")->line, ',') + 1,
+// 	tmp->c.g = ft_atoi(ft_sbstr(ft_strchr(ft_rnwi(file, "C")->line, ',') + 1,
 //				0,
 // 				ft_return_end(ft_strchr(ft_rnwi(file, "C")->line, ',') + 1, ",")
 // 				- 0));
-// 	tmp->C.b = ft_atoi(ft_sbstr(ft_strchr(ft_strchr(ft_rnwi(file, "C")->line,
+// 	tmp->c.b = ft_atoi(ft_sbstr(ft_strchr(ft_strchr(ft_rnwi(file, "C")->line,
 //						',')
 // 					+ 1, ',') + 1, 0,
 // 				ft_return_end(ft_strchr(ft_strchr(ft_rnwi(file, "C")->line, ',')
