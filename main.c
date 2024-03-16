@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:36 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/16 21:29:08 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 22:56:03 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int	main(int argc, char **argv)
 	_paint(&data);
 	mlx_hook(data.win, 2, 1L << 0, _key_press_listener, &data);
 	mlx_hook(data.win, 3, 1L << 1, _key_release_listener, &data);
+	mlx_hook(data.win, 17, 0, _close, &data);
 	mlx_loop_hook(data.mlx, _render_next_frame, &data);
 	mlx_loop(data.mlx);
 	return (0);

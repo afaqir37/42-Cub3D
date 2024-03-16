@@ -6,7 +6,7 @@
 /*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:27 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/15 05:35:28 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/16 22:50:39 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	_move_vertical(t_data *data)
 	move_step = data->player.walk_direction * data->player.move_speed;
 	new_x = data->player.x + cos(data->player.rotation_angle) * move_step;
 	new_y = data->player.y + sin(data->player.rotation_angle) * move_step;
-	if (!_has_wall_at(new_x, new_y, data))
+	if (!_has_wall(new_x, new_y, data))
 	{
 		data->player.x = new_x;
 		data->player.y = new_y;
@@ -39,7 +39,7 @@ void	_move_horizontal(t_data *data)
 		* move_step;
 	new_y = data->player.y + sin(data->player.rotation_angle + M_PI_2)
 		* move_step;
-	if (!_has_wall_at(new_x, new_y, data))
+	if (!_has_wall(new_x, new_y, data))
 	{
 		data->player.x = new_x;
 		data->player.y = new_y;
