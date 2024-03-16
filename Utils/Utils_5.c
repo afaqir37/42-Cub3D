@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Utils_5.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:11:13 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/01/27 05:38:02 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 02:32:46 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	ft_rgb_codes(t_file *file, char *name)
 	tmp = ft_rnwi(file, name);
 	if (tmp == NULL)
 		return (-1);
-	str = ft_substr(tmp->line, ft_rs(tmp->line, name), ft_strlen(tmp->line)
+	str = ft_sbstr(tmp->line, ft_rs(tmp->line, name), ft_lenstr(tmp->line)
 			- ft_rs(tmp->line, name));
 	if (!str)
 		return (ft_wr("Malloc Failed!"));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_first_errors.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:27:49 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/01/22 16:27:58 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 02:32:46 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_string(char *str, char *look)
 	int	i;
 	int	j;
 
-	i = ft_strlen(str) - ft_strlen(look);
+	i = ft_lenstr(str) - ft_lenstr(look);
 	j = 0;
 	if (i <= 0)
 		return (-1);

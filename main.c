@@ -6,7 +6,7 @@
 /*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:36 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/15 05:35:37 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/16 02:28:03 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,6 @@ void	_paint(t_data *data)
 		mlx_destroy_image(data->mlx, data->img.img);
 	data->img.img = img;
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel, &data->img.size_line, &data->img.endian);
-	_draw_map(data);
 	_ray_casting(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:10:57 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/01/27 05:43:36 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 02:32:46 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-size_t	ft_strlen(char *str)
+size_t	ft_lenstr(char *str)
 {
 	int	i;
 
@@ -34,7 +34,7 @@ int	ft_return_len(char *str, int start)
 {
 	int	i;
 
-	i = ft_strlen(str) - 1;
+	i = ft_lenstr(str) - 1;
 	while (str[i])
 	{
 		if (ft_isemptychar(str[i]) || str[i] == '\n')
@@ -62,7 +62,7 @@ int	ft_cmp_nnull(char *s1, char *s2, int i)
 	return (1);
 }
 
-char	*ft_substr(char *str, int start, int len)
+char	*ft_sbstr(char *str, int start, int len)
 {
 	char	*ret;
 	int		i;

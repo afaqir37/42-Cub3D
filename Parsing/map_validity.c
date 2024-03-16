@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validity.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:51:33 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/01/27 18:45:03 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 02:32:46 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	ft_check_first_last(t_file *tmp, int j)
 		{
 			if (tmp->line[i] != '1' && tmp->line[i] != ' ')
 			{
-				if (j == 0 && i == ft_strlen(tmp->line) - 1
+				if (j == 0 && i == ft_lenstr(tmp->line) - 1
 					&& tmp->line[i] == '\n')
 				{
 					i++;

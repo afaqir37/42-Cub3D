@@ -46,7 +46,7 @@ int	 ft_atoi(const char *str)
 	return (x.result * x.sign);
 }
 
-int	 ft_atf(const char *str)
+int	 ft_atf(char *str)
 {
 	t_need	x;
 

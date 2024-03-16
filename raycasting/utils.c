@@ -6,7 +6,7 @@
 /*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:32 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/15 05:55:13 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/16 02:32:46 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	_len_of_longest_str(char **array)
 	max = 0;
 	while (array[i])
 	{
-		if (ft_strlen(array[i]) > max)
-			max = ft_strlen(array[i]);
+		if (ft_lenstr(array[i]) > max)
+			max = ft_lenstr(array[i]);
 		i++;
 	}
 	return (max);

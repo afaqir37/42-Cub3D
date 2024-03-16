@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:38:40 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/01/22 15:38:42 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 02:40:05 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 char	*ft_strchr(char *str, char c);
 char	*ft_strdup(char *str);
 char	*ft_strjoin(char *s1, char *s2, int j);
+int		ft_strlen(char *str);
 char	*ft_read(char *str, int fd);
 char	*ft_line(char *str);
 char	*ft_clean(char *save);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Utils_4.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:11:12 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/01/27 05:43:36 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 02:32:21 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,14 +97,14 @@ int	ft_check_if_exists(t_file *file, char *name)
 	tmp = ft_rnwi(file, name);
 	if (tmp == NULL)
 		return (-1);
-	str = ft_substr(ft_rnwi(file, name)->line, ft_rs(ft_rnwi(file, name)->line,
+	str = ft_sbstr(ft_rnwi(file, name)->line, ft_rs(ft_rnwi(file, name)->line,
 				name), ft_return_len(ft_rnwi(file, name)->line,
 				ft_rs(ft_rnwi(file, name)->line, name)));
 	if (ft_string(str, ".xpm") < 0)
 		return (free(str),
 			ft_wr("Invalid File: xpm file shoul have valid texture!"));
 	free(str);
-	str = ft_substr(ft_rnwi(file, name)->line, ft_rs(ft_rnwi(file, name)->line,
+	str = ft_sbstr(ft_rnwi(file, name)->line, ft_rs(ft_rnwi(file, name)->line,
 				name), ft_return_len(ft_rnwi(file, name)->line,
 				ft_rs(ft_rnwi(file, name)->line, name)));
 	if (!str)

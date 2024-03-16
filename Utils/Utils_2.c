@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:11:09 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/01/22 16:01:26 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 02:32:46 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_wr(char *str)
 {
 	write(2, "\033[31mError : ", 14);
 	if (str)
-		write(2, str, ft_strlen(str));
+		write(2, str, ft_lenstr(str));
 	write(2, "\n", 1);
 	return (-1);
 }

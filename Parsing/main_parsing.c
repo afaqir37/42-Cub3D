@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:39:09 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/03/14 21:13:29 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/16 02:32:46 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,15 +87,15 @@ int	ft_nor_m_ap(t_file *tmp, int i)
 {
 	if (i > 0 && (ft_isemptychar(tmp->line[i - 1])))
 		return (-1);
-	if (i < ft_strlen(tmp->line) - 1 && (ft_isemptychar(tmp->line[i + 1])))
+	if (i < ft_lenstr(tmp->line) - 1 && (ft_isemptychar(tmp->line[i + 1])))
 		return (-1);
-	if (tmp->prev && (((ft_strlen(tmp->prev->line) > i
+	if (tmp->prev && (((ft_lenstr(tmp->prev->line) > i
 					&& ((ft_isemptychar(tmp->prev->line[i]))))
-				|| ft_strlen(tmp->prev->line) <= i)))
+				|| ft_lenstr(tmp->prev->line) <= i)))
 		return (-1);
-	if (tmp->next && (((ft_strlen(tmp->next->line) > i
+	if (tmp->next && (((ft_lenstr(tmp->next->line) > i
 					&& ((ft_isemptychar(tmp->next->line[i]))))
-				|| ft_strlen(tmp->next->line) <= i)))
+				|| ft_lenstr(tmp->next->line) <= i)))
 		return (-1);
 	return (0);
 }
