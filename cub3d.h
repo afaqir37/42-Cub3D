@@ -6,7 +6,7 @@
 /*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:41 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/17 02:34:44 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/17 03:12:47 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@
 # include <unistd.h>
 # define TILE_SIZE 32
 # define SCREEN_WIDTH  1440
-# define SCREEN_HEIGHT 800
-# define FOV 1.0472
-# define PRECISION 2.0
-# define SQUARE_SIZE 59
+# define SCREEN_HEIGHT 810
+# define FOV 60
 
 typedef struct s_image
 {
@@ -243,7 +241,6 @@ typedef struct s_data
 	float			field_of_view;
 	float			half_of_fov;
 	float			increment_angle;
-	float			precision;
 	t_player		player;
 	t_img			img;
 	t_info			*info;

@@ -6,7 +6,7 @@
 /*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:22 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/17 02:36:34 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/17 03:14:02 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,13 @@ void	_ray_casting(t_data *data)
 	float	ray_angle;
 
 	i = 0;
-	ray_angle = data->player.rotation_angle - data->half_of_fov;
+	ray_angle = _normalize_angle(data->player.rotation_angle - data->half_of_fov);
 	data->rays = (t_ray *)malloc(sizeof(t_ray) * data->screen_width);
 	while (i < data->screen_width)
 	{
 		_cast_ray(data, ray_angle, i);
 		_draw_line(data, ray_angle, i, 0.0);
-		ray_angle = ray_angle + data->increment_angle;
+		ray_angle = _normalize_angle(ray_angle + data->increment_angle);
 		i++;
 	}
 	free(data->rays);

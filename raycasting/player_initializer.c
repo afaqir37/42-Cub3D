@@ -6,7 +6,7 @@
 /*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:19 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/17 02:21:23 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/17 03:05:10 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	_set_player(char **map, t_player *player, int i, int j)
 	player->rotation_angle = player->player_dir;
 	player->turn_direction = 0;
 	player->walk_direction = 0;
-	player->move_speed = 7.0;
-	player->rotation_speed = 4 * (M_PI / 180);
+	player->move_speed = 4.0;
+	player->rotation_speed = 2 * (M_PI / 180);
 }
 
 void	_init_player(char **map, t_player *player)

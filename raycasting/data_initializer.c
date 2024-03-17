@@ -6,7 +6,7 @@
 /*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:34:59 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/17 02:36:19 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/17 03:13:25 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@ int	_initialize(t_data *data, t_info *info, char **map)
 		return (1);
 	data->screen_height = SCREEN_HEIGHT;
 	data->screen_width = SCREEN_WIDTH;
-	data->field_of_view = FOV;
-	data->half_of_fov = FOV / 2;
+	data->field_of_view = _to_radian(FOV);
+	data->half_of_fov = _to_radian(FOV) / 2;
 	data->increment_angle = data->field_of_view / data->screen_width;
-	data->precision = PRECISION;
 	data->map = map;
 	data->info = info;
 	data->img.img = NULL;
