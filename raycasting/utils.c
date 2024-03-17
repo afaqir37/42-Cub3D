@@ -6,7 +6,7 @@
 /*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:32 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/16 22:51:21 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/17 00:03:06 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	ft_how_many_ptrs_in_array(char **array)
 
 int	_len_of_longest_str(char **array)
 {
-	int	i;
-	int	max;
+	int		i;
+	size_t	max;
 
 	i = 0;
 	max = 0;
