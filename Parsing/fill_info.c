@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:29:01 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/03/17 05:08:29 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/17 05:48:25 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ int	ft_fill_tmp(t_info **info, t_file *file)
 {
 	t_info	*tmp;
 
+	if (!info)
+		return (ft_wr("Data Creation Failed, Abort!"));
 	tmp = malloc(sizeof(t_info));
 	if (!tmp)
 		return (ft_wr("Data Creation Failed: Abort!"));

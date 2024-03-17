@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:39:09 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/03/16 21:03:22 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/17 05:17:03 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_parse_args(int ac, char **av, t_info **inf, t_file **fle)
 	if (file == NULL)
 		return (ft_wr("file is invalid"));
 	if (ft_check_line_blank(file) < 0)
-		return (ft_wr("Invalid File: Please Remove Unwanted Lines1!") * -1);
+		return (ft_wr("Invalid File: Please Remove Unwanted Lines!") * -1);
 	if (ft_fill_info(&info, &file) < 0)
 		return (1);
 	if (ft_check_if_file_has_unwanted_lines(file, info) < 0)
