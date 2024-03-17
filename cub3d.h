@@ -6,7 +6,7 @@
 /*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:41 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/16 22:58:03 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/17 02:34:44 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# define TILE_SIZE 64
-# define SCREEN_WIDTH 1920
-# define SCREEN_HEIGHT 1080
-# define FOV 60.0
+# define TILE_SIZE 32
+# define SCREEN_WIDTH  1440
+# define SCREEN_HEIGHT 800
+# define FOV 1.0472
 # define PRECISION 2.0
 # define SQUARE_SIZE 59
 
@@ -158,23 +158,23 @@ t_image				*load_xpm_file(void *mlx_ptr, const char *file_name);
 
 typedef struct s_player
 {
-	double			x;
-	double			y;
-	double			player_dir;
+	float			x;
+	float			y;
+	float			player_dir;
 	int				turn_direction;
 	int				walk_direction;
 	int				side_direction;
-	double			move_speed;
-	double			rotation_speed;
-	double			rotation_angle;
+	float			move_speed;
+	float			rotation_speed;
+	float			rotation_angle;
 }					t_player;
 
 typedef struct s_ray
 {
-	double			x;
-	double			y;
-	double			angle;
-	double			distance;
+	float			x;
+	float			y;
+	float			angle;
+	float			distance;
 	int				is_horizontal;
 	int				up;
 	int				down;
@@ -240,10 +240,10 @@ typedef struct s_data
 	char			**map;
 	int				screen_width;
 	int				screen_height;
-	double			field_of_view;
-	double			half_of_fov;
-	double			increment_angle;
-	double			precision;
+	float			field_of_view;
+	float			half_of_fov;
+	float			increment_angle;
+	float			precision;
 	t_player		player;
 	t_img			img;
 	t_info			*info;
@@ -252,10 +252,10 @@ typedef struct s_data
 	t_file			*file;
 }					t_data;
 
-double				_to_radian(double degree);
-double				_to_degree(double radian);
+float				_to_radian(float degree);
+float				_to_degree(float radian);
 int					_initialize(t_data *data, t_info *info, char **map);
-double				_direction(int c);
+float				_direction(int c);
 void				_init_player(char **map, t_player *player);
 void				_draw_line(t_data *data, float ray_angle, int i,
 						float dist_to_proj);
@@ -265,13 +265,12 @@ void				_draw_map(t_data *data);
 int					_key_press_listener(int key, t_data *data);
 int					_key_release_listener(int key, t_data *data);
 void				_update(t_data *data);
-double				_normalize_angle(double radiant_angle);
-int					_ray_facing_up(double radian);
-int					_ray_facing_down(double radian);
-int					_ray_facing_right(double radian);
-int					_ray_facing_left(double radian);
-double				_normalize_angle(double radian_angle);
-int					_has_wall_at(double x, double y, t_data *data);
+float				_normalize_angle(float radiant_angle);
+int					_ray_facing_up(float radian);
+int					_ray_facing_down(float radian);
+int					_ray_facing_right(float radian);
+int					_ray_facing_left(float radian);
+int					_has_wall_at(float x, float y, t_data *data);
 void				_horizontal_intersect(t_intersection *inter, t_data *data,
 						float ray_angle, t_direction dir);
 void				_horizontal_dda(t_data *data, t_horz *horz,
@@ -294,7 +293,7 @@ void				_horz_vert_choice(t_data *data, t_horz *horz, t_vert *vert,
 						int i);
 size_t				rgb_to_hex(int r, int g, int b);
 void				_set_player(char **map, t_player *player, int i, int j);
-int					_has_wall(double x, double y, t_data *data);
+int					_has_wall(float x, float y, t_data *data);
 int					_close(t_data *data);
 // -----------------------------------------------------------------------
 #endif

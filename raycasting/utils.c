@@ -6,7 +6,7 @@
 /*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:32 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/17 00:03:06 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/17 02:44:54 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,27 @@ int	_len_of_longest_str(char **array)
 	return (max);
 }
 
-int	_has_wall_at(double x, double y, t_data *data)
+int	_has_wall_at(float x, float y, t_data *data)
 {
-	int	xmap;
-	int	ymap;
-	int	map_max_y;
-	int	map_max_x;
+	size_t		map_y;
+	size_t		map_x;
+	char	c;
 
-	map_max_y = ft_how_many_ptrs_in_array(data->map);
-	map_max_x = _len_of_longest_str(data->map);
-	if (x < 0 || x >= map_max_x * TILE_SIZE || y < 0 || y >= map_max_y
-		* TILE_SIZE)
+	map_y = ft_how_many_ptrs_in_array(data->map);
+	map_x = _len_of_longest_str(data->map);
+	if (x < 0 || x >= map_x * TILE_SIZE || y < 0 || y >= map_y * TILE_SIZE)
 		return (1);
-	xmap = floor(x / TILE_SIZE);
-	ymap = floor(y / TILE_SIZE);
-	if (data->map[ymap][xmap] == '1' || data->map[ymap][xmap] == ' ')
+	map_y = floor(y / TILE_SIZE);
+	map_x = floor(x / TILE_SIZE);
+	if (map_x >= ft_lenstr(data->map[map_y]))
+		return (1);
+	c = data->map[map_y][map_x];
+	if (c == '1' || c == ' ')
 		return (1);
 	return (0);
 }
 
-int	_has_wall(double x, double y, t_data *data)
+int	_has_wall(float x, float y, t_data *data)
 {
 	int	fx;
 	int	fy;

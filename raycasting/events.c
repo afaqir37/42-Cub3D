@@ -6,7 +6,7 @@
 /*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:10 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/16 22:58:34 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/17 00:08:02 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	_close(t_data *data)
 {
 	ft_free_info(&data->info);
 	ft_free_file(&data->file);
-	system("leaks cub3d");
 	exit(0);
 }
 

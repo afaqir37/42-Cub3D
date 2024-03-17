@@ -6,7 +6,7 @@
 /*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:27 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/16 22:50:39 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/17 02:45:50 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ void	_move_horizontal(t_data *data)
 
 void	_rotate(t_data *data)
 {
-	data->player.rotation_angle = data->player.rotation_angle
-		+ data->player.turn_direction * data->player.rotation_speed;
+	data->player.rotation_angle += data->player.turn_direction * data->player.rotation_speed;
+	data->player.rotation_angle = _normalize_angle(data->player.rotation_angle);
 }

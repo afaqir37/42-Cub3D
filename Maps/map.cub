@@ -1,21 +1,24 @@
-   WE                            Textures/e.xpm
-NO      Textures/a.xpm				    
+NO                             Textures/a.xpm 
+SO            Textures/;O.xpm
+
+                                EA                 Textures/dz.xpm
 
 
+ WE    Textures/e.xpm
 
-SO Textures/c.xpm		  
+F 20,20,20
+C 200,200,200
 
-F   69, 222, 199
-
-EA Textures/d.xpm         
-
-
-
-C 218, 									234, 235
-
-111111111111111
-10S001000000001
-100010001111001
-100001001001001
-100000000001001
-111111111111111
+111111111
+10001
+10S01
+10001
+10001
+10001
+11001
+10001
+10001
+10001
+10001
+10001
+11111

@@ -6,13 +6,13 @@
 /*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:19 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/15 05:44:22 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/17 02:21:23 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-double	_direction(int c)
+float	_direction(int c)
 {
 	if (c == 'E')
 		return (0.0);
