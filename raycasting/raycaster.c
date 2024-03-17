@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:22 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/17 03:14:02 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/17 04:18:58 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	_cast_ray(t_data *data, float ray_angle, int i)
 
 	horz = (t_horz){0};
 	vert = (t_vert){0};
-	ray_angle = _normalize_angle(ray_angle);
+	ray_angle = _normalize(ray_angle);
 	dir = _set_direction(ray_angle);
 	_horizontal_intersect(&inter, data, ray_angle, dir);
 	_horizontal_dda(data, &horz, &inter, dir.up);
@@ -86,13 +86,13 @@ void	_ray_casting(t_data *data)
 	float	ray_angle;
 
 	i = 0;
-	ray_angle = _normalize_angle(data->player.rotation_angle - data->half_of_fov);
+	ray_angle = _normalize(data->player.rotation_angle - data->half_of_fov);
 	data->rays = (t_ray *)malloc(sizeof(t_ray) * data->screen_width);
 	while (i < data->screen_width)
 	{
 		_cast_ray(data, ray_angle, i);
 		_draw_line(data, ray_angle, i, 0.0);
-		ray_angle = _normalize_angle(ray_angle + data->increment_angle);
+		ray_angle = _normalize(ray_angle + data->increment_angle);
 		i++;
 	}
 	free(data->rays);

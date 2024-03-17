@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:29:01 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/03/16 20:10:04 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/17 05:08:29 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,8 @@ void	fill_colors(t_info **tm, t_file *file)
 				0, ft_return_end(ft_strchr(ft_rnwi(file, "F")->line, ',') + 1,
 					",") - 0));
 	tmp->f.b = ft_atf(ft_sbstr(ft_strchr(ft_strchr(ft_rnwi(file, "F")->line,
-						',') + 1, ',') + 1, 0,
-				ft_return_end(ft_strchr(ft_strchr(ft_rnwi(file, "F")->line, ',')
-						+ 1, ',') + 1, ",") - 0));
+						',') + 1, ',') + 1, 0, ft_lenstr(ft_strchr(ft_strchr(
+							ft_rnwi(file, "F")->line, ',') + 1, ',') + 1)));
 	tmp->c.r = ft_atf(ft_sbstr(ft_rnwi(file, "C")->line, ft_rs(ft_rnwi(file,
 						"C")->line, "C"), ft_return_end(ft_rnwi(file,
 						"C")->line, "C") - ft_rs(ft_rnwi(file, "C")->line,
@@ -96,9 +95,8 @@ void	fill_colors(t_info **tm, t_file *file)
 				0, ft_return_end(ft_strchr(ft_rnwi(file, "C")->line, ',') + 1,
 					",") - 0));
 	tmp->c.b = ft_atf(ft_sbstr(ft_strchr(ft_strchr(ft_rnwi(file, "C")->line,
-						',') + 1, ',') + 1, 0,
-				ft_return_end(ft_strchr(ft_strchr(ft_rnwi(file, "C")->line, ',')
-						+ 1, ',') + 1, ",") - 0));
+						',') + 1, ',') + 1, 0, ft_lenstr(ft_strchr(ft_strchr(
+							ft_rnwi(file, "C")->line, ',') + 1, ',') + 1)));
 }
 
 int	ft_fill_tmp(t_info **info, t_file *file)

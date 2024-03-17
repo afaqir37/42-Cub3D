@@ -6,7 +6,7 @@
 /*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:11:12 by agoujdam          #+#    #+#             */
-/*   Updated: 2024/03/16 21:26:38 by agoujdam         ###   ########.fr       */
+/*   Updated: 2024/03/17 04:34:45 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	ft_check_if_exists(t_file *file, char *name)
 				ft_rs(ft_rnwi(file, name)->line, name)));
 	if (ft_string(str, ".xpm") < 0)
 		return (free(str),
-			ft_wr("Invalid File: xpm file shoul have valid texture!"));
+			ft_wr("Invalid File: xpm file should have valid texture!"));
 	free(str);
 	str = ft_sbstr(ft_rnwi(file, name)->line, ft_rs(ft_rnwi(file, name)->line,
 				name), ft_return_len(ft_rnwi(file, name)->line,

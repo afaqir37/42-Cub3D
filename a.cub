@@ -1,12 +1,11 @@
-   WE                            Textures/e.xpm
-NO      Textures/dz.xpm				    
+               									     WE                            Textures/e.xpm
+NO                        Textures/dz.xpm				    
 
 
 
-SO Textures/richard.xpm		  
+SO       Textures/richard.xpm		  
 
-F   69, 222, 199
-
+F         153,     153,   0
 EA Textures/ma.xpm         
 C 218, 									234,      235
 

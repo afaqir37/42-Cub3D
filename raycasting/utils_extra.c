@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_extra.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:29 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/17 02:21:23 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/17 04:18:58 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ float	_to_degree(float radian)
 	return (radian * 180 / M_PI);
 }
 
-float	_normalize_angle(float radian_angle)
+float	_normalize(float radian_angle)
 {
 	radian_angle = remainder(radian_angle, 2 * M_PI);
 	if (radian_angle < 0)

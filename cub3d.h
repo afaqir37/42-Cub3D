@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:41 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/17 03:12:47 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/17 04:18:58 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -262,7 +262,7 @@ void				_draw_map(t_data *data);
 int					_key_press_listener(int key, t_data *data);
 int					_key_release_listener(int key, t_data *data);
 void				_update(t_data *data);
-float				_normalize_angle(float radiant_angle);
+float				_normalize(float radiant_angle);
 int					_ray_facing_up(float radian);
 int					_ray_facing_down(float radian);
 int					_ray_facing_right(float radian);

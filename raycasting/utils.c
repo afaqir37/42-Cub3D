@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:32 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/17 02:44:54 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/17 04:19:45 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	_has_wall_at(float x, float y, t_data *data)
 {
 	size_t		map_y;
 	size_t		map_x;
-	char	c;
+	char		c;
 
 	map_y = ft_how_many_ptrs_in_array(data->map);
 	map_x = _len_of_longest_str(data->map);

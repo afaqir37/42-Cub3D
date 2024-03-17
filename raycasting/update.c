@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: agoujdam <agoujdam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 05:35:27 by afaqir            #+#    #+#             */
-/*   Updated: 2024/03/17 02:45:50 by afaqir           ###   ########.fr       */
+/*   Updated: 2024/03/17 04:19:27 by agoujdam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	_move_horizontal(t_data *data)
 
 void	_rotate(t_data *data)
 {
-	data->player.rotation_angle += data->player.turn_direction * data->player.rotation_speed;
-	data->player.rotation_angle = _normalize_angle(data->player.rotation_angle);
+	data->player.rotation_angle
+		+= data->player.turn_direction * data->player.rotation_speed;
+	data->player.rotation_angle = _normalize(data->player.rotation_angle);
 }
