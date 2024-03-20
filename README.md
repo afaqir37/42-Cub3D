@@ -11,13 +11,20 @@ This project is inspired by the world-famous Wolfenstein 3D game, which was the 
 2. [Technologies Used](#technologies-used)
 3. [Ray-Casting vs Ray-Tracing](#ray-casting-vs-ray-tracing)
 4. [Limitations of Ray-Casting](#limitations-of-ray-casting)
-5. [Digital Differential Analyzer (DDA) Algorithm] (#digital-differential-analyzer)
-5. [Implementation Details] (#implementation-details)
-6. [Usage](#usage)
-7. [Screenshots](#screenshots)
-8. [Contributing](#contributing)
-9. [License](#license)
-10. [Contact Information](#contact-information)
+5. [Digital Differential Analyzer (DDA) Algorithm](#digital-differential-analyzer)
+6. [Implementation Details](#implementation-details)
+    - [main()](#main)
+    - [_render_next_frame()](#_render_next_frame)
+    - [_paint()](#_paint)
+    - [_ray_casting()](#_ray_casting)
+    - [_cast_ray()](#_cast_ray)
+    - [_draw_line()](#_draw_line)
+    - [_render_the_world()](#_render_the_world)
+7. [Usage](#usage)
+8. [Screenshots](#screenshots)
+9. [Contributing](#contributing)
+10. [License](#license)
+11. [Contact Information](#contact-information)
 
 ---
 
@@ -156,7 +163,7 @@ void	_vertical_dda(t_data *data, t_vert *vert, t_intersection *inter,
 
 ### <ins>Implementation Details</ins>
 In this section, I'll walk you through the main components of the ray-casting engine implemented in this project.
-
+#### main()
 The entry point of the project is the `main` function. Here's a step-by-step breakdown of what it does:
 
 ```C
@@ -202,7 +209,7 @@ int	main(int argc, char **argv)
 
 This main function provides a high-level overview of how the game works. The actual game logic is implemented in the functions that are called from `main`.
 
-`_render_next_frame()`: <br>
+#### _render_next_frame()
 
 ```C
 int	_render_next_frame(t_data *data)
@@ -289,7 +296,7 @@ void	_rotate(t_data *data)
 The function then returns 0, which is typically used to indicate that the function has completed successfully.
 
 
-`_paint()`: <br>
+#### _paint()
 
 The `_paint` function is responsible for rendering a frame of the game. Here's a step-by-step breakdown of what it does:
 
@@ -322,7 +329,7 @@ void	_paint(t_data *data)
 
 This function is called for each frame of the game, which typically happens many times per second.
 
-`_ray_casting()`: <br>
+#### _ray_casting()
 
 The `_ray_casting` function is responsible for casting rays from the player's position and drawing the walls that the rays hit. Here's a step-by-step breakdown of what it does:
 
@@ -357,7 +364,7 @@ void	_ray_casting(t_data *data)
 
 4. **Freeing Rays Array**: After all rays have been cast and all walls have been drawn, the function frees the rays array.
 
-`_cast_ray()`: <br>
+#### _cast_ray()
 
 The `_cast_ray` function is responsible for casting a single ray from the player's position and determining where it hits a wall. Here's a step-by-step breakdown of what it does:
 
@@ -405,7 +412,7 @@ void	_cast_ray(t_data *data, float ray_angle, int i)
 
 This function is called once for each ray that is cast, which is once for each column of the screen.
 
-`_draw_line()`: <br>
+#### _draw_line()
 
 The `_draw_line` function is responsible for drawing a vertical line for each ray that is cast. This line represents a slice of the wall that the ray hits. Here's a step-by-step breakdown of what it does:
 
@@ -434,38 +441,6 @@ void	_draw_line(t_data *data, float ray_angle, int i, float dist_to_proj)
 }
 ```
 
-Sure, here's an explanation for the `_draw_line` function in README.md format:
-
-```markdown
-### <ins>Drawing a Line for Each Ray</ins>
-
-The `_draw_line` function is responsible for drawing a vertical line for each ray that is cast. This line represents a slice of the wall that the ray hits. Here's a step-by-step breakdown of what it does:
-
-```C
-void	_draw_line(t_data *data, float ray_angle, int i, float dist_to_proj)
-{
-	float	correct_distance;
-	float	wall_height;
-	float	wall_top;
-	float	wall_bottom;
-	int		texture_offset_x;
-
-	correct_distance = data->rays[i].distance * cos(ray_angle
-			- data->player.rotation_angle);
-	dist_to_proj = (data->screen_width / 2) / tan(data->half_of_fov);
-	wall_height = (TILE_SIZE / correct_distance) * dist_to_proj;
-	wall_top = (data->screen_height / 2) - (wall_height / 2);
-	if (wall_top < 0)
-		wall_top = 0;
-	wall_bottom = (data->screen_height / 2) + (wall_height / 2);
-	if (wall_bottom > data->screen_height)
-		wall_bottom = data->screen_height;
-	texture_offset_x = _set_texture(data, ray_angle, i);
-	_render_the_world(data, &(t_pack){wall_top, wall_bottom, wall_height, i},
-		texture_offset_x);
-}
-```
-
 1. **Correcting the Distance**: The function starts by correcting the distance from the player to the wall that the ray hit. This is done by multiplying the distance by the cosine of the difference between the ray angle and the player's rotation angle. This corrects for the "fishbowl effect" where walls appear to curve around the player.
 
 2. **Calculating Wall Height**: The function then calculates the height of the wall on the screen. This is done by dividing the size of a tile by the corrected distance and then multiplying by the distance to the projection plane. The distance to the projection plane is calculated based on the screen width and the field of view.
@@ -476,45 +451,7 @@ void	_draw_line(t_data *data, float ray_angle, int i, float dist_to_proj)
 
 5. **Rendering the Wall**: Finally, the function calls the `_render_the_world` function to draw the wall on the screen. This function draws a vertical line from the top to the bottom of the wall, using the texture determined in the previous step.
 
-`_render_the_world()`: <br>
-
-The `_render_the_world` function is responsible for drawing a vertical line on the screen that represents a slice of the wall that a ray hit. Here's a step-by-step breakdown of what it does:
-
-```C
-```C
-void	_render_the_world(t_data *data, t_pack *pack, int texture_offset_x)
-{
-    int		i;
-    int		wall_y;
-    int		texture_y;
-    char	*dst;
-
-    i = 0;
-    while (i < pack->wall_top)
-    {
-        my_mlx_pixel_put(data->img, pack->i, i++, rgb_to_hex(data->info->c.r,
-                data->info->c.g, data->info->c.b));
-    }
-    while (i < pack->wall_bottom)
-    {
-        wall_y = i + (pack->wall_height / 2) - (data->screen_height / 2);
-        texture_y = (int)(wall_y * (float)data->texture->height
-                / pack->wall_height) % data->texture->height;
-        dst = data->texture->addr + texture_y * data->texture->size_line
-            + texture_offset_x * (data->texture->bits_per_pixel / 8);
-        my_mlx_pixel_put(data->img, pack->i, i, *(unsigned int *)dst);
-        i++;
-    }
-    while (i < data->screen_height)
-        my_mlx_pixel_put(data->img, pack->i, i++, rgb_to_hex(data->info->f.r,
-                data->info->f.g, data->info->f.b));
-}
-```
-
-Sure, here's an explanation for the `_render_the_world` function in README.md format:
-
-```markdown
-### <ins>Rendering the Wall</ins>
+#### _render_the_world()
 
 The `_render_the_world` function is responsible for drawing a vertical line on the screen that represents a slice of the wall that a ray hit. Here's a step-by-step breakdown of what it does:
 
