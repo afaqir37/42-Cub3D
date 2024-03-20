@@ -163,7 +163,7 @@ void	_vertical_dda(t_data *data, t_vert *vert, t_intersection *inter,
 
 ### <ins>Implementation Details</ins>
 In this section, I'll walk you through the main components of the ray-casting engine implemented in this project.
-#### main()
+#### <ins>main()</ins>
 The entry point of the project is the `main` function. Here's a step-by-step breakdown of what it does:
 
 ```C
@@ -209,7 +209,7 @@ int	main(int argc, char **argv)
 
 This main function provides a high-level overview of how the game works. The actual game logic is implemented in the functions that are called from `main`.
 
-#### _render_next_frame()
+#### <ins>_render_next_frame()</ins>
 
 ```C
 int	_render_next_frame(t_data *data)
@@ -296,7 +296,7 @@ void	_rotate(t_data *data)
 The function then returns 0, which is typically used to indicate that the function has completed successfully.
 
 
-#### _paint()
+#### <ins>_paint()</ins>
 
 The `_paint` function is responsible for rendering a frame of the game. Here's a step-by-step breakdown of what it does:
 
@@ -329,7 +329,7 @@ void	_paint(t_data *data)
 
 This function is called for each frame of the game, which typically happens many times per second.
 
-#### _ray_casting()
+#### <ins>_ray_casting()</ins>
 
 The `_ray_casting` function is responsible for casting rays from the player's position and drawing the walls that the rays hit. Here's a step-by-step breakdown of what it does:
 
@@ -364,7 +364,7 @@ void	_ray_casting(t_data *data)
 
 4. **Freeing Rays Array**: After all rays have been cast and all walls have been drawn, the function frees the rays array.
 
-#### _cast_ray()
+#### <ins>_cast_ray()</ins>
 
 The `_cast_ray` function is responsible for casting a single ray from the player's position and determining where it hits a wall. Here's a step-by-step breakdown of what it does:
 
@@ -412,7 +412,7 @@ void	_cast_ray(t_data *data, float ray_angle, int i)
 
 This function is called once for each ray that is cast, which is once for each column of the screen.
 
-#### _draw_line()
+#### <ins>_draw_line()</ins>
 
 The `_draw_line` function is responsible for drawing a vertical line for each ray that is cast. This line represents a slice of the wall that the ray hits. Here's a step-by-step breakdown of what it does:
 
@@ -451,7 +451,7 @@ void	_draw_line(t_data *data, float ray_angle, int i, float dist_to_proj)
 
 5. **Rendering the Wall**: Finally, the function calls the `_render_the_world` function to draw the wall on the screen. This function draws a vertical line from the top to the bottom of the wall, using the texture determined in the previous step.
 
-#### _render_the_world()
+#### <ins>_render_the_world()</ins>
 
 The `_render_the_world` function is responsible for drawing a vertical line on the screen that represents a slice of the wall that a ray hit. Here's a step-by-step breakdown of what it does:
 
